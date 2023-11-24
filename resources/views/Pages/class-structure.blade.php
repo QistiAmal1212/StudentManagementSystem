@@ -7,7 +7,9 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
     {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap4.min.css"> --}}
     <link rel="stylesheet" type="text/css" href="node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    {{-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> --}}
+    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+
 </head>
 
 <body>
@@ -64,7 +66,7 @@
     <!-- jQuery -->
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
 
     <script>
         $(document).ready(function() {
