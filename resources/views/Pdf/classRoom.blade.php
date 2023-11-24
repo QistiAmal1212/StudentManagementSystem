@@ -5,47 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Classroom Detail</title>
 
-    <!-- Add some basic styling for better appearance -->
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-        }
-
-        h1 {
-            color: #333;
-        }
-
-        table {
-            width: 100%;
-            /* Set to 100% initially */
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th,
-        td {
-            border: 1px solid #ddd;
-            font-size: 8px;
-            padding: 8px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-
-        .class-teacher-yes {
-            color: #28a745;
-        }
-
-        .class-teacher-no {
-            color: #dc3545;
-        }
-
-    </style>
+    <link rel="stylesheet" type="text/css" href="../resources/views/Pdf/pdfCss.css">
 </head>
 <body>
-    <h1>CLASSROOM DETAILS</h1>
+    <h4>CLASSROOM DETAILS</h4>
     <table style="width: 100%;">
         <thead>
             <tr>

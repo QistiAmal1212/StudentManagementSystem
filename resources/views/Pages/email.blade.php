@@ -37,6 +37,9 @@
                             <select class="form-select" aria-label="Default select example" id="recipient" name="recipient" required>
                                 <option selected>Choose email</option>
                                 <option value="qistiamaluddin7@gmail.com">qistiamaluddin7@gmail.com</option>
+                                @foreach ($emails as $email)
+                                <option value="{{ $email->email }}">{{ $email->email }}</option>
+                                @endforeach
                             </select>
                             <br>
                             <label for="document">document</label>

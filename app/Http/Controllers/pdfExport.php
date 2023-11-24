@@ -42,13 +42,16 @@ class pdfExport extends Controller
         
     }
 
-    public function exportPdfClassStructure()
+    public function exportPdfClassStructure($id)
     {
-        $teachers = classRoom_Teacher::all();
-        $classRoom = classRoom::all();
-        $students = students::all();
-        $pdf = Pdf::loadView('Pdf.classRoom',compact('classRoom','students','teachers'));
-        return $pdf->download('classRoom.pdf');
+        $classRoomDetail = DB::table('students')
+        ->rightJoin('classRoom', 'students.classRoomId', '=', 'classRoom.classRoomId')
+        ->rightJoin('classRoom_teacher', 'classRoom.teacherID', '=', 'classRoom_teacher.teacherID')
+        ->select('students.*', 'classRoom.className','classRoom.classroomId', 'classRoom_teacher.name AS teacher_name')
+        ->where('classRoom.classroomId','=',$id)
+        ->get(); 
+        $pdf = Pdf::loadView('Pdf.classRoomStructure',compact('classRoomDetail','id'));
+        return $pdf->download('classRoomStructure.pdf');
         
     }
 }

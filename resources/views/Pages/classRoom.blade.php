@@ -150,6 +150,9 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php
+                                $j=1;
+                                @endphp
                                 @foreach($classRoom as $classRoom)
                                 <tr>
                                     <td>
@@ -158,12 +161,15 @@
                                     <td>{{ $classRoom->className }}</td>
                                     <td>{{ $classRoom->name }}</td>
                                     <td>{{ $classRoom->form }}</td>
-                                    <td>1000</td>
+                                    <td>{{ $totalstudent[$j] }}</td>
                                     <td>
                                         <center><i class="fas fa-edit editBtn" data-class-id="{{ $classRoom->classroomId }}"></i></center>
 
                                     </td>
                                 </tr>
+                                @php
+                                $j++;
+                                @endphp
                                 @endforeach
                                 <!-- Add more rows here -->
                             </tbody>

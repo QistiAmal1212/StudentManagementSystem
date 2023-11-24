@@ -14,11 +14,19 @@ class SystemController extends Controller
 {
   
     public function dashboard() 
-    {
+    {   $totalstudent=[];
+        $j=1;
         $classRoom = DB::table('classRoom')
         ->join('classRoom_teacher', 'classRoom.teacherID', '=', 'classRoom_teacher.teacherID')
         ->select('classRoom.*', 'classRoom_teacher.name')
         ->get();
+        $classRoomTest = $classRoom;
+
+        foreach($classRoomTest as  $classRoomTest){
+
+        $totalstudent[$j] = students::where('classroomId',$classRoomTest->classroomId)->count();
+         $j++;
+        }
 
         $totalClassRoom = classRoom::count();
         $totalTeachers = classRoom_Teacher::count();
@@ -53,7 +61,7 @@ class SystemController extends Controller
         }
     
 
-        return view("dashboard",compact('classRoom','totalClassRoom','totalTeachers','totalStudents',
+        return view("dashboard",compact('classRoom','totalClassRoom','totalTeachers','totalStudents','totalstudent',
         'totalPoorStudents','totalStudentForEachForm','totalPoorStudentForEachForm','latestDate1','latestDate2','latestDate3','latestDate4'));
     }
 
@@ -77,10 +85,19 @@ class SystemController extends Controller
         ->get();
 
 
+        $totalstudent=[];
+        $classRoomTest = $classRoom;
+        $j=1;
+        foreach($classRoomTest as  $classRoomTest){
+
+        $totalstudent[$j] = students::where('classroomId',$classRoomTest->classroomId)->count();
+         $j++;
+        }
+
         $teachers = classRoom_Teacher::WHERE('isClassTeacher',0)->get();
         $teachers2 = classRoom_Teacher::WHERE('isClassTeacher',0)->get();
 
-        return view("Pages.classRoom",compact('classRoom','teachers','teachers2'));
+        return view("Pages.classRoom",compact('classRoom','teachers','teachers2','totalstudent'));
 
     }
 
@@ -124,7 +141,10 @@ class SystemController extends Controller
     public function email()
     {
         $documents = documents::all();
-        return view("Pages.email",compact('documents'));
+        $emails = ClassRoom_Teacher::select('email')
+    ->union(students::select('email'))
+    ->get();
+        return view("Pages.email",compact('documents','emails'));
 
     }
 

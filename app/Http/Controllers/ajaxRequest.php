@@ -12,15 +12,19 @@ use Illuminate\Support\Facades\DB;
 class ajaxRequest extends Controller
 {
     public function getclassStructure(Request $request)
-{$selectedValue = $request->input('classId'); 
-   $classStructure = DB::table('students')
-    ->join('classRoom', 'students.classRoomId', '=', 'classRoom.classRoomId')
-    ->join('classRoom_teacher', 'classRoom.teacherID', '=', 'classRoom_teacher.teacherID')
-    ->select('students.*', 'classRoom.className','classRoom.classroomId', 'classRoom_teacher.name AS teacher_name')
-    ->where('classRoom.classroomId','=',$selectedValue)
-    ->get(); 
-    return response()->json($classStructure);
-}
+    {
+        $selectedValue = $request->input('classId');
+    
+        $classStructure = DB::table('students')
+            ->rightJoin('classRoom', 'students.classRoomId', '=', 'classRoom.classRoomId')
+            ->rightJoin('classRoom_teacher', 'classRoom.teacherID', '=', 'classRoom_teacher.teacherID')
+            ->select('students.*', 'classRoom.className', 'classRoom.classroomId', 'classRoom_teacher.name AS teacher_name')
+            ->where('classRoom.classroomId', '=', $selectedValue)
+            ->get();
+    
+        return response()->json($classStructure);
+    }
+    
 
 public function getTeacherDetail(Request $request)
 {

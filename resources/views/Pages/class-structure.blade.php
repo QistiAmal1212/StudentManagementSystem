@@ -32,9 +32,13 @@
             <div class="card" id="cardT" style="display:none;">
                 <div class="card-header" style="background-color:white;">
                     <div>
+                        <a id="routeLink1" href="{{ route('exportExcelClassStructure', ['classId' => ":classId"]) }}">
+                            <x-excelbtn />
+                        </a>
 
-                        <x-excelbtn onclick="handleExcelExport()" />
-                        <x-pdfbtn onclick="handlePDFExport()" />
+                        <a id="routeLink2" href="{{ route('exportPdfClassStructure', ['id' => ":classId"]) }}">
+                            <x-pdfbtn />
+                        </a>
 
 
 
@@ -90,9 +94,14 @@
                         , success: function(data) {
                             var classStructureTable = $('#cardtable'); // Use #example ID
                             classStructureTable.empty(); // Clear existing table data if any
+                            var exportPdfLink2 = '{{ route("exportPdfClassStructure", ["id" => ":classId"]) }}';
+                            exportPdfLink2 = exportPdfLink2.replace(':classId', selectedValue);
 
+                            var exportPdfLink1 = '{{ route("exportExcelClassStructure", ["id" => ":classId"]) }}';
+                            exportPdfLink1 = exportPdfLink1.replace(':classId', selectedValue);
 
                             var newelement =
+
                                 '<table id="example" class="table table-striped table-bordered" style="width:100%; font-size:15px !important;">' +
                                 ' <thead>' +
                                 '<tr>' +
@@ -123,6 +132,8 @@
                             newelement += '</tbody></table>';
 
                             classStructureTable.append(newelement);
+                            $('#routeLink1').attr('href', exportPdfLink1);
+                            $('#routeLink2').attr('href', exportPdfLink2);
                             $('#example').DataTable();
 
                         }

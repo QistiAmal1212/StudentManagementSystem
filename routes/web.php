@@ -63,8 +63,7 @@ Route::delete('/deleteDocument', [CrudOperationController::class, 'deleteDocumen
 Route::get('/exportExcelTeachers', [excelExport::class, 'exportExcelTeachers'])->name('exportExcelTeachers');
 Route::get('/exportExcelStudents', [excelExport::class, 'exportExcelStudents'])->name('exportExcelStudents');
 Route::get('/exportExcelClassRoom', [excelExport::class, 'exportExcelClassRoom'])->name('exportExcelClassRoom');
-Route::get('/exportExcelClassStructure', [excelExport::class, 'exportClassStructure'])->name('exportClassStructure');
-
+Route::get('/exportExcelClassStructure/{id?}',[excelExport::class, 'exportExcelClassStructure'])->name('exportExcelClassStructure');
 
 
 //=====================================EXPORT PDF===============================================
@@ -72,7 +71,8 @@ Route::get('/exportExcelClassStructure', [excelExport::class, 'exportClassStruct
 Route::get('/exportPdfTeacher', [pdfExport::class, 'exportPdfTeacher'])->name('exportPdfTeacher');
 Route::get('/exportPdfStudent', [pdfExport::class, 'exportPdfStudent'])->name('exportPdfStudent');
 Route::get('/exportPdfClassRoom', [pdfExport::class, 'exportPdfClassRoom'])->name('exportPdfClassRoom');
-Route::get('/exportClassStructure', [pdfExport::class, 'exportClassStructure'])->name('');
+Route::get('/exportPdfClassStructure/{id?}', [pdfExport::class, 'exportPdfClassStructure'])
+   ->name('exportPdfClassStructure');
 
 
 
