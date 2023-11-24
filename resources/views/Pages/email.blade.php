@@ -65,20 +65,8 @@
 
         <script src="node_modules/jquery/dist/jquery.min.js"></script>
         <script src="node_modules/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="js/email.js"></script>
 
-        <script>
-            $(document).ready(function() {
-                $('#example').DataTable({
-
-                });
-
-
-                $(".sidebar-item.active").removeClass("active");
-                $("#email").addClass("active");
-
-            });
-
-        </script>
     </body>
     </html>
     @endsection
