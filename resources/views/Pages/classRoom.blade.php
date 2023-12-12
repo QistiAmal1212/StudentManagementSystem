@@ -127,9 +127,6 @@
                         <a href="{{ route('exportPdfClassRoom') }}">
                             <x-pdfbtn id="pdfBtn" />
                         </a>
-                        {{-- <x-importbtn onclick="handleImportClick()" /> --}}
-
-                        {{-- <input type="file" id="importFile" style="display: none;"> --}}
                     </div>
                 </div>
                 <form id="deleteClassRoom" class="deleteClassRoom" method="post" action="{{ route('deleteClassRoom') }}" enctype="multipart/form-data">
@@ -165,7 +162,6 @@
                                     <td>{{ $totalstudent[$j] }}</td>
                                     <td>
                                         <center><i class="fas fa-edit editBtn" data-class-id="{{ $classRoom->classroomId }}"></i></center>
-
                                     </td>
                                 </tr>
                                 @php

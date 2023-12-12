@@ -1,9 +1,9 @@
  <nav id="sidebar" class="sidebar js-sidebar">
      <div class="sidebar-content js-simplebar" style="">
          <a class="sidebar-brand" href="{{ route('dashboard') }}">
-             <div style="position:relative;top:-5px;">
+             <div style="position:relative;top:5px;">
                  <img src="Images/s.png" alt="Student-Management-System" style="width:35px;height:35px;" />
-                 <span class="align-middle" style=" font-size:13px !important; ">STUDENT MANAGEMENT</span></div>
+                 <span class="align-middle" style=" font-size:22px !important; ">SM SYSTEM</span></div>
          </a>
          {{-- <hr style="position:relative;top:-50px; color:white;" /> --}}
 
@@ -12,7 +12,7 @@
                  Pages
              </li>
 
-             <li id="dashboard" class="sidebar-item active">
+             <li id="dashboard" class="sidebar-item">
                  <a class="sidebar-link" href="{{ route('dashboard') }}">
                      <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
                  </a>
@@ -37,6 +37,24 @@
                      <i class="align-middle" data-feather="users"></i> <span class="align-middle">Student</span>
                  </a>
              </li>
+
+             <li id="exam" class="sidebar-item">
+                 <a class="sidebar-link" href="{{ route('exam') }}">
+                     <i class="align-middle" data-feather="arrow-down-circle"></i> <span class="align-middle">Register Exam</span>
+                 </a>
+             </li>
+
+             <li id="grading" class="sidebar-item">
+                 <a class="sidebar-link" href="{{ route('grading') }}">
+                     <i class="align-middle" data-feather="edit-2"></i> <span class="align-middle">Grading</span>
+                 </a>
+             </li>
+
+             <li id="examReport" class="sidebar-item">
+                 <a class="sidebar-link" href="{{ route('examReport') }}">
+                     <i class="align-middle" data-feather="bar-chart"></i> <span class="align-middle">Exam Report</span>
+                 </a>
+             </li>
              {{-- <li class="sidebar-item">
                  <a class="sidebar-link" href="{{ route('analysis') }}">
              <i class="align-middle" data-feather="bar-chart"></i> <span class="align-middle">Analysis</span>
@@ -58,7 +76,6 @@
                      <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
                  </a>
              </li>
-
 
          </ul>
 

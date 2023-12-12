@@ -37,7 +37,11 @@
                                 </h1>
                                 <div class="mb-0">
                                     <span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> Last update </span>
-                                    {{-- <span class="text-muted">{{ $latestDate1->updated_at->format('d-m-Y')  }}</span> --}}
+                                    @if($latestDate1)
+                                    <span class="text-muted">{{ $latestDate1->updated_at->format('d-m-Y')  }}</span>
+                                    @else
+                                    ---
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -58,8 +62,13 @@
                                     <x-text-counting>{{ $totalTeachers }}</x-text-counting>
                                 </h1>
                                 <div class="mb-0">
+
                                     <span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> Last update </span>
-                                    {{-- <span class="text-muted">{{ $latestDate2->updated_at->format('d-m-Y')  }}</span> --}}
+                                    @if($latestDate2)
+                                    <span class="text-muted">{{ $latestDate2->updated_at->format('d-m-Y')  }}</span>
+                                    @else
+                                    ---
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -83,7 +92,11 @@
                                 </h1>
                                 <div class="mb-0">
                                     <span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> Last update </span>
-                                    {{-- <span class="text-muted">{{ $latestDate3->updated_at->format('d-m-Y')  }}</span> --}}
+                                    @if($latestDate3)
+                                    <span class="text-muted">{{ $latestDate3->updated_at->format('d-m-Y')  }}</span>
+                                    @else
+                                    ---
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -105,7 +118,11 @@
                                 </h1>
                                 <div class="mb-0">
                                     <span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> Last update </span>
-                                    /
+                                    @if($latestDate4)
+                                    <span class="text-muted">{{ $latestDate4->updated_at->format('d-m-Y')  }}</span>
+                                    @else
+                                    ---
+                                    @endif
                                 </div>
                             </div>
                         </div>

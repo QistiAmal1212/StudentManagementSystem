@@ -6,6 +6,8 @@ use App\Exports\UsersExport;
 use App\Models\classRoom_Teacher;
 use App\Models\classRoom;
 use App\Models\documents;
+use App\Models\exam;
+use App\Models\studentResult;
 use App\Models\students;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -125,6 +127,73 @@ class SystemController extends Controller
 
     }
 
+    public function exam()
+    {
+
+        $exam = exam::all();
+        
+
+        return view("Pages.exam",compact('exam'));
+
+    }
+
+    public function grading()
+    {
+
+        $exam = exam::all();
+        $classRoom = classRoom::all();
+        $studentResult=studentResult::all();
+        return view("Pages.grading",compact('exam','classRoom','studentResult'));
+
+    }
+
+
+    public function examReport(Request $request)
+    {  
+        
+        if($request->input('examId'))
+        { 
+         $testId=$request->input('examId');
+         $exam = exam::all();
+         $studentResult=studentResult::Where('examId',$testId) ->orderBy('average', 'desc')->get();
+         $classNames = $studentResult->unique('className')->pluck('className');
+
+
+         $reportResult1 = [];
+         $reportResult2 = [];
+
+         foreach ($classNames as $className) {
+            $average = $studentResult->where('className', $className)->avg('average');
+             $reportResult1[] = $className;
+             $reportResult2[] = $average;
+         }
+         
+        }
+      
+        else{
+        $exam = exam::all();
+        $examtest = exam::first();
+        $studentResult=studentResult::Where('examId',$examtest->examId) ->orderBy('average', 'desc')->get();
+
+        $classNames = $studentResult->unique('className')->pluck('className');
+
+        $reportResult1 = [];
+        $reportResult2 = [];
+
+        foreach ($classNames as $className) {
+            $average = $studentResult->where('className', $className)->avg('average');
+            $reportResult1[] = $className;
+            $reportResult2[] = $average;
+        }
+        }
+      
+
+        return view("Pages.examReport",compact('exam','studentResult','reportResult1','reportResult2'));
+
+    }
+
+
+
     public function analysis()
     {
         return view("Pages.analysis");
@@ -147,5 +216,16 @@ class SystemController extends Controller
         return view("Pages.email",compact('documents','emails'));
 
     }
+
+
+    // public function report(Request $request)
+    // {
+        
+    //     $exam = exam::all();
+    //     $classRoom = classRoom::all();
+    //     $studentResult=studentResult::all();
+
+    //     return view("Pages.examReport",compact('exam','classRoom','studentResult'));
+    // }
 
 }

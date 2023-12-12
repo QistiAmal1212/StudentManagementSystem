@@ -29,10 +29,8 @@ $(document).ready(function () {
                 , success: function (data) {
                     var classStructureTable = $('#cardtable'); // Use #example ID
                     classStructureTable.empty(); // Clear existing table data if any
-                    var exportPdfLink2 = '{{ route("exportPdfClassStructure", ["id" => ":classId"]) }}';
                     exportPdfLink2 = exportPdfLink2.replace(':classId', selectedValue);
 
-                    var exportPdfLink1 = '{{ route("exportExcelClassStructure", ["id" => ":classId"]) }}';
                     exportPdfLink1 = exportPdfLink1.replace(':classId', selectedValue);
 
                     var newelement =

@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage; 
 use Illuminate\Support\Facades\Session;
 use App\Imports\studentsImport;
+use App\Models\exam;
+use App\Models\studentResult;
+
 use Maatwebsite\Excel\Facades\Excel;
 
 
@@ -180,6 +183,60 @@ public function addDocument(Request $request)
 
 }
   
+
+
+public function addExam(Request $request)
+{ 
+    try
+    {
+        $request->validate([
+            'form' => ['required'],
+            'title' => ['required'],
+            ]);
+
+    
+    
+      $exam = new exam();
+      $exam->title = $request->input('title');
+      $exam->form = $request->input('form');
+     
+      $exam->save();
+      $checkForm =$exam->form;
+      $examId =$exam->examId;
+
+      $classRooms = ClassRoom::where('form', $checkForm)->get();
+      $classRoomIds = $classRooms->pluck('classroomId');
+      $students = Students::whereIn('classroomId', $classRoomIds)->get();
+
+      foreach($students as $student)
+      {   
+          $studentResult = new studentResult();
+          $studentResult->examId=$examId;
+          $studentResult->name=$student->name;
+          $studentResult->status="pending";
+          $studentResult->icNumber=$student->icNumber;
+          $findclassname= classRoom::Where('classroomId',$student->classroomId)->first();
+          $studentResult->className=$findclassname->className;
+          $studentResult->save();
+      }
+    
+
+
+      return redirect('exam')->with('success', 'exam added successfully');
+
+    }
+
+
+    catch (\Exception $e) 
+    {
+      $errorMessage = $e->getMessage();
+      Session::flash('error', $errorMessage);
+      return redirect()->back()->withInput();
+
+    }
+
+
+}
 
     
 
@@ -469,6 +526,33 @@ public function importStudents()
 
 }
     
+
+public function updateResult(Request $request)
+{
+    try
+    {
+     $icNumber=$request->input('updateId');
+     $result=studentResult::Where('icNumber',$icNumber)->first();
+     $result->name= $request->input('name');
+     $result->Bahasa_Melayu= $request->input('Bahasa_Melayu');
+     $result->English= $request->input('English');
+     $result->Math= $request->input('Math');
+     $result->Science= $request->input('Science');
+     $result->Sejarah= $request->input('Sejarah');
+     $result->status= "successful";
+     $result->average= ($result->Bahasa_Melayu+$result->English+$result->Math+$result->Science+$result->Sejarah)/5;
+     $result->save();
+ 
+     return redirect()->route('grading')->with('success', 'Data update successfully!');
+ 
+    }
+    catch (\Exception $e) 
+    {
+     $errorMessage = $e->getMessage();   
+     Session::flash('error', $errorMessage);
+     return redirect()->back()->withInput();
+    }
+}
 
 
 }
