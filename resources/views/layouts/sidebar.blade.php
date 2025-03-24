@@ -2,8 +2,8 @@
      <div class="sidebar-content js-simplebar" style="">
          <a class="sidebar-brand" href="{{ route('dashboard') }}">
              <div style="position:relative;top:5px;">
-                 <img src="Images/s.png" alt="Student-Management-System" style="width:35px;height:35px;" />
-                 <span class="align-middle" style=" font-size:22px !important; ">SM SYSTEM</span></div>
+                 <img src="Images/s.png" alt="Student-Management-System" style="width:30px;height:30px;" />
+                 <span class="align-middle" style=" font-size:15px !important; ">Student Management</span></div>
          </a>
          {{-- <hr style="position:relative;top:-50px; color:white;" /> --}}
 
@@ -81,7 +81,7 @@
 
          {{-- <div class="sidebar-cta">
              <div class="sidebar-cta-content">
-                 <strong class="d-inline-block mb-2">Upgrade to Pro</strong>
+                 <strong class="mb-2 d-inline-block">Upgrade to Pro</strong>
                  <div class="mb-3 text-sm">
                      Are you looking for more components? Check out our premium version.
                  </div>
