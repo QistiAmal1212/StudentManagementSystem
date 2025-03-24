@@ -7,7 +7,7 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
-use PhpOffice\PhpSpreadsheet\Style\Fill;
+
 
 class classRoomExport implements FromCollection, WithHeadings, WithEvents
 {
@@ -41,7 +41,7 @@ class classRoomExport implements FromCollection, WithHeadings, WithEvents
             'form',
             'teacherId',
             'Teacher Name',
-          
+
         ];
     }
 
@@ -64,9 +64,9 @@ class classRoomExport implements FromCollection, WithHeadings, WithEvents
                         'bold' => true,
                     ],
                     'fill' => [
-                        'fillType' => Fill::FILL_SOLID,
+                        'fillType' => 'solid',
                         'startColor' => [
-                            'rgb' => 'F5F5F5', 
+                            'rgb' => 'F5F5F5',
                         ],
                     ],
                 ]);

@@ -10,7 +10,7 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Events\AfterSheet;
-use PhpOffice\PhpSpreadsheet\Style\Fill;
+
 class classStructureExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEvents
 {
     protected $classId;
@@ -74,16 +74,16 @@ class classStructureExport implements FromCollection, WithHeadings, ShouldAutoSi
     {
         return [
             AfterSheet::class => function (AfterSheet $event) {
-             
+
                 $event->sheet->setTitle('Student Details');
                 $event->sheet->getStyle('A3:I3')->applyFromArray([
                     'font' => [
                         'bold' => true,
                     ],
                     'fill' => [
-                        'fillType' => Fill::FILL_SOLID,
+                       'fillType' => 'solid',
                         'startColor' => [
-                            'rgb' => 'F5F5F5', 
+                            'rgb' => 'F5F5F5',
                         ],
                     ],
                 ]);

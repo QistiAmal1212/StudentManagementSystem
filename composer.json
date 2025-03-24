@@ -8,23 +8,21 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^8.1",
-        "barryvdh/laravel-dompdf": "^2.0",
+        "php": "^8.3",
+        "barryvdh/laravel-dompdf": "^3.1",
         "guzzlehttp/guzzle": "^7.2",
-        "laravel/framework": "^10.10",
-        "laravel/sanctum": "^3.3",
+        "laravel/framework": "^12.0",
+        "laravel/sanctum": "4.x",
         "laravel/tinker": "^2.8",
-        "maatwebsite/excel": "^3.1",
-        "phpoffice/phpspreadsheet": "^1.29"
+        "maatwebsite/excel": "^3.1"
     },
     "require-dev": {
-        "fakerphp/faker": "^1.9.1",
-        "laravel/breeze": "^1.26",
-        "laravel/pint": "^1.0",
-        "laravel/sail": "^1.18",
+        "fakerphp/faker": "^1.24.1",
+        "laravel/breeze": "^2.3.6",
+        "laravel/pint": "^1.21.2",
+        "laravel/sail": "^1.41.0",
         "mockery/mockery": "^1.4.4",
-        "nunomaduro/collision": "^7.0",
-        "phpunit/phpunit": "^10.1",
+        "nunomaduro/collision": "8.x",
         "spatie/laravel-ignition": "^2.0"
     },
     "autoload": {
