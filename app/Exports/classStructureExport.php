@@ -2,9 +2,9 @@
 
 namespace App\Exports;
 
-use App\Models\Classroom_teacher;
+use App\Models\class_room_teacher;
 use App\Models\students;
-use App\Models\Classroom;
+use App\Models\class_room;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -21,8 +21,8 @@ class classStructureExport implements FromCollection, WithHeadings, ShouldAutoSi
     {
         $this->classId = $classId;
         // Fetch class information based on classId
-        $class_name = Classroom::find($classId);
-        $classTeacher = Classroom_teacher::find($class_name->teacher_id);
+        $class_name = class_room::find($classId);
+        $classTeacher = class_room_teacher::find($class_name->teacher_id);
         $this->class_name = $class_name ? $class_name->class_name : '';
         $this->teacherName = $classTeacher ? $classTeacher->name : '';
     }
@@ -30,8 +30,8 @@ class classStructureExport implements FromCollection, WithHeadings, ShouldAutoSi
     public function collection()
     {
         // Your existing query logic
-        return students::RightJoin('Classroom', 'students.Classroom_id', '=', 'Classroom.Classroom_id')
-            ->RightJoin('Classroom_teacher', 'Classroom.teacher_id', '=', 'Classroom_teacher.teacher_id')
+        return students::RightJoin('class_room', 'students.class_room_id', '=', 'class_room.class_room_id')
+            ->RightJoin('class_room_teacher', 'class_room.teacher_id', '=', 'class_room_teacher.teacher_id')
             ->select(
                 'students.student_id',
                 'students.name',
@@ -40,10 +40,10 @@ class classStructureExport implements FromCollection, WithHeadings, ShouldAutoSi
                 'students.email',
                 'students.family_income ',
                 'students.total_family_member',
-                'students.Classroom_id',
-                'Classroom.class_name' // Add class_name to the select statement
+                'students.class_room_id',
+                'class_room.class_name' // Add class_name to the select statement
             )
-            ->where('Classroom.Classroom_id', '=', $this->classId)
+            ->where('class_room.class_room_id', '=', $this->classId)
             ->get();
     }
 
@@ -60,7 +60,7 @@ class classStructureExport implements FromCollection, WithHeadings, ShouldAutoSi
                 'email',
                 'family_income ',
                 'total_family_member',
-                'Classroom_id',
+                'class_room_id',
                 'class_name',
             ],
         ];

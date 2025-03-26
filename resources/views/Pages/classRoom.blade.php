@@ -16,11 +16,11 @@
     <x-statusMessage />
     <div id="addModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
-            <form method="post" id="formAdd" class="" action="{{ route('addClassroom') }}">
+            <form method="post" id="formAdd" class="" action="{{ route('addclass_room') }}">
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header" style="background-color:#333b46;">
-                        <h5 class="modal-title" style="color:white;">Add New Classroom</h5>
+                        <h5 class="modal-title" style="color:white;">Add New class_room</h5>
                         <button type="button" style="color:white;" class="close" data-dismiss="modal">&times;</button>
                     </div>
 
@@ -40,7 +40,7 @@
 
 
                             <div class="form-group">
-                                <label for="classTeacher">Classroom Teacher:</label>
+                                <label for="classTeacher">class_room Teacher:</label>
                                 <select id="classTeacher" name="teacher_id" class="form-select form-select-lg mb-3" aria-label="Default select example" required>
                                     <option value="">--</option>
                                     @foreach ($teachers as $teachers)
@@ -65,12 +65,12 @@
 
         <div id="updateModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
-                <form method="post" id="updateClassroom" class="" action="{{ route('updateClassroom') }}">
+                <form method="post" id="updateclass_room" class="" action="{{ route('updateclass_room') }}">
                     @method('PUT')
                     @csrf
                     <div class="modal-content">
                         <div class="modal-header" style="background-color:#333b46;">
-                            <h5 class="modal-title" style="color:white;">Update Classroom</h5>
+                            <h5 class="modal-title" style="color:white;">Update class_room</h5>
                             <button type="button" style="color:white;" class="close" data-dismiss="modal">&times;</button>
                         </div>
 
@@ -93,7 +93,7 @@
 
 
                                 <div class="form-group">
-                                    <label for="updateteacher_id">Classroom Teacher:</label>
+                                    <label for="updateteacher_id">class_room Teacher:</label>
                                     <select id="updateteacher_id" name="updateteacher_id"
                                         class="form-select form-select-lg mb-3" aria-label="Default select example"
                                         required>
@@ -127,16 +127,16 @@
                         <div>
                             <x-addbtn id="addBtn" />
                             <x-deletebtn id="deleteBtn" />
-                            <a href="{{ route('exportExcelClassroom') }}">
+                            <a href="{{ route('exportExcelclass_room') }}">
                                 <x-excelbtn id="excelBtn" />
                             </a>
-                            <a href="{{ route('exportPdfClassroom') }}">
+                            <a href="{{ route('exportPdfclass_room') }}">
                                 <x-pdfbtn id="pdfBtn" />
                             </a>
                         </div>
                     </div>
-                    <form id="deleteClassroom" class="deleteClassroom" method="post"
-                        action="{{ route('deleteClassroom') }}" enctype="multipart/form-data">
+                    <form id="deleteclass_room" class="deleteclass_room" method="post"
+                        action="{{ route('deleteclass_room') }}" enctype="multipart/form-data">
                         @method('DELETE')
                         @csrf
                         <div class="card-body" style="padding-right:15px;padding-left:15px;padding-top:10px;">
@@ -160,19 +160,19 @@
                                     @php
                                         $j = 1;
                                     @endphp
-                                    @foreach ($Classroom as $Classroom)
+                                    @foreach ($class_room as $class_room)
                                         <tr>
                                             <td>
                                                 <input type="checkbox" name="selectedClass[]"
-                                                    value="{{ $Classroom->Classroom_id }}" />
+                                                    value="{{ $class_room->class_room_id }}" />
                                             </td>
-                                            <td>{{ $Classroom->class_name }}</td>
-                                            <td>{{ $Classroom->name }}</td>
-                                            <td>{{ $Classroom->form }}</td>
+                                            <td>{{ $class_room->class_name }}</td>
+                                            <td>{{ $class_room->name }}</td>
+                                            <td>{{ $class_room->form }}</td>
                                             <td>{{ $totalstudent[$j] }}</td>
                                             <td>
                                                 <center><i class="fas fa-edit editBtn"
-                                                        data-class-id="{{ $Classroom->Classroom_id }}"></i></center>
+                                                        data-class-id="{{ $class_room->class_room_id }}"></i></center>
                                             </td>
                                         </tr>
                                         @php
@@ -191,7 +191,7 @@
 
         <script src="node_modules/jquery/dist/jquery.min.js"></script>
         <script src="node_modules/datatables.net/js/jquery.dataTables.min.js"></script>
-        <script src="js/Classroom.js"></script>
+        <script src="js/class_room.js"></script>
 
 
         </body>

@@ -20,8 +20,8 @@
                 <label for="class">Choose Class:</label>
                 <select id="class" name="classId" class="form-select" aria-label="Default select example">
                     <option value="0">-----</option>
-                    @foreach ($Classroom as $Classroom)
-                    <option value="{{ $Classroom->Classroom_id }}">{{ $Classroom->class_name }}</option> @endforeach
+                    @foreach ($class_room as $class_room)
+                    <option value="{{ $class_room->class_room_id }}">{{ $class_room->class_name }}</option> @endforeach
 
                 </select>
             </div>

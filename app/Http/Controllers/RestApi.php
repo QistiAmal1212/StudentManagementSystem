@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 
-use App\Models\Classroom;
-use App\Models\Classroom_teacher;
+use App\Models\class_room;
+use App\Models\class_room_teacher;
 use App\Models\students;
 use Illuminate\Http\Request;
 
@@ -18,14 +18,14 @@ class RestApi extends Controller
 
     public function TeacherData()
     {
-        $teachers=Classroom_teacher::all();
+        $teachers=class_room_teacher::all();
         return response()->json($teachers);
     }
 
-    public function ClassroomData()
+    public function class_roomData()
     {
-        $Classroom=Classroom::all();
-        return response()->json($Classroom);
+        $class_room=class_room::all();
+        return response()->json($class_room);
     }
 
 }

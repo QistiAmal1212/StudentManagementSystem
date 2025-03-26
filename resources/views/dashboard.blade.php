@@ -23,7 +23,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col mt-0">
-                                            <h5 class="card-title">Classroom</h5>
+                                            <h5 class="card-title">class_room</h5>
                                         </div>
 
                                         <div class="col-auto">
@@ -33,7 +33,7 @@
                                         </div>
                                     </div>
                                     <h1 class="mt-1 mb-3">
-                                        <x-text-counting>{{ $totalClassroom }}</x-text-counting>
+                                        <x-text-counting>{{ $totalclass_room }}</x-text-counting>
                                     </h1>
                                     <div class="mb-0">
                                         <span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> Last update
@@ -50,7 +50,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col mt-0">
-                                            <h5 class="card-title">Classroom Teacher</h5>
+                                            <h5 class="card-title">class_room Teacher</h5>
                                         </div>
 
                                         <div class="col-auto">
@@ -157,7 +157,7 @@
                 <div class="card">
                     <div class="card-header">
 
-                        <h5 class="card-title mb-0">Classroom</h5>
+                        <h5 class="card-title mb-0">class_room</h5>
                     </div>
                     <div class="card-body" style="padding-right:15px;padding-left:15px;padding-top:10px;">
                         <table id="example" class="table table-bordered" style="width:100% ">
@@ -175,12 +175,12 @@
                                 @php
                                     $j = 1;
                                 @endphp
-                                @foreach ($Classroom as $Classroom)
+                                @foreach ($class_room as $class_room)
                                     <tr>
-                                        {{-- <td>{{ $Classroom->Classroom_id }}</td> --}}
-                                        <td>{{ $Classroom->class_name }}</td>
-                                        <td>{{ $Classroom->name }}</td>
-                                        <td>{{ $Classroom->form }}</td>
+                                        {{-- <td>{{ $class_room->class_room_id }}</td> --}}
+                                        <td>{{ $class_room->class_name }}</td>
+                                        <td>{{ $class_room->name }}</td>
+                                        <td>{{ $class_room->form }}</td>
                                         <td>{{ $totalstudent[$j] }}</td>
 
                                     </tr>

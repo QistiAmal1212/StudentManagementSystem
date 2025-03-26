@@ -18,10 +18,10 @@ return new class extends Migration
             $table->integer('total_family_member');
             $table->timestamps();
 
-            $table->uuid('Classroom_id');
-            $table->foreign('Classroom_id')
-                  ->references('Classroom_id')
-                  ->on('Classroom')
+            $table->uuid('class_room_id');
+            $table->foreign('class_room_id')
+                  ->references('class_room_id')
+                  ->on('class_room')
                   ->onDelete('cascade');
         });
     }

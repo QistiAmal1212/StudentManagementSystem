@@ -36,7 +36,7 @@
                     <td>{{ $student->email }}</td>
                     <td>{{ $student->family_income }}</td>
                     <td>{{ $student->total_family_member }}</td>
-                    <td>{{ $student->Classroom_id }}</td>
+                    <td>{{ $student->class_room_id }}</td>
 
                 </tr>
             @endforeach
