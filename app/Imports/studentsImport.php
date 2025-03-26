@@ -26,9 +26,9 @@ class studentsImport implements ToModel,WithStartRow
         //     abort(422, 'row ' . $this->rowCount . ': Duplicate data found.');
 
         // }
-     
 
-    
+
+
         $icNumber = $row[1];
 
         // Check for duplicate IC numbers
@@ -42,12 +42,12 @@ class studentsImport implements ToModel,WithStartRow
         if(students::where('email', $row[3])->exists() )
         {
             abort(422, 'row ' . $this->rowCount . ': Duplicate email found.');
-        }   
-        
+        }
+
         if(students::where('icNumber', $row[1])->exists() )
         {
             abort(422, 'row ' . $this->rowCount . ': Duplicate Ic Number found.');
-        }  
+        }
 
         if( strlen($row[1]) !== 12)
         {
@@ -70,8 +70,8 @@ class studentsImport implements ToModel,WithStartRow
             'icNumber' => (string) $row[1],
             'noTell' => (string) $row[2],
             'email' => (string) $row[3],
-            'familyIncome' => (float) $row[4],
-            'totalFamilyMember' => (int) $row[5],
+            'family_income ' => (float) $row[4],
+            'total_family_member' => (int) $row[5],
             'classroomId' => (string) $row[6],
         ]);
     }

@@ -14,13 +14,13 @@ use Illuminate\Support\Facades\DB;
 
 class SystemController extends Controller
 {
-  
-    public function dashboard() 
+
+    public function dashboard()
     {   $totalstudent=[];
         $j=1;
         $classRoom = DB::table('classRoom')
-        ->join('classRoom_teacher', 'classRoom.teacherID', '=', 'classRoom_teacher.teacherID')
-        ->select('classRoom.*', 'classRoom_teacher.name')
+        ->join('classRoom_Teacher', 'classRoom.teacherId', '=', 'classRoom_Teacher.teacherId')
+        ->select('classRoom.*', 'classRoom_Teacher.name')
         ->get();
         $classRoomTest = $classRoom;
 
@@ -33,11 +33,11 @@ class SystemController extends Controller
         $totalClassRoom = classRoom::count();
         $totalTeachers = classRoom_Teacher::count();
         $totalStudents = students::count();
-        $totalPoorStudents = students::whereRaw('(familyIncome / totalFamilyMember) < 1250')->count();
+        $totalPoorStudents = students::whereRaw('(family_income  / total_family_member) < 1250')->count();
         $latestDate1 = classRoom::latest('updated_at')->first();
         $latestDate2 = classRoom_Teacher::latest('updated_at')->first();
         $latestDate3 = students::latest('updated_at')->first();
-        $latestDate4 = students::whereRaw('(familyIncome / totalFamilyMember) < 1250')->latest('updated_at')->first();
+        $latestDate4 = students::whereRaw('(family_income  / total_family_member) < 1250')->latest('updated_at')->first();
 
         $totalStudentForEachForm = [];
 
@@ -46,7 +46,7 @@ class SystemController extends Controller
                 ->join('classRoom', 'students.classroomId', '=', 'classRoom.classroomId')
                 ->where('classRoom.form', $i)
                 ->count();
-    
+
             $totalStudentForEachForm[] = ${"totalStudentsForm" . $i};
         }
 
@@ -56,12 +56,12 @@ class SystemController extends Controller
             ${"totalPoorStudentForEachForm" . $i} = DB::table('students')
                 ->join('classRoom', 'students.classroomId', '=', 'classRoom.classroomId')
                 ->where('classRoom.form', $i)
-                ->whereRaw('(familyIncome / totalFamilyMember) < 1250')
+                ->whereRaw('(family_income  / total_family_member) < 1250')
                 ->count();
-    
+
                 $totalPoorStudentForEachForm[] = ${"totalPoorStudentForEachForm" . $i};
         }
-    
+
 
         return view("dashboard",compact('classRoom','totalClassRoom','totalTeachers','totalStudents','totalstudent',
         'totalPoorStudents','totalStudentForEachForm','totalPoorStudentForEachForm','latestDate1','latestDate2','latestDate3','latestDate4'));
@@ -82,8 +82,8 @@ class SystemController extends Controller
     public function classRoom()
     {
         $classRoom = DB::table('classRoom')
-        ->join('classRoom_teacher', 'classRoom.teacherID', '=', 'classRoom_teacher.teacherID')
-        ->select('classRoom.*', 'classRoom_teacher.name')
+        ->join('classRoom_Teacher', 'classRoom.teacherId', '=', 'classRoom_Teacher.teacherId')
+        ->select('classRoom.*', 'classRoom_Teacher.name')
         ->get();
 
 
@@ -107,8 +107,8 @@ class SystemController extends Controller
     {
         $students = DB::table('students')
         ->join('classRoom', 'students.classRoomId', '=', 'classRoom.classRoomId')
-        ->join('classRoom_teacher', 'classRoom.teacherID', '=', 'classRoom_teacher.teacherID')
-        ->select('students.*', 'classRoom.className', 'classRoom_teacher.name AS teacher_name')
+        ->join('classRoom_Teacher', 'classRoom.teacherId', '=', 'classRoom_Teacher.teacherId')
+        ->select('students.*', 'classRoom.className', 'classRoom_Teacher.name AS teacher_name')
         ->get();
         $class = classRoom::all();
         $class2 = classRoom::all();
@@ -121,7 +121,7 @@ class SystemController extends Controller
     {
 
         $teachers = classRoom_Teacher::all();
-        
+
 
         return view("Pages.teachers",compact('teachers'));
 
@@ -131,7 +131,7 @@ class SystemController extends Controller
     {
 
         $exam = exam::all();
-        
+
 
         return view("Pages.exam",compact('exam'));
 
@@ -149,10 +149,10 @@ class SystemController extends Controller
 
 
     public function examReport(Request $request)
-    {  
-        
+    {
+
         if($request->input('examId'))
-        { 
+        {
          $testId=$request->input('examId');
          $exam = exam::all();
          $studentResult=studentResult::Where('examId',$testId) ->orderBy('average', 'desc')->get();
@@ -167,9 +167,9 @@ class SystemController extends Controller
              $reportResult1[] = $className;
              $reportResult2[] = $average;
          }
-         
+
         }
-      
+
         else{
         $exam = exam::all();
         $examtest = exam::first();
@@ -186,7 +186,7 @@ class SystemController extends Controller
             $reportResult2[] = $average;
         }
         }
-      
+
 
         return view("Pages.examReport",compact('exam','studentResult','reportResult1','reportResult2'));
 
@@ -210,7 +210,7 @@ class SystemController extends Controller
     public function email()
     {
         $documents = documents::all();
-        $emails = ClassRoom_Teacher::select('email')
+        $emails = classRoom_Teacher::select('email')
     ->union(students::select('email'))
     ->get();
         return view("Pages.email",compact('documents','emails'));
@@ -220,7 +220,7 @@ class SystemController extends Controller
 
     // public function report(Request $request)
     // {
-        
+
     //     $exam = exam::all();
     //     $classRoom = classRoom::all();
     //     $studentResult=studentResult::all();

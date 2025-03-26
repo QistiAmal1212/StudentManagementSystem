@@ -12,7 +12,7 @@ class pdfExport extends Controller
 {
     public function exportPdfTeacher()
     {
-        
+
         $teachers = classRoom_Teacher::all();
         $pdf = Pdf::loadView('Pdf.teachers',compact('teachers'));
         return $pdf->download('teachers.pdf');
@@ -22,7 +22,7 @@ class pdfExport extends Controller
 
     public function exportPdfStudent()
     {
-        
+
         $students = students::all();
         $pdf = Pdf::loadView('Pdf.students',compact('students'));
         return $pdf->download('students.pdf');
@@ -31,27 +31,27 @@ class pdfExport extends Controller
 
     public function exportPdfClassRoom()
     {
-        
+
         $classRoom = DB::table('classRoom')
-        ->join('classRoom_teacher', 'classRoom.teacherID', '=', 'classRoom_teacher.teacherID')
-        ->select('classRoom.*', 'classRoom_teacher.name')
+        ->join('classRoom_Teacher', 'classRoom.teacherId', '=', 'classRoom_Teacher.teacherId')
+        ->select('classRoom.*', 'classRoom_Teacher.name')
         ->get();
 
         $pdf = Pdf::loadView('Pdf.classRoom',compact('classRoom'));
         return $pdf->download('classRoom.pdf');
-        
+
     }
 
     public function exportPdfClassStructure($id)
     {
         $classRoomDetail = DB::table('students')
         ->rightJoin('classRoom', 'students.classRoomId', '=', 'classRoom.classRoomId')
-        ->rightJoin('classRoom_teacher', 'classRoom.teacherID', '=', 'classRoom_teacher.teacherID')
-        ->select('students.*', 'classRoom.className','classRoom.classroomId', 'classRoom_teacher.name AS teacher_name')
+        ->rightJoin('classRoom_Teacher', 'classRoom.teacherId', '=', 'classRoom_Teacher.teacherId')
+        ->select('students.*', 'classRoom.className','classRoom.classroomId', 'classRoom_Teacher.name AS teacher_name')
         ->where('classRoom.classroomId','=',$id)
-        ->get(); 
+        ->get();
         $pdf = Pdf::loadView('Pdf.classRoomStructure',compact('classRoomDetail','id'));
         return $pdf->download('classRoomStructure.pdf');
-        
+
     }
 }

@@ -83,8 +83,8 @@ $(document).ready(function () {
                 $('#updateClassName').val(classRoom.className);
                 $('#updateClassId').val(classRoom.classroomId);
                 $('#updateForm').val(classRoom.form);
-                $('#updateTeacherId').val(classRoom.teacherId);
-                var teacherSelect = $('#updateTeacherId');
+                $('#updateteacherId').val(classRoom.teacherId);
+                var teacherSelect = $('#updateteacherId');
                 teacherSelect.append('<option value="' + classRoom.teacherId + '" selected>' + classRoom.name + '</option>');
 
 

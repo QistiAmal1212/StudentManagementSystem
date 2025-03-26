@@ -9,7 +9,7 @@ use App\Models\classRoom;
 use App\Models\students;
 use App\Models\documents;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage; 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
 use App\Imports\studentsImport;
 use App\Models\exam;
@@ -22,13 +22,13 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class CrudOperationController extends Controller
 {
-   
+
 
 
 
 public function addTeacher(Request $request)
 {
-        try 
+        try
         {
             $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -36,7 +36,7 @@ public function addTeacher(Request $request)
             'icNumber' => ['required', 'string', 'max:12', 'min:12','unique:' . classRoom_Teacher::class],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . classRoom_Teacher::class],
             ]);
-    
+
             $teacher = new classRoom_Teacher();
             $teacher->name = $request->input('name');
             $teacher->icNumber = $request->input('icNumber');
@@ -44,20 +44,20 @@ public function addTeacher(Request $request)
             $teacher->email = $request->input('email');
             $teacher->isClassTeacher = 0;
             $teacher->save();
-    
+
             return redirect('teachers')->with('success', 'Teacher added successfully');
-        } 
+        }
 
         catch (\Exception $e)
         {
-           
+
             $errorMessage = $e->getMessage();
             Session::flash('error', $errorMessage);
             return redirect()->back()->withInput();
         }
 
 }
-    
+
 
 
 
@@ -85,7 +85,7 @@ public function addClassRoom(Request $request)
         return redirect('classRoom')->with('success', 'classRoom added successfully');
 
     }
-    catch (\Exception $e) 
+    catch (\Exception $e)
     {
        $errorMessage = $e->getMessage();
        Session::flash('error', $errorMessage);
@@ -104,11 +104,11 @@ public function addStudent(Request $request)
     {
 
         $request->validate([
-            
+
         'name' => ['required', 'string'],
         'class' => ['required'],
-        'familyIncome' => ['required'],
-        'totalFamilyMember' => ['required'],
+        'family_income ' => ['required'],
+        'total_family_member' => ['required'],
         'phone' => ['required', 'string', 'max:12', 'min:11'],
         'icNumber' => ['required', 'string', 'max:12', 'min:12', 'unique:' . students::class],
         'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . students::class],
@@ -120,15 +120,15 @@ public function addStudent(Request $request)
         $student->noTell = $request->input('phone');
         $student->email = $request->input('email');
         $student->classroomId = $request->input('class');
-        $student->familyIncome = $request->input('familyIncome');
-        $student->totalFamilyMember = $request->input('totalFamilyMember');
+        $student->family_income  = $request->input('family_income ');
+        $student->total_family_member = $request->input('total_family_member');
         $student->save();
 
         return redirect('students')->with('success', 'student added successfully');
 
     }
 
-    catch (\Exception $e) 
+    catch (\Exception $e)
     {
 
        $errorMessage = $e->getMessage();
@@ -143,7 +143,7 @@ public function addStudent(Request $request)
 
 
 public function addDocument(Request $request)
-{ 
+{
     try
     {
         $request->validate([
@@ -151,7 +151,7 @@ public function addDocument(Request $request)
             'title' => ['required'],
             ]);
 
-      //get the file 
+      //get the file
       $file = $request->file('file');
       // give name to file to be store
       $fileName = time() . '.' . $file->getClientOriginalExtension();
@@ -160,8 +160,8 @@ public function addDocument(Request $request)
       // get the path to store in database
       $filePath = 'documents/' . $fileName;
       $fullUrl = asset('storage/' . $filePath);
-    
-    
+
+
       $document = new documents();
       $document->title = $request->input('title');
       $document->documentPath = $fullUrl;
@@ -172,7 +172,7 @@ public function addDocument(Request $request)
     }
 
 
-    catch (\Exception $e) 
+    catch (\Exception $e)
     {
       $errorMessage = $e->getMessage();
       Session::flash('error', $errorMessage);
@@ -182,11 +182,11 @@ public function addDocument(Request $request)
 
 
 }
-  
+
 
 
 public function addExam(Request $request)
-{ 
+{
     try
     {
         $request->validate([
@@ -194,12 +194,12 @@ public function addExam(Request $request)
             'title' => ['required'],
             ]);
 
-    
-    
+
+
       $exam = new exam();
       $exam->title = $request->input('title');
       $exam->form = $request->input('form');
-     
+
       $exam->save();
       $checkForm =$exam->form;
       $examId =$exam->examId;
@@ -209,7 +209,7 @@ public function addExam(Request $request)
       $students = Students::whereIn('classroomId', $classRoomIds)->get();
 
       foreach($students as $student)
-      {   
+      {
           $studentResult = new studentResult();
           $studentResult->examId=$examId;
           $studentResult->name=$student->name;
@@ -219,7 +219,7 @@ public function addExam(Request $request)
           $studentResult->className=$findclassname->className;
           $studentResult->save();
       }
-    
+
 
 
       return redirect('exam')->with('success', 'exam added successfully');
@@ -227,7 +227,7 @@ public function addExam(Request $request)
     }
 
 
-    catch (\Exception $e) 
+    catch (\Exception $e)
     {
       $errorMessage = $e->getMessage();
       Session::flash('error', $errorMessage);
@@ -238,7 +238,7 @@ public function addExam(Request $request)
 
 }
 
-    
+
 
 
 
@@ -269,10 +269,10 @@ public function updateClassRoom(Request $request)
         $classroomId = $request->input('updateClassId');
         $classRoom = classRoom::WHERE('classroomId', $classroomId)->first();
         $teacherbefore=$classRoom->teacherId;
-        $teacherAfter= $request->input('updateTeacherId');
+        $teacherAfter= $request->input('updateteacherId');
         $classRoom->className = $request->input('updateClassName');
         $classRoom->form = $request->input('updateForm');
-        $classRoom->teacherId = $request->input('updateTeacherId');
+        $classRoom->teacherId = $request->input('updateteacherId');
         $classRoom->save();
 
         $teacher=classRoom_Teacher::WHERE('teacherId',$teacherbefore)->first();
@@ -288,7 +288,7 @@ public function updateClassRoom(Request $request)
         $errorMessage = $e->getMessage();
         Session::flash('error', $errorMessage);
         return redirect()->back()->withInput();
-    }  
+    }
 }
 
 
@@ -303,19 +303,19 @@ public function updateStudent(Request $request)
         $student->icNumber = $request->input('updateIcNumber');
         $student->noTell = $request->input('updatePhone');
         $student->email = $request->input('updateEmail');
-        $student->familyIncome = $request->input('updateFamilyIncome');
-        $student->totalFamilyMember = $request->input('updateTotalFamilyMember');
+        $student->family_income  = $request->input('updatefamily_income ');
+        $student->total_family_member = $request->input('updatetotal_family_member');
         $student->classroomId = $request->input('updateClass');
         $student->save();
 
-     
+
 
         return redirect('students')->with('success', 'update successfully');
     } catch (\Exception $e) {
         $errorMessage = $e->getMessage();
         Session::flash('error', $errorMessage);
         return redirect()->back()->withInput();
-    }      
+    }
 }
 
 
@@ -323,7 +323,7 @@ public function updateStudent(Request $request)
 
 public function updateDocument(Request $request)
 {
-        
+
 }
 
 
@@ -340,7 +340,7 @@ public function deleteTeacher(Request $request)
    if($checkTeacher->count() == 0)
 
    {
-    
+
       foreach ($teachers as $teacher)
       {
       $teacher->delete();
@@ -358,10 +358,10 @@ public function deleteTeacher(Request $request)
    }
 
    }
-   
 
 
-   catch (\Exception $e) 
+
+   catch (\Exception $e)
    {
 
    $errorMessage = $e->getMessage();
@@ -379,52 +379,52 @@ public function deleteClassRoom(Request $request)
 {
     try
     {
- 
+
      $selectedClass = $request->input('selectedClass');
      $classRoom = classRoom::WHEREIN('classroomId',$selectedClass)->get();
 
      $checkId = students::WHEREIN('classroomId',$selectedClass)->get();
 
-   
-    
+
+
 
     if($checkId->count() == 0)
- 
+
     {
-     
+
        foreach ($classRoom as $classRoom)
-       { 
+       {
         $checkId2 = classRoom_Teacher::WHERE('teacherId',$classRoom->teacherId)->first();
      $checkId2->isClassTeacher=0;
-    
-       $classRoom->delete(); 
+
+       $classRoom->delete();
        $checkId2->save();
        }
- 
+
         return redirect('classRoom')->with('success', 'delete successfully');
- 
+
     }
- 
+
     else
     {
- 
+
         return redirect('classRoom')->with('error', 'class you want delete still got student');
- 
+
     }
- 
+
     }
-    
- 
- 
-    catch (\Exception $e) 
+
+
+
+    catch (\Exception $e)
     {
-     
+
     $errorMessage = $e->getMessage();
     Session::flash('error', $errorMessage);
     return redirect()->back()->withInput();
- 
+
     }
-        
+
 }
 
 
@@ -434,7 +434,7 @@ public function deleteStudent(Request $request)
 {
     try
     {
- 
+
      $selectedStudent = $request->input('selectedStudent');
      $students = students::WHEREIN('studentId',$selectedStudent)->get();
 
@@ -442,21 +442,21 @@ public function deleteStudent(Request $request)
        {
        $student->delete();
        }
- 
+
         return redirect('students')->with('success', 'delete successfully');
- 
+
     }
- 
- 
-    catch (\Exception $e) 
+
+
+    catch (\Exception $e)
     {
- 
+
     $errorMessage = $e->getMessage();
     Session::flash('error', $errorMessage);
     return redirect()->back()->withInput();
- 
+
     }
-        
+
 }
 
 
@@ -466,13 +466,13 @@ public function deleteDocument(Request $request)
 {
     try
     {
- 
+
      $selectedDocument = $request->input('selectedDocument');
      $documents = documents::WHEREIN('documentId',$selectedDocument)->get();
 
        foreach ($documents as $document)
        {
-     
+
        $fileUrl = $document->documentPath;
        // Extract the path from the URL
        $filePath = parse_url($fileUrl, PHP_URL_PATH);
@@ -485,23 +485,23 @@ public function deleteDocument(Request $request)
 
         Storage::disk('public')->delete($filePath);
          return redirect('document')->with('success', 'delete successfully');
-       } 
-   
        }
- 
-      
- 
+
+       }
+
+
+
     }
- 
- 
-    catch (\Exception $e) 
+
+
+    catch (\Exception $e)
     {
- 
+
     $errorMessage = $e->getMessage();
     Session::flash('error', $errorMessage);
     return redirect()->back()->withInput();
- 
-    } 
+
+    }
 }
 
 
@@ -509,15 +509,15 @@ public function importStudents()
 {
    try
    {
-    
+
     Excel::import(new studentsImport, request()->file('file'));
 
     return redirect()->route('students')->with('success', 'Data imported successfully!');
 
    }
-   catch (\Exception $e) 
+   catch (\Exception $e)
    {
-    $errorMessage = $e->getMessage();   
+    $errorMessage = $e->getMessage();
     Session::flash('error', $errorMessage);
     return redirect()->back()->withInput();
    }
@@ -525,7 +525,7 @@ public function importStudents()
 
 
 }
-    
+
 
 public function updateResult(Request $request)
 {
@@ -542,13 +542,13 @@ public function updateResult(Request $request)
      $result->status= "successful";
      $result->average= ($result->Bahasa_Melayu+$result->English+$result->Math+$result->Science+$result->Sejarah)/5;
      $result->save();
- 
+
      return redirect()->route('grading')->with('success', 'Data update successfully!');
- 
+
     }
-    catch (\Exception $e) 
+    catch (\Exception $e)
     {
-     $errorMessage = $e->getMessage();   
+     $errorMessage = $e->getMessage();
      Session::flash('error', $errorMessage);
      return redirect()->back()->withInput();
     }

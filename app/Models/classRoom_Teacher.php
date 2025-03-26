@@ -10,7 +10,7 @@ class classRoom_Teacher extends Model
     protected $table = 'classRoom_Teacher';
     protected $primaryKey = 'teacherId';
     protected $fillable = [
-        
+
         'name',
         'icNumber',
         'noTell',

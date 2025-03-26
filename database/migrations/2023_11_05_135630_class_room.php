@@ -14,8 +14,8 @@ return new class extends Migration
             $table->string('className');
             $table->integer('form');
             $table->timestamps();
-            
-              $table->uuid('teacherId'); 
+
+              $table->uuid('teacherId');
               $table->foreign('teacherId')
                     ->references('teacherId')
                     ->on('classRoom_Teacher')
@@ -23,7 +23,7 @@ return new class extends Migration
         });
     }
 
-   
+
     public function down(): void
     {
         Schema::dropIfExists('classRoom');

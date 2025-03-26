@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
 
     <link rel="stylesheet" type="text/css" href="../resources/views/Pdf/pdfCss.css">
 </head>
+
 <body>
     <h4>STUDENT DETAILS</h4>
     <table style="width: 100%;">
@@ -25,20 +27,21 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($students as $student)
-            <tr>
-                <td>{{ $student->studentId }}</td>
-                <td>{{ $student->name }}</td>
-                <td>{{ $student->icNumber }}</td>
-                <td>{{ $student->noTell }}</td>
-                <td>{{ $student->email }}</td>
-                <td>{{ $student->familyIncome }}</td>
-                <td>{{ $student->totalFamilyMember }}</td>
-                <td>{{ $student->classroomId }}</td>
+            @foreach ($students as $student)
+                <tr>
+                    <td>{{ $student->studentId }}</td>
+                    <td>{{ $student->name }}</td>
+                    <td>{{ $student->icNumber }}</td>
+                    <td>{{ $student->noTell }}</td>
+                    <td>{{ $student->email }}</td>
+                    <td>{{ $student->family_income }}</td>
+                    <td>{{ $student->total_family_member }}</td>
+                    <td>{{ $student->classroomId }}</td>
 
-            </tr>
+                </tr>
             @endforeach
         </tbody>
     </table>
 </body>
+
 </html>

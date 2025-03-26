@@ -23,8 +23,8 @@ class studentsExport implements FromCollection, WithHeadings, WithEvents
             'students.icNumber',
             'students.noTell',
             'students.email',
-            'students.familyIncome',
-            'students.totalFamilyMember',
+            'students.family_income ',
+            'students.total_family_member',
             'students.classroomId',
             'classRoom.className' // Add className to the select statement
         )
@@ -45,8 +45,8 @@ class studentsExport implements FromCollection, WithHeadings, WithEvents
             'icNumber',
             'noTell',
             'email',
-            'familyIncome',
-            'totalFamilyMember',
+            'family_income ',
+            'total_family_member',
             'classroomId',
             'className', // Add the new column
         ];

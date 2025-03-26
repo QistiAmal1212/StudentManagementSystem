@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Models\classRoom_teacher;
+use App\Models\classRoom_Teacher;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithEvents;
@@ -16,7 +16,7 @@ class teachers implements FromCollection, WithHeadings, WithEvents
     public function collection()
     {
         // Retrieve specific data from the model
-        $teachers = classRoom_teacher::select(
+        $teachers = classRoom_Teacher::select(
             'teacherId',
             'name',
             'icNumber',

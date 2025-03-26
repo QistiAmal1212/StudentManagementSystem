@@ -31,15 +31,15 @@ class classStructureExport implements FromCollection, WithHeadings, ShouldAutoSi
     {
         // Your existing query logic
         return students::RightJoin('classRoom', 'students.classRoomId', '=', 'classRoom.classRoomId')
-            ->RightJoin('classRoom_teacher', 'classRoom.teacherID', '=', 'classRoom_teacher.teacherID')
+            ->RightJoin('classRoom_Teacher', 'classRoom.teacherId', '=', 'classRoom_Teacher.teacherId')
             ->select(
                 'students.studentId',
                 'students.name',
                 'students.icNumber',
                 'students.noTell',
                 'students.email',
-                'students.familyIncome',
-                'students.totalFamilyMember',
+                'students.family_income ',
+                'students.total_family_member',
                 'students.classroomId',
                 'classRoom.className' // Add className to the select statement
             )
@@ -58,8 +58,8 @@ class classStructureExport implements FromCollection, WithHeadings, ShouldAutoSi
                 'icNumber',
                 'noTell',
                 'email',
-                'familyIncome',
-                'totalFamilyMember',
+                'family_income ',
+                'total_family_member',
                 'classroomId',
                 'className',
             ],

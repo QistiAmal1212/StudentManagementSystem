@@ -14,11 +14,11 @@ return new class extends Migration
             $table->string('icNumber');
             $table->string('noTell');
             $table->string('email');
-            $table->decimal('familyIncome', 10, 2);
-            $table->integer('totalFamilyMember');
+            $table->decimal('family_income ', 10, 2);
+            $table->integer('total_family_member');
             $table->timestamps();
-             
-            $table->uuid('classroomId'); 
+
+            $table->uuid('classroomId');
             $table->foreign('classroomId')
                   ->references('classroomId')
                   ->on('classRoom')

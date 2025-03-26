@@ -1,13 +1,14 @@
 @extends('layouts.main')
 @section('content')
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="node_modules/sweetalert2/dist/sweetalert2.min.css">
-    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+    <head>
+        <link rel="stylesheet" type="text/css"
+            href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
+        <link rel="stylesheet" href="node_modules/sweetalert2/dist/sweetalert2.min.css">
+        <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
 </head>
 
 <body>
@@ -141,7 +142,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($teachers as $teacher)
+                                @foreach ($teachers as $teacher)
                                 <tr>
                                     <td style="width:5%;">
                                         <input type="checkbox" name="selectedTeacher[]" value="{{ $teacher->teacherId }}" />
@@ -151,7 +152,7 @@
                                     <td>{{ $teacher->noTell }}</td>
                                     <td>{{ $teacher->email }}</td>
                                     <td>
-                                        @if( $teacher->isClassTeacher == 1)
+                                        @if ($teacher->isClassTeacher == 1)
                                         <span>yes</span>
                                         @else
                                         <span>no</span>
@@ -162,22 +163,21 @@
                                         <center><i class="fas fa-edit editBtn" data-teacher-id="{{ $teacher->teacherId }}"></i></center>
 
                                     </td>
-                                </tr>
-                                @endforeach
+                                </tr> @endforeach
 
-                            </tbody>
-                        </table>
-                    </div>
-                </form>
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+
             </div>
-
         </div>
-    </div>
 
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="node_modules/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="js/teachers.js"></script>
+        <script src="node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="node_modules/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="js/teachers.js"></script>
 
-</body>
-</html>
+    </body>
+    </html>
 @endsection

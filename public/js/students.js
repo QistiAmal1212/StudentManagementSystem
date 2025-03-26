@@ -88,8 +88,8 @@ $('.updateBtn').click(function () {
             $('#updateIcNumber').val(studentDetail.icNumber);
             $('#updatePhone').val(studentDetail.noTell);
             $('#updateEmail').val(studentDetail.email);
-            $('#updateFamilyIncome').val(studentDetail.familyIncome);
-            $('#updateTotalFamilyMember').val(studentDetail.totalFamilyMember);
+            $('#updatefamily_income ').val(studentDetail.family_income);
+            $('#updatetotal_family_member').val(studentDetail.total_family_member);
             var studentClass = $('#updateClass');
             var existingOption = studentClass.find('option[value="' + studentDetail.classroomId + '"]');
             existingOption.prop('selected', true);

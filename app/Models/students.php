@@ -13,10 +13,10 @@ class students extends Model
     protected $fillable = [
         'name',
         'icNumber',
-        'noTell', 
+        'noTell',
         'email',
-        'familyIncome',
-        'totalFamilyMember',
+        'family_income ',
+        'total_family_member',
         'race',
         'classroomId',
     ];

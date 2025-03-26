@@ -58,7 +58,7 @@ $(document).ready(function () {
                             '<td>' + classStructure.icNumber + '</td>' +
                             '<td>' + classStructure.noTell + '</td>' +
                             '<td>' + classStructure.email + '</td>' +
-                            '<td>' + classStructure.familyIncome + '</td>' +
+                            '<td>' + classStructure.family_income + '</td>' +
                             '</tr>';
                     });
 
