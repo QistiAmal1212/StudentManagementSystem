@@ -91,7 +91,7 @@ $('.updateBtn').click(function () {
             $('#updatefamily_income ').val(studentDetail.family_income);
             $('#updatetotal_family_member').val(studentDetail.total_family_member);
             var studentClass = $('#updateClass');
-            var existingOption = studentClass.find('option[value="' + studentDetail.classroom_id + '"]');
+            var existingOption = studentClass.find('option[value="' + studentDetail.Classroom_id + '"]');
             existingOption.prop('selected', true);
 
         }

@@ -2,7 +2,7 @@
 namespace App\Imports;
 
 use App\Models\students;
-use App\Models\classroom;
+use App\Models\Classroom;
 use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Illuminate\Support\Facades\Validator;
@@ -56,9 +56,9 @@ class studentsImport implements ToModel,WithStartRow
         if ((strlen($row[2]) !== 10) && (strlen($row[2]) !== 11)){
             abort(422, 'row ' . $this->rowCount . ': phone number must be 10-11 digit.');
         }
-        // Perform existence check for classroom_id
-        if (!classroom::where('classroom_id', $row[6])->exists()) {
-            abort(422, 'row ' . $this->rowCount . ': Invalid classroom_id.');
+        // Perform existence check for Classroom_id
+        if (!Classroom::where('Classroom_id', $row[6])->exists()) {
+            abort(422, 'row ' . $this->rowCount . ': Invalid Classroom_id.');
         }
 
 
@@ -72,7 +72,7 @@ class studentsImport implements ToModel,WithStartRow
             'email' => (string) $row[3],
             'family_income ' => (float) $row[4],
             'total_family_member' => (int) $row[5],
-            'classroom_id' => (string) $row[6],
+            'Classroom_id' => (string) $row[6],
         ]);
     }
     public function startRow(): int

@@ -130,12 +130,12 @@
                     </select>
 
 
-                    <select id="classroomSelect"
-            name="classroom" class="form-select" aria-label="Default select example"
+                    <select id="ClassroomSelect"
+            name="Classroom" class="form-select" aria-label="Default select example"
             style="margin-right:10px;display:none;">
-        <option value="0">Please select classroom</option>
-        @foreach ($classroom as $classroom)
-            <option value="{{ $classroom->classroom_id }}">{{ $classroom->class_name }}</option>
+        <option value="0">Please select Classroom</option>
+        @foreach ($Classroom as $Classroom)
+            <option value="{{ $Classroom->Classroom_id }}">{{ $Classroom->class_name }}</option>
         @endforeach
         </select>
 

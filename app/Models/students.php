@@ -18,7 +18,7 @@ class students extends Model
         'family_income ',
         'total_family_member',
         'race',
-        'classroom_id',
+        'Classroom_id',
     ];
     use HasUuids;
 }

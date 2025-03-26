@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\classroomExport;
+use App\Exports\ClassroomExport;
 use App\Exports\classStructureExport;
 use App\Exports\studentsExport;
 use Illuminate\Http\Request;
@@ -23,15 +23,15 @@ class excelExport extends Controller
 
     }
 
-    public function exportExcelclassroom()
+    public function exportExcelClassroom()
     {
-        return \Maatwebsite\Excel\Facades\Excel::download(new classroomExport, 'classroom.xlsx');
+        return \Maatwebsite\Excel\Facades\Excel::download(new ClassroomExport, 'Classroom.xlsx');
 
     }
 
     public function exportExcelClassStructure($id)
     {
-        return \Maatwebsite\Excel\Facades\Excel::download(new ClassStructureExport($id), 'classroom.xlsx');
+        return \Maatwebsite\Excel\Facades\Excel::download(new ClassStructureExport($id), 'Classroom.xlsx');
 
     }
 }

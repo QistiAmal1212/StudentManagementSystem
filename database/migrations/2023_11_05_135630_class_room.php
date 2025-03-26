@@ -9,8 +9,8 @@ return new class extends Migration
 
     public function up(): void
     {
-        Schema::create('classroom', function (Blueprint $table) {
-            $table->uuid('classroom_id')->primary();
+        Schema::create('Classroom', function (Blueprint $table) {
+            $table->uuid('Classroom_id')->primary();
             $table->string('class_name');
             $table->integer('form');
             $table->timestamps();
@@ -18,7 +18,7 @@ return new class extends Migration
               $table->uuid('teacher_id');
               $table->foreign('teacher_id')
                     ->references('teacher_id')
-                    ->on('classroom_teacher')
+                    ->on('Classroom_teacher')
                     ->onDelete('cascade');
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('classroom');
+        Schema::dropIfExists('Classroom');
     }
 };

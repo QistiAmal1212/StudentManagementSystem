@@ -2,8 +2,8 @@ $(document).ready(function () {
     $('#examSelect').on('change', function () {
         var Value = $('#examSelect').val();
         if (Value != "0") {
-            $('#classroomSelect').fadeIn();
-            var selectInput = $('#classroomSelect');
+            $('#ClassroomSelect').fadeIn();
+            var selectInput = $('#ClassroomSelect');
 
 
 
@@ -15,10 +15,10 @@ $(document).ready(function () {
                 }
                 , success: function (data) {
 
-                    $("#classroomSelect").empty();
+                    $("#ClassroomSelect").empty();
 
-                    data.forEach(function (classroom) {
-                        newelement += '<option value="' + classroom.classroom_id + '">' + classroom.class_name + '</option>';
+                    data.forEach(function (Classroom) {
+                        newelement += '<option value="' + Classroom.Classroom_id + '">' + Classroom.class_name + '</option>';
                     });
 
                     selectInput.append(newelement);
@@ -32,14 +32,14 @@ $(document).ready(function () {
             });
         }
         else {
-            $('#classroomSelect').fadeOut();
+            $('#ClassroomSelect').fadeOut();
         }
     });
 
     $('#searchButton').on('click', function () {
 
         var selectedValue1 = $('#examSelect').val();
-        var selectedValue2 = $('#classroomSelect').val();
+        var selectedValue2 = $('#ClassroomSelect').val();
         var table = $('#cardT');
 
 
@@ -56,7 +56,7 @@ $(document).ready(function () {
                 url: '/getStudentResult'
                 , type: 'GET'
                 , data: {
-                    classroom_id: selectedValue2,
+                    Classroom_id: selectedValue2,
                     exam_id: selectedValue1
                 }
                 , success: function (data) {

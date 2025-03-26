@@ -24,9 +24,9 @@
                          Structure</span>
                  </a>
              </li>
-             <li id="classroom" class="sidebar-item">
-                 <a class="sidebar-link" href="{{ route('classroom') }}">
-                     <i class="align-middle" data-feather="home"></i> <span class="align-middle">classroom</span>
+             <li id="Classroom" class="sidebar-item">
+                 <a class="sidebar-link" href="{{ route('Classroom') }}">
+                     <i class="align-middle" data-feather="home"></i> <span class="align-middle">Classroom</span>
                  </a>
              </li>
              <li id="teachers" class="sidebar-item">

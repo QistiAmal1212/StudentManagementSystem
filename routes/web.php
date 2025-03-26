@@ -20,7 +20,7 @@ Route::get('/', function () {
 //=====================================RestfulApi=============================================
 Route::get('/studentData',[RestApi::class, 'studentData'] )->name('studentData');
 Route::get('/teacherData',[RestApi::class, 'teacherData'] )->name('teacherData');
-Route::get('/classroomData',[RestApi::class, 'studentData'] )->name('classroomData');
+Route::get('/ClassroomData',[RestApi::class, 'studentData'] )->name('ClassroomData');
 
 
 
@@ -34,7 +34,7 @@ Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit')
 Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 Route::get('/class-structure', [SystemController::class, 'classStructure'])->name('classStructure');
-Route::get('/classroom', [SystemController::class, 'classroom'])->name('classroom');
+Route::get('/Classroom', [SystemController::class, 'Classroom'])->name('Classroom');
 Route::get('/students', [SystemController::class, 'students'])->name('students');
 Route::get('/teachers', [SystemController::class, 'teachers'])->name('teachers');
 Route::get('/analysis', [SystemController::class, 'analysis'])->name('analysis');
@@ -52,7 +52,7 @@ Route::match(['get', 'post'],'/examReport', [SystemController::class, 'examRepor
 
 Route::post('/addTeacher', [CrudOperationController::class, 'addTeacher'])->name('addTeacher');
 Route::post('/addStudent', [CrudOperationController::class, 'addStudent'])->name('addStudent');
-Route::post('/addclassroom', [CrudOperationController::class, 'addclassroom'])->name('addclassroom');
+Route::post('/addClassroom', [CrudOperationController::class, 'addClassroom'])->name('addClassroom');
 Route::post('/addDocument', [CrudOperationController::class, 'addDocument'])->name('addDocument');
 Route::post('/importStudents', [CrudOperationController::class, 'importStudents'])->name('importStudents');
 Route::post('/addExam', [CrudOperationController::class, 'addExam'])->name('addExam');
@@ -62,7 +62,7 @@ Route::post('/addExam', [CrudOperationController::class, 'addExam'])->name('addE
 
 Route::put('/updateTeacher', [CrudOperationController::class, 'updateTeacher'])->name('updateTeacher');
 Route::put('/updateStudent', [CrudOperationController::class, 'updateStudent'])->name('updateStudent');
-Route::put('/updateclassroom', [CrudOperationController::class, 'updateclassroom'])->name('updateclassroom');
+Route::put('/updateClassroom', [CrudOperationController::class, 'updateClassroom'])->name('updateClassroom');
 Route::put('/updateDocument', [CrudOperationController::class, 'updateDocument'])->name('updateDocument');
 Route::put('/updateResult', [CrudOperationController::class, 'updateResult'])->name('updateResult');
 
@@ -70,7 +70,7 @@ Route::put('/updateResult', [CrudOperationController::class, 'updateResult'])->n
 
 Route::delete('/deleteTeacher', [CrudOperationController::class, 'deleteTeacher'])->name('deleteTeacher');
 Route::delete('/deleteStudent', [CrudOperationController::class, 'deleteStudent'])->name('deleteStudent');
-Route::delete('/deleteclassroom', [CrudOperationController::class, 'deleteclassroom'])->name('deleteclassroom');
+Route::delete('/deleteClassroom', [CrudOperationController::class, 'deleteClassroom'])->name('deleteClassroom');
 Route::delete('/deleteDocument', [CrudOperationController::class, 'deleteDocument'])->name('deleteDocument');
 
 
@@ -78,7 +78,7 @@ Route::delete('/deleteDocument', [CrudOperationController::class, 'deleteDocumen
 
 Route::get('/exportExcelTeachers', [excelExport::class, 'exportExcelTeachers'])->name('exportExcelTeachers');
 Route::get('/exportExcelStudents', [excelExport::class, 'exportExcelStudents'])->name('exportExcelStudents');
-Route::get('/exportExcelclassroom', [excelExport::class, 'exportExcelclassroom'])->name('exportExcelclassroom');
+Route::get('/exportExcelClassroom', [excelExport::class, 'exportExcelClassroom'])->name('exportExcelClassroom');
 Route::get('/exportExcelClassStructure/{id?}',[excelExport::class, 'exportExcelClassStructure'])->name('exportExcelClassStructure');
 
 
@@ -86,7 +86,7 @@ Route::get('/exportExcelClassStructure/{id?}',[excelExport::class, 'exportExcelC
 
 Route::get('/exportPdfTeacher', [pdfExport::class, 'exportPdfTeacher'])->name('exportPdfTeacher');
 Route::get('/exportPdfStudent', [pdfExport::class, 'exportPdfStudent'])->name('exportPdfStudent');
-Route::get('/exportPdfclassroom', [pdfExport::class, 'exportPdfclassroom'])->name('exportPdfclassroom');
+Route::get('/exportPdfClassroom', [pdfExport::class, 'exportPdfClassroom'])->name('exportPdfClassroom');
 Route::get('/exportPdfClassStructure/{id?}', [pdfExport::class, 'exportPdfClassStructure'])
    ->name('exportPdfClassStructure');
 
@@ -109,7 +109,7 @@ Route::get('/getClassData',  [ajaxRequest::class, 'getClassData'])->name('getCla
 // UPDATE DETAIL (AJAX REQUEST)
  Route::get('/getTeacherDetail',  [ajaxRequest::class, 'getTeacherDetail'])->name('getTeacherDetail');
  Route::get('/getStudentDetail',  [ajaxRequest::class, 'getStudentDetail'])->name('getStudentDetail');
- Route::get('/getclassroomDetail',  [ajaxRequest::class, 'getclassroomDetail'])->name('getclassroomDetail');
+ Route::get('/getClassroomDetail',  [ajaxRequest::class, 'getClassroomDetail'])->name('getClassroomDetail');
  Route::get('/getDocumentDetail',  [ajaxRequest::class, 'getDocumentDetail'])->name('getDocumentDetail');
 
 

@@ -3,7 +3,7 @@
 namespace App\Exports;
 
 use App\Models\students;
-use App\Models\classroom; // Import the classroom model
+use App\Models\Classroom; // Import the Classroom model
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithEvents;
@@ -25,10 +25,10 @@ class studentsExport implements FromCollection, WithHeadings, WithEvents
             'students.email',
             'students.family_income ',
             'students.total_family_member',
-            'students.classroom_id',
-            'classroom.class_name' // Add class_name to the select statement
+            'students.Classroom_id',
+            'Classroom.class_name' // Add class_name to the select statement
         )
-            ->join('classroom', 'students.classroom_id', '=', 'classroom.classroom_id')
+            ->join('Classroom', 'students.Classroom_id', '=', 'Classroom.Classroom_id')
             ->get();
 
         return $students;
@@ -47,7 +47,7 @@ class studentsExport implements FromCollection, WithHeadings, WithEvents
             'email',
             'family_income ',
             'total_family_member',
-            'classroom_id',
+            'Classroom_id',
             'class_name', // Add the new column
         ];
     }

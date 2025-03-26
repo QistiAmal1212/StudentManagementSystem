@@ -72,7 +72,7 @@
                                 <select id="class" name="class" class="form-select form-select-lg mb-3" aria-label="Default select example">
                                     <option value="0">-----</option>
                                     @foreach ($class as $class)
-                                    <option value="{{ $class->classroom_id }}">{{ $class->class_name }}</option> @endforeach
+                                    <option value="{{ $class->Classroom_id }}">{{ $class->class_name }}</option> @endforeach
                                 </select>
 
                             </div>
@@ -191,7 +191,7 @@
                                         aria-label="Default select example">
                                         <option value="0">-----</option>
                                         @foreach ($class2 as $class)
-                                            <option value="{{ $class->classroom_id }}">{{ $class->class_name }}</option>
+                                            <option value="{{ $class->Classroom_id }}">{{ $class->class_name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
