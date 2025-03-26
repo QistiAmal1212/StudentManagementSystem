@@ -9,6 +9,6 @@ class studentResult extends Model
 {
     use HasFactory;
     protected $table = 'student_result';
-    protected $primaryKey = 'resultId';
+    protected $primaryKey = 'result_id';
     use HasUuids;
 }

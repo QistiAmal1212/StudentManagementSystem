@@ -108,7 +108,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Brick\\Math\\": "src/"
+                    "Brick\\math\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -4196,7 +4196,7 @@
                 "vimeo/psalm": "^4.9"
             },
             "suggest": {
-                "ext-bcmath": "Enables faster math with arbitrary-precision integers using BCMath.",
+                "ext-bcmath": "Enables faster math with arbitrary-precision integers using BCmath.",
                 "ext-gmp": "Enables faster math with arbitrary-precision integers using GMP.",
                 "ext-uuid": "Enables the use of PeclUuidTimeGenerator and PeclUuidRandomGenerator.",
                 "paragonie/random-lib": "Provides RandomLib for use with the RandomLibAdapter",

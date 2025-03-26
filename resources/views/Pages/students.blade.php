@@ -43,8 +43,8 @@
                                 <input type="text" class="form-control" id="name" name="name" required>
                             </div>
                             <div class="form-group">
-                                <label for="icNumber">IC Number:</label>
-                                <input type="text" class="form-control" id="icNumber" name="icNumber" required>
+                                <label for="ic_number">IC Number:</label>
+                                <input type="text" class="form-control" id="ic_number" name="ic_number" required>
                             </div>
                             <div class="form-group">
                                 <label for="phone">Phone Number:</label>
@@ -72,7 +72,7 @@
                                 <select id="class" name="class" class="form-select form-select-lg mb-3" aria-label="Default select example">
                                     <option value="0">-----</option>
                                     @foreach ($class as $class)
-                                    <option value="{{ $class->classroomId }}">{{ $class->className }}</option> @endforeach
+                                    <option value="{{ $class->classroom_id }}">{{ $class->class_name }}</option> @endforeach
                                 </select>
 
                             </div>
@@ -157,9 +157,9 @@
                                     <input type="text" class="form-control" id="updateName" name="updateName" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="updateIcNumber">IC Number:</label>
-                                    <input type="text" class="form-control" id="updateIcNumber" name="updateIcNumber"
-                                        required>
+                                    <label for="updateic_number">IC Number:</label>
+                                    <input type="text" class="form-control" id="updateic_number"
+                                        name="updateic_number" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="updatePhone">Phone Number:</label>
@@ -191,7 +191,7 @@
                                         aria-label="Default select example">
                                         <option value="0">-----</option>
                                         @foreach ($class2 as $class)
-                                            <option value="{{ $class->classroomId }}">{{ $class->className }}</option>
+                                            <option value="{{ $class->classroom_id }}">{{ $class->class_name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -273,18 +273,18 @@
                                         <tr>
                                             <td>
                                                 <input type="checkbox" name="selectedStudent[]"
-                                                    value="{{ $student->studentId }}" />
+                                                    value="{{ $student->student_id }}" />
                                             </td>
                                             <td>{{ $student->name }}</td>
-                                            <td>{{ $student->icNumber }}</td>
-                                            <td>{{ $student->noTell }}</td>
+                                            <td>{{ $student->ic_number }}</td>
+                                            <td>{{ $student->no_tell }}</td>
                                             <td>{{ $student->email }}</td>
-                                            <td>{{ $student->className }}</td>
+                                            <td>{{ $student->class_name }}</td>
                                             <td>{{ $student->family_income }}</td>
                                             <td>{{ $student->total_family_member }} person</td>
                                             <td>
                                                 <center><i class="fas fa-edit updateBtn"
-                                                        data-student-id="{{ $student->studentId }}"></i></center>
+                                                        data-student-id="{{ $student->student_id }}"></i></center>
 
                                             </td>
                                         </tr>

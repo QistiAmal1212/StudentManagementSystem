@@ -1,13 +1,14 @@
 @extends('layouts.main')
 @section('content')
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="node_modules/sweetalert2/dist/sweetalert2.min.css">
-    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+    <head>
+        <link rel="stylesheet" type="text/css"
+            href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
+        <link rel="stylesheet" href="node_modules/sweetalert2/dist/sweetalert2.min.css">
+        <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
 </head>
 
 <body>
@@ -73,34 +74,33 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @Foreach($documents as $documents)
+                                @foreach ($documents as $documents)
                                 <tr>
                                     <td>
-                                        <input type="checkbox" name="selectedDocument[]" value="{{ $documents->documentId}}" />
+                                        <input type="checkbox" name="selectedDocument[]" value="{{ $documents->document_id }}" />
                                     </td>
-                                    <td>{{$documents->title }}</td>
-                                    <td><a href="{{ $documents->documentPath}}">view document</a></td>
+                                    <td>{{ $documents->title }}</td>
+                                    <td><a href="{{ $documents->document_path }}">view document</a></td>
                                     {{-- <td>
                                         <center><i class="fas fa-edit"></i></center>
 
                                     </td> --}}
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                </tr> @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </form>
                     </div>
-                </form>
+
+                </div>
             </div>
-
-        </div>
-    </div>
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="node_modules/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="js/document.js"></script>
+            <script src="node_modules/jquery/dist/jquery.min.js"></script>
+            <script src="node_modules/datatables.net/js/jquery.dataTables.min.js"></script>
+            <script src="js/document.js"></script>
 
 
 
 
-</body>
-</html>
+        </body>
+        </html>
 @endsection

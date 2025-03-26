@@ -3,7 +3,7 @@
 namespace App\Exports;
 
 use App\Models\students;
-use App\Models\classRoom; // Import the classRoom model
+use App\Models\classroom; // Import the classroom model
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithEvents;
@@ -16,19 +16,19 @@ class studentsExport implements FromCollection, WithHeadings, WithEvents
      */
     public function collection()
     {
-        // Retrieve students with className
+        // Retrieve students with class_name
         $students = students::select(
-            'students.studentId',
+            'students.student_id',
             'students.name',
-            'students.icNumber',
-            'students.noTell',
+            'students.ic_number',
+            'students.no_tell',
             'students.email',
             'students.family_income ',
             'students.total_family_member',
-            'students.classroomId',
-            'classRoom.className' // Add className to the select statement
+            'students.classroom_id',
+            'classroom.class_name' // Add class_name to the select statement
         )
-            ->join('classRoom', 'students.classroomId', '=', 'classRoom.classroomId')
+            ->join('classroom', 'students.classroom_id', '=', 'classroom.classroom_id')
             ->get();
 
         return $students;
@@ -40,15 +40,15 @@ class studentsExport implements FromCollection, WithHeadings, WithEvents
     public function headings(): array
     {
         return [
-            'studentId',
+            'student_id',
             'name',
-            'icNumber',
-            'noTell',
+            'ic_number',
+            'no_tell',
             'email',
             'family_income ',
             'total_family_member',
-            'classroomId',
-            'className', // Add the new column
+            'classroom_id',
+            'class_name', // Add the new column
         ];
     }
 

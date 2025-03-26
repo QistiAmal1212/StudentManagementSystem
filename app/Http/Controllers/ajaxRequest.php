@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\classRoom;
-use App\Models\classRoom_Teacher;
+use App\Models\classroom;
+use App\Models\classroom_teacher;
 use App\Models\exam;
 use App\Models\studentResult;
 use Illuminate\Http\Request;
@@ -18,10 +18,10 @@ class ajaxRequest extends Controller
         $selectedValue = $request->input('classId');
 
         $classStructure = DB::table('students')
-            ->rightJoin('classRoom', 'students.classRoomId', '=', 'classRoom.classRoomId')
-            ->rightJoin('classRoom_Teacher', 'classRoom.teacherId', '=', 'classRoom_Teacher.teacherId')
-            ->select('students.*', 'classRoom.className', 'classRoom.classroomId', 'classRoom_Teacher.name AS teacher_name')
-            ->where('classRoom.classroomId', '=', $selectedValue)
+            ->rightJoin('classroom', 'students.classroom_id', '=', 'classroom.classroom_id')
+            ->rightJoin('classroom_teacher', 'classroom.teacher_id', '=', 'classroom_teacher.teacher_id')
+            ->select('students.*', 'classroom.class_name', 'classroom.classroom_id', 'classroom_teacher.name AS teacher_name')
+            ->where('classroom.classroom_id', '=', $selectedValue)
             ->get();
 
         return response()->json($classStructure);
@@ -30,8 +30,8 @@ class ajaxRequest extends Controller
 
 public function getTeacherDetail(Request $request)
 {
-    $SelectedId = $request->input('teacherId');
-    $teacherDetail = classRoom_Teacher::WHERE('teacherId',$SelectedId)->first();
+    $SelectedId = $request->input('teacher_id');
+    $teacherDetail = classroom_teacher::WHERE('teacher_id',$SelectedId)->first();
     return response()->json($teacherDetail);
 
 }
@@ -40,52 +40,52 @@ public function getTeacherDetail(Request $request)
 
 public function getStudentDetail(Request $request)
 {
-    $SelectedId = $request->input('studentId');
+    $SelectedId = $request->input('student_id');
     $studentDetail =  DB::table('students')
-    ->join('classRoom', 'students.classroomId', '=', 'classRoom.classroomId')
-    ->select('students.*', 'classRoom.className','classRoom.classroomId',)
-    ->where('students.studentId','=',$SelectedId)
+    ->join('classroom', 'students.classroom_id', '=', 'classroom.classroom_id')
+    ->select('students.*', 'classroom.class_name','classroom.classroom_id',)
+    ->where('students.student_id','=',$SelectedId)
     ->first();
     return response()->json($studentDetail);
 
 }
 
 
-public function getClassRoomDetail(Request $request)
+public function getclassroomDetail(Request $request)
 {
-    $SelectedId = $request->input('classRoomId');
+    $SelectedId = $request->input('classroom_id');
 
-    $classRoomDetail =  DB::table('classRoom')
-    ->join('classRoom_Teacher', 'classRoom.teacherId', '=', 'classRoom_Teacher.teacherId')
-    ->select('classRoom.*', 'classRoom_Teacher.name')
-    ->where('classRoom.classroomId','=',$SelectedId)
+    $classroomDetail =  DB::table('classroom')
+    ->join('classroom_teacher', 'classroom.teacher_id', '=', 'classroom_teacher.teacher_id')
+    ->select('classroom.*', 'classroom_teacher.name')
+    ->where('classroom.classroom_id','=',$SelectedId)
     ->first();
 
-    return response()->json($classRoomDetail);
+    return response()->json($classroomDetail);
 
 }
 
 
 public function getStudentResult(Request $request)
 {
-    $SelectedExam = $request->input('examId');
-    $SelectedClass = $request->input('classroomId');
+    $SelectedExam = $request->input('exam_id');
+    $SelectedClass = $request->input('classroom_id');
 
     $students = DB::table('students')
-        ->rightJoin('classRoom', 'students.classRoomId', '=', 'classRoom.classRoomId')
-        ->select('students.*', 'classRoom.className')
-        ->where('students.classroomId', '=', $SelectedClass)
+        ->rightJoin('classroom', 'students.classroom_id', '=', 'classroom.classroom_id')
+        ->select('students.*', 'classroom.class_name')
+        ->where('students.classroom_id', '=', $SelectedClass)
         ->get();
 
-    $icNumbers = $students->pluck('icNumber');
-    $studentResult = studentResult::whereIn('icNumber', $icNumbers)
+    $ic_numbers = $students->pluck('ic_number');
+    $studentResult = studentResult::whereIn('ic_number', $ic_numbers)
     ->whereIn('status', ['successful']) // Use an array for the 'status' field
-    ->where('examId', $SelectedExam)
+    ->where('exam_id', $SelectedExam)
     ->get();
 
-$studentResultPending = studentResult::whereIn('icNumber', $icNumbers)
+$studentResultPending = studentResult::whereIn('ic_number', $ic_numbers)
     ->whereIn('status', ['pending']) // Use an array for the 'status' field
-    ->where('examId', $SelectedExam)
+    ->where('exam_id', $SelectedExam)
     ->get();
 $results=[$studentResult,$studentResultPending];
 
@@ -95,26 +95,26 @@ $results=[$studentResult,$studentResultPending];
 
 
 public function getClassData(Request $request){
-    $SelectedExam = $request->input('examId');
-    $exam = exam::where('examId',$SelectedExam)->first();
+    $SelectedExam = $request->input('exam_id');
+    $exam = exam::where('exam_id',$SelectedExam)->first();
     $checkform = $exam->form;
 
-    $classRoom = classRoom::where('form',$checkform)->get();
-    return response()->json($classRoom);
+    $classroom = classroom::where('form',$checkform)->get();
+    return response()->json($classroom);
 
 }
 
 public function getStudentResult2(Request $request)
 {
     $SelectedIc = $request->input('studentIc');
-    $studentResult = studentResult::Where('icNumber',$SelectedIc)->first();
+    $studentResult = studentResult::Where('ic_number',$SelectedIc)->first();
     return response()->json($studentResult);
 }
 
 // public function getDocumentDetail(Request $request)
 // {
-//     $SelectedId = $request->input('teacherId');
-//     $teacherDetail = classRoom_Teacher::WHERE('teacherId',$SelectedId)->first();
+//     $SelectedId = $request->input('teacher_id');
+//     $teacherDetail = classroom_teacher::WHERE('teacher_id',$SelectedId)->first();
 //     return response()->json($teacherDetail);
 
 // }

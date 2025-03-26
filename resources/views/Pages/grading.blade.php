@@ -1,13 +1,15 @@
 @extends('layouts.main')
 @section('content')
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="node_modules/sweetalert2/dist/sweetalert2.min.css">
-    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+    <head>
+        <link rel="stylesheet" type="text/css"
+            href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
+        <link rel="stylesheet" href="node_modules/sweetalert2/dist/sweetalert2.min.css">
+        <link rel="stylesheet"
+            href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
 </head>
 
 <body>
@@ -40,31 +42,15 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="Bahasa_Melayu">Bahasa_Melayu:</label>
-                                            <input type="number" class="form-control grade-input" id="Bahasa_Melayu" name="Bahasa_Melayu" required min="0" max="100" step="0.01">
+                                            <label for="bahasa_melayu">bahasa_melayu:</label>
+                                            <input type="number" class="form-control grade-input" id="bahasa_melayu" name="bahasa_melayu" required min="0" max="100" step="0.01">
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="English">English:</label>
-                                            <input type="number" class="form-control grade-input" id="English" name="English" required min="0" max="100" step="0.01">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="Math">Math:</label>
-                                            <input type="number" class="form-control grade-input" id="Math" name="Math" required min="0" max="100" step="0.01">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="Science">Science:</label>
-                                            <input type="number" class="form-control grade-input" id="Science" name="Science" required min="0" max="100" step="0.01">
+                                            <label for="english">english:</label>
+                                            <input type="number" class="form-control grade-input" id="english" name="english" required min="0" max="100" step="0.01">
                                         </div>
                                     </div>
                                 </div>
@@ -72,8 +58,24 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="Sejarah">Sejarah:</label>
-                                            <input type="number" class="form-control grade-input" id="Sejarah" name="Sejarah" required min="0" max="100" step="0.01">
+                                            <label for="math">math:</label>
+                                            <input type="number" class="form-control grade-input" id="math" name="math" required min="0" max="100" step="0.01">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="science">science:</label>
+                                            <input type="number" class="form-control grade-input" id="science" name="science" required min="0" max="100" step="0.01">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="sejarah">sejarah:</label>
+                                            <input type="number" class="form-control grade-input" id="sejarah" name="sejarah" required min="0" max="100" step="0.01">
                                         </div>
                                     </div>
 
@@ -121,45 +123,47 @@
                 <div class="d-flex align-items-center">
                     <!-- First Select Input -->
 
-                    <select id="examSelect" name="examId" class="form-select" aria-label="Default select example" style="margin-right:10px;">
+                    <select id="examSelect" name="exam_id" class="form-select" aria-label="Default select example" style="margin-right:10px;">
                         <option value="0">Please Select Exam</option>
                         @foreach ($exam as $exam)
-                        <option value="{{ $exam->examId }}">{{ $exam->title }}</option>
-                        @endforeach
+                        <option value="{{ $exam->exam_id }}">{{ $exam->title }}</option> @endforeach
                     </select>
 
 
-                    <select id="classRoomSelect" name="classRoom" class="form-select" aria-label="Default select example" style="margin-right:10px;display:none;">
-                        <option value="0">Please select Classroom</option>
-                        @foreach ($classRoom as $classRoom)
-                        <option value="{{ $classRoom->classroomId }}">{{ $classRoom->className }}</option>
-                        @endforeach
-                    </select>
+                    <select id="classroomSelect"
+            name="classroom" class="form-select" aria-label="Default select example"
+            style="margin-right:10px;display:none;">
+        <option value="0">Please select classroom</option>
+        @foreach ($classroom as $classroom)
+            <option value="{{ $classroom->classroom_id }}">{{ $classroom->class_name }}</option>
+        @endforeach
+        </select>
 
-                    <!-- Search Button -->
-                    <button id="searchButton" type="button" class="btn btn-info" style="height:30px;"><span style="position:relative; top:-5px;">Search</span></button>
-                </div>
-            </div>
+        <!-- Search Button -->
+        <button id="searchButton" type="button" class="btn btn-info" style="height:30px;"><span
+                style="position:relative; top:-5px;">Search</span></button>
         </div>
-    </div>
+        </div>
+        </div>
+        </div>
 
-    <div class="row">
-        <div class="col-12">
+        <div class="row">
+            <div class="col-12">
 
-            <div id="cardT" class="card" style="display:none;">
-                <div class="card-header" style="background-color:white;">
-                    <div>
-                        <button class="btn btn-warning switch1" data-target="example">Pending</button>
-                        <button class="btn btn-success switch2" data-target="example2">Successful</button>
+                <div id="cardT" class="card" style="display:none;">
+                    <div class="card-header" style="background-color:white;">
+                        <div>
+                            <button class="btn btn-warning switch1" data-target="example">Pending</button>
+                            <button class="btn btn-success switch2" data-target="example2">Successful</button>
 
+                        </div>
                     </div>
-                </div>
 
-                <div id="cardtable" class="card-body" style="padding-right:15px;padding-left:15px;padding-top:10px;">
-                    <div class="d-flex justify-content-between mb-3">
+                    <div id="cardtable" class="card-body" style="padding-right:15px;padding-left:15px;padding-top:10px;">
+                        <div class="d-flex justify-content-between mb-3">
 
-                    </div>
-                    {{-- <table id="example" class="table table-striped table-bordered" style="width:100%; font-size:15px !important;">
+                        </div>
+                        {{-- <table id="example" class="table table-striped table-bordered" style="width:100%; font-size:15px !important;">
                         <thead>
                             <tr>
                                 <th style="width:70%;">Exam Title</th>
@@ -206,18 +210,19 @@
 
                         </tbody>
                     </table> --}}
+                    </div>
+
                 </div>
 
             </div>
-
         </div>
-    </div>
 
 
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="node_modules/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="js/grading.js"></script>
+        <script src="node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="node_modules/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="js/grading.js"></script>
 
-</body>
-</html>
+        </body>
+
+    </html>
 @endsection

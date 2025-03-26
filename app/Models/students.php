@@ -9,16 +9,16 @@ class students extends Model
 {
     use HasFactory;
     protected $table = 'students';
-    protected $primaryKey = 'studentId';
+    protected $primaryKey = 'student_id';
     protected $fillable = [
         'name',
-        'icNumber',
-        'noTell',
+        'ic_number',
+        'no_tell',
         'email',
         'family_income ',
         'total_family_member',
         'race',
-        'classroomId',
+        'classroom_id',
     ];
     use HasUuids;
 }

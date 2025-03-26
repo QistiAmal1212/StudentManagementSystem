@@ -9,16 +9,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('document', function (Blueprint $table) {
-            $table->id('documentId');
-            $table->string('documentPath');
+            $table->id('document_id');
+            $table->string('document_path');
             $table->string('title')->nullable();
             $table->timestamps();
-            
-          
+
+
         });
     }
 
-   
+
     public function down(): void
     {
         Schema::dropIfExists('document');

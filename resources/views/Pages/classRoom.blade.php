@@ -16,19 +16,19 @@
     <x-statusMessage />
     <div id="addModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
-            <form method="post" id="formAdd" class="" action="{{ route('addClassRoom') }}">
+            <form method="post" id="formAdd" class="" action="{{ route('addclassroom') }}">
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header" style="background-color:#333b46;">
-                        <h5 class="modal-title" style="color:white;">Add New ClassRoom</h5>
+                        <h5 class="modal-title" style="color:white;">Add New classroom</h5>
                         <button type="button" style="color:white;" class="close" data-dismiss="modal">&times;</button>
                     </div>
 
                     <div class="modal-body">
                         <div style="width:95%; margin-left:2.5%;">
                             <div class="form-group">
-                                <label for="className">Class Name:</label>
-                                <input type="text" class="form-control" id="className" name="className" required>
+                                <label for="class_name">Class Name:</label>
+                                <input type="text" class="form-control" id="class_name" name="class_name" required>
                             </div>
 
 
@@ -40,11 +40,11 @@
 
 
                             <div class="form-group">
-                                <label for="classTeacher">ClassRoom Teacher:</label>
-                                <select id="classTeacher" name="teacherId" class="form-select form-select-lg mb-3" aria-label="Default select example" required>
+                                <label for="classTeacher">classroom Teacher:</label>
+                                <select id="classTeacher" name="teacher_id" class="form-select form-select-lg mb-3" aria-label="Default select example" required>
                                     <option value="">--</option>
                                     @foreach ($teachers as $teachers)
-                                    <option value="{{ $teachers->teacherId }}">{{ $teachers->name }}</option> @endforeach
+                                    <option value="{{ $teachers->teacher_id }}">{{ $teachers->name }}</option> @endforeach
                                 </select>
 
                             </div>
@@ -65,12 +65,12 @@
 
         <div id="updateModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
-                <form method="post" id="updateClassRoom" class="" action="{{ route('updateClassRoom') }}">
+                <form method="post" id="updateclassroom" class="" action="{{ route('updateclassroom') }}">
                     @method('PUT')
                     @csrf
                     <div class="modal-content">
                         <div class="modal-header" style="background-color:#333b46;">
-                            <h5 class="modal-title" style="color:white;">Update ClassRoom</h5>
+                            <h5 class="modal-title" style="color:white;">Update classroom</h5>
                             <button type="button" style="color:white;" class="close" data-dismiss="modal">&times;</button>
                         </div>
 
@@ -78,8 +78,8 @@
                             <input type="hidden" class="form-control" id="updateClassId" name="updateClassId" required>
                             <div style="width:95%; margin-left:2.5%;">
                                 <div class="form-group">
-                                    <label for="updateClassName">Class Name:</label>
-                                    <input type="text" class="form-control" id="updateClassName" name="updateClassName"
+                                    <label for="updateclass_name">Class Name:</label>
+                                    <input type="text" class="form-control" id="updateclass_name" name="updateclass_name"
                                         required>
                                 </div>
 
@@ -93,13 +93,13 @@
 
 
                                 <div class="form-group">
-                                    <label for="updateteacherId">ClassRoom Teacher:</label>
-                                    <select id="updateteacherId" name="updateteacherId"
+                                    <label for="updateteacher_id">classroom Teacher:</label>
+                                    <select id="updateteacher_id" name="updateteacher_id"
                                         class="form-select form-select-lg mb-3" aria-label="Default select example"
                                         required>
                                         <option value="">--</option>
                                         @foreach ($teachers2 as $teachers)
-                                            <option value="{{ $teachers->teacherId }}">{{ $teachers->name }}</option>
+                                            <option value="{{ $teachers->teacher_id }}">{{ $teachers->name }}</option>
                                         @endforeach
                                     </select>
 
@@ -127,16 +127,16 @@
                         <div>
                             <x-addbtn id="addBtn" />
                             <x-deletebtn id="deleteBtn" />
-                            <a href="{{ route('exportExcelClassRoom') }}">
+                            <a href="{{ route('exportExcelclassroom') }}">
                                 <x-excelbtn id="excelBtn" />
                             </a>
-                            <a href="{{ route('exportPdfClassRoom') }}">
+                            <a href="{{ route('exportPdfclassroom') }}">
                                 <x-pdfbtn id="pdfBtn" />
                             </a>
                         </div>
                     </div>
-                    <form id="deleteClassRoom" class="deleteClassRoom" method="post"
-                        action="{{ route('deleteClassRoom') }}" enctype="multipart/form-data">
+                    <form id="deleteclassroom" class="deleteclassroom" method="post"
+                        action="{{ route('deleteclassroom') }}" enctype="multipart/form-data">
                         @method('DELETE')
                         @csrf
                         <div class="card-body" style="padding-right:15px;padding-left:15px;padding-top:10px;">
@@ -160,19 +160,19 @@
                                     @php
                                         $j = 1;
                                     @endphp
-                                    @foreach ($classRoom as $classRoom)
+                                    @foreach ($classroom as $classroom)
                                         <tr>
                                             <td>
                                                 <input type="checkbox" name="selectedClass[]"
-                                                    value="{{ $classRoom->classroomId }}" />
+                                                    value="{{ $classroom->classroom_id }}" />
                                             </td>
-                                            <td>{{ $classRoom->className }}</td>
-                                            <td>{{ $classRoom->name }}</td>
-                                            <td>{{ $classRoom->form }}</td>
+                                            <td>{{ $classroom->class_name }}</td>
+                                            <td>{{ $classroom->name }}</td>
+                                            <td>{{ $classroom->form }}</td>
                                             <td>{{ $totalstudent[$j] }}</td>
                                             <td>
                                                 <center><i class="fas fa-edit editBtn"
-                                                        data-class-id="{{ $classRoom->classroomId }}"></i></center>
+                                                        data-class-id="{{ $classroom->classroom_id }}"></i></center>
                                             </td>
                                         </tr>
                                         @php
@@ -191,7 +191,7 @@
 
         <script src="node_modules/jquery/dist/jquery.min.js"></script>
         <script src="node_modules/datatables.net/js/jquery.dataTables.min.js"></script>
-        <script src="js/classRoom.js"></script>
+        <script src="js/classroom.js"></script>
 
 
         </body>

@@ -9,19 +9,19 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('students', function (Blueprint $table) {
-            $table->uuid('studentId')->primary();
+            $table->uuid('student_id')->primary();
             $table->string('name');
-            $table->string('icNumber');
-            $table->string('noTell');
+            $table->string('ic_number');
+            $table->string('no_tell');
             $table->string('email');
-            $table->decimal('family_income ', 10, 2);
+            $table->decimal('family_income', 10, 2);
             $table->integer('total_family_member');
             $table->timestamps();
 
-            $table->uuid('classroomId');
-            $table->foreign('classroomId')
-                  ->references('classroomId')
-                  ->on('classRoom')
+            $table->uuid('classroom_id');
+            $table->foreign('classroom_id')
+                  ->references('classroom_id')
+                  ->on('classroom')
                   ->onDelete('cascade');
         });
     }

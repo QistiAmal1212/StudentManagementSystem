@@ -26,13 +26,13 @@
         <tbody>
             @foreach ($teachers as $teacher)
                 <tr>
-                    <td>{{ $teacher->teacherId }}</td>
+                    <td>{{ $teacher->teacher_id }}</td>
                     <td>{{ $teacher->name }}</td>
-                    <td>{{ $teacher->icNumber }}</td>
-                    <td>{{ $teacher->noTell }}</td>
+                    <td>{{ $teacher->ic_number }}</td>
+                    <td>{{ $teacher->no_tell }}</td>
                     <td>{{ $teacher->email }}</td>
-                    <td class="{{ $teacher->isClassTeacher == 1 ? 'class-teacher-yes' : 'class-teacher-no' }}">
-                        {{ $teacher->isClassTeacher == 1 ? 'Yes' : 'No' }}
+                    <td class="{{ $teacher->is_class_teacher == 1 ? 'class-teacher-yes' : 'class-teacher-no' }}">
+                        {{ $teacher->is_class_teacher == 1 ? 'Yes' : 'No' }}
                     </td>
                 </tr>
             @endforeach

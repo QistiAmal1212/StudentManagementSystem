@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Classroom Detail</title>
+    <title>classroom Detail</title>
 
     <link rel="stylesheet" type="text/css" href="../resources/views/Pdf/pdfCss.css">
 </head>
+
 <body>
-    <h4>CLASSROOM DETAILS</h4>
+    <h4>classroom DETAILS</h4>
     <table style="width: 100%;">
         <thead>
             <tr>
@@ -21,15 +23,16 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($classRoom as $classRoom)
-            <tr>
-                <td>{{ $classRoom->className }}</td>
-                <td>{{ $classRoom->name }}</td>
-                <td>{{ $classRoom->form }}</td>
-                <td>1000</td>
-            </tr>
+            @foreach ($classroom as $classroom)
+                <tr>
+                    <td>{{ $classroom->class_name }}</td>
+                    <td>{{ $classroom->name }}</td>
+                    <td>{{ $classroom->form }}</td>
+                    <td>1000</td>
+                </tr>
             @endforeach
         </tbody>
     </table>
 </body>
+
 </html>

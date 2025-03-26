@@ -34,12 +34,12 @@
                                 <input type="text" class="form-control" id="name" name="name" required>
                             </div>
                             <div class="form-group">
-                                <label for="icNumber">IC Number<span class="text-danger">*</span>:</label>
-                                <input type="text" class="form-control" id="icNumber" name="icNumber" required>
+                                <label for="ic_number">IC Number<span class="text-danger">*</span>:</label>
+                                <input type="text" class="form-control" id="ic_number" name="ic_number" required>
                             </div>
                             <div class="form-group">
-                                <label for="noTell">No tell<span class="text-danger">*</span>:</label>
-                                <input type="text" class="form-control" id="noTell" name="noTell" placeholder="60xxxxxxxxxx" required>
+                                <label for="no_tell">No tell<span class="text-danger">*</span>:</label>
+                                <input type="text" class="form-control" id="no_tell" name="no_tell" placeholder="60xxxxxxxxxx" required>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email<span class="text-danger">*</span>:</label>
@@ -79,12 +79,12 @@
                                 <input type="text" class="form-control" id="updateName" name="updateName" required>
                             </div>
                             <div class="form-group">
-                                <label for="updateIcNumber">IC Number<span class="text-danger">*</span>:</label>
-                                <input type="text" class="form-control" id="updateIcNumber" name="updateIcNumber" required>
+                                <label for="updateic_number">IC Number<span class="text-danger">*</span>:</label>
+                                <input type="text" class="form-control" id="updateic_number" name="updateic_number" required>
                             </div>
                             <div class="form-group">
-                                <label for="updateNoTell">No tell<span class="text-danger">*</span>:</label>
-                                <input type="text" class="form-control" id="updateNoTell" name="updateNoTell" placeholder="60xxxxxxxxxx" required>
+                                <label for="updateno_tell">No tell<span class="text-danger">*</span>:</label>
+                                <input type="text" class="form-control" id="updateno_tell" name="updateno_tell" placeholder="60xxxxxxxxxx" required>
                             </div>
                             <div class="form-group">
                                 <label for="updateEmail">Email<span class="text-danger">*</span>:</label>
@@ -145,14 +145,14 @@
                                 @foreach ($teachers as $teacher)
                                 <tr>
                                     <td style="width:5%;">
-                                        <input type="checkbox" name="selectedTeacher[]" value="{{ $teacher->teacherId }}" />
+                                        <input type="checkbox" name="selectedTeacher[]" value="{{ $teacher->teacher_id }}" />
                                     </td>
                                     <td>{{ $teacher->name }}</td>
-                                    <td>{{ $teacher->icNumber }}</td>
-                                    <td>{{ $teacher->noTell }}</td>
+                                    <td>{{ $teacher->ic_number }}</td>
+                                    <td>{{ $teacher->no_tell }}</td>
                                     <td>{{ $teacher->email }}</td>
                                     <td>
-                                        @if ($teacher->isClassTeacher == 1)
+                                        @if ($teacher->is_class_teacher == 1)
                                         <span>yes</span>
                                         @else
                                         <span>no</span>
@@ -160,24 +160,24 @@
                                     </td>
 
                                     <td>
-                                        <center><i class="fas fa-edit editBtn" data-teacher-id="{{ $teacher->teacherId }}"></i></center>
+                                        <center><i class="fas fa-edit editBtn" data-teacher-id="{{ $teacher->teacher_id }}"></i></center>
 
                                     </td>
                                 </tr> @endforeach
 
-                                </tbody>
-                            </table>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </form>
+                            </div>
+
                         </div>
-                    </form>
-                </div>
+                    </div>
 
-            </div>
-        </div>
+                    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+                    <script src="node_modules/datatables.net/js/jquery.dataTables.min.js"></script>
+                    <script src="js/teachers.js"></script>
 
-        <script src="node_modules/jquery/dist/jquery.min.js"></script>
-        <script src="node_modules/datatables.net/js/jquery.dataTables.min.js"></script>
-        <script src="js/teachers.js"></script>
-
-    </body>
-    </html>
+                </body>
+                </html>
 @endsection

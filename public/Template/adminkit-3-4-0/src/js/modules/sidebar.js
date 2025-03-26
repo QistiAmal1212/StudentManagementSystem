@@ -7,14 +7,14 @@ const initialize = () => {
 }
 
 const initializeSimplebar = () => {
-  const simplebarElement = document.getElementsByClassName("js-simplebar")[0];
+  const simplebarElement = document.getElementsByclass_name("js-simplebar")[0];
 
   if(simplebarElement){
-    const simplebarInstance = new SimpleBar(document.getElementsByClassName("js-simplebar")[0]);
+    const simplebarInstance = new SimpleBar(document.getElementsByclass_name("js-simplebar")[0]);
 
     /* Recalculate simplebar on sidebar dropdown toggle */
     const sidebarDropdowns = document.querySelectorAll(".js-sidebar [data-bs-parent]");
-    
+
     sidebarDropdowns.forEach(link => {
       link.addEventListener("shown.bs.collapse", () => {
         simplebarInstance.recalculate();
@@ -27,8 +27,8 @@ const initializeSimplebar = () => {
 }
 
 const initializeSidebarCollapse = () => {
-  const sidebarElement = document.getElementsByClassName("js-sidebar")[0];
-  const sidebarToggleElement = document.getElementsByClassName("js-sidebar-toggle")[0];
+  const sidebarElement = document.getElementsByclass_name("js-sidebar")[0];
+  const sidebarToggleElement = document.getElementsByclass_name("js-sidebar-toggle")[0];
 
   if(sidebarElement && sidebarToggleElement) {
     sidebarToggleElement.addEventListener("click", () => {

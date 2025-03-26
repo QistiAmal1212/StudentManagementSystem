@@ -7,7 +7,7 @@
 /*!
   Copyright (c) 2016 Jed Watson.
   Licensed under the MIT License (MIT), see
-  http://jedwatson.github.io/classnames
+  http://jedwatson.github.io/class_names
 */
 
 /*!
@@ -173,7 +173,7 @@
 
 /*! /home/runner/work/feather/feather/src/index.js */
 
-/*! classnames/dedupe */
+/*! class_names/dedupe */
 
 /*! core-js/es/array/from */
 
@@ -222,7 +222,7 @@
   \***********************************/
 
 /*!*******************************************!*\
-  !*** ./node_modules/classnames/dedupe.js ***!
+  !*** ./node_modules/class_names/dedupe.js ***!
   \*******************************************/
 
 /*!***********************************************!*\

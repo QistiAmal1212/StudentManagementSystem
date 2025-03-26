@@ -2,9 +2,9 @@
 
 namespace App\Exports;
 
-use App\Models\classRoom_Teacher;
+use App\Models\classroom_teacher;
 use App\Models\students;
-use App\Models\ClassRoom;
+use App\Models\classroom;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -14,54 +14,54 @@ use Maatwebsite\Excel\Events\AfterSheet;
 class classStructureExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEvents
 {
     protected $classId;
-    protected $className;
+    protected $class_name;
     protected $teacherName;
 
     public function __construct($classId)
     {
         $this->classId = $classId;
         // Fetch class information based on classId
-        $className = ClassRoom::find($classId);
-        $classTeacher = classRoom_Teacher::find($className->teacherId);
-        $this->className = $className ? $className->className : '';
+        $class_name = classroom::find($classId);
+        $classTeacher = classroom_teacher::find($class_name->teacher_id);
+        $this->class_name = $class_name ? $class_name->class_name : '';
         $this->teacherName = $classTeacher ? $classTeacher->name : '';
     }
 
     public function collection()
     {
         // Your existing query logic
-        return students::RightJoin('classRoom', 'students.classRoomId', '=', 'classRoom.classRoomId')
-            ->RightJoin('classRoom_Teacher', 'classRoom.teacherId', '=', 'classRoom_Teacher.teacherId')
+        return students::RightJoin('classroom', 'students.classroom_id', '=', 'classroom.classroom_id')
+            ->RightJoin('classroom_teacher', 'classroom.teacher_id', '=', 'classroom_teacher.teacher_id')
             ->select(
-                'students.studentId',
+                'students.student_id',
                 'students.name',
-                'students.icNumber',
-                'students.noTell',
+                'students.ic_number',
+                'students.no_tell',
                 'students.email',
                 'students.family_income ',
                 'students.total_family_member',
-                'students.classroomId',
-                'classRoom.className' // Add className to the select statement
+                'students.classroom_id',
+                'classroom.class_name' // Add class_name to the select statement
             )
-            ->where('classRoom.classroomId', '=', $this->classId)
+            ->where('classroom.classroom_id', '=', $this->classId)
             ->get();
     }
 
     public function headings(): array
     {
         return [
-            ['Class Name: ' . $this->className], // First row of the header
+            ['Class Name: ' . $this->class_name], // First row of the header
             ['Teacher Name: ' . $this->teacherName], // Second row of the header
             [
-                'studentId',
+                'student_id',
                 'name',
-                'icNumber',
-                'noTell',
+                'ic_number',
+                'no_tell',
                 'email',
                 'family_income ',
                 'total_family_member',
-                'classroomId',
-                'className',
+                'classroom_id',
+                'class_name',
             ],
         ];
     }

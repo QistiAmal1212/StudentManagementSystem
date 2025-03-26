@@ -2,7 +2,7 @@
 namespace App\Imports;
 
 use App\Models\students;
-use App\Models\ClassRoom;
+use App\Models\classroom;
 use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Illuminate\Support\Facades\Validator;
@@ -10,7 +10,7 @@ use Maatwebsite\Excel\Concerns\WithStartRow;
 class studentsImport implements ToModel,WithStartRow
 {
     private $rowCount = 0;
-    private $encounteredIcNumbers = [];
+    private $encounteredic_numbers = [];
 
 
     /**
@@ -29,22 +29,22 @@ class studentsImport implements ToModel,WithStartRow
 
 
 
-        $icNumber = $row[1];
+        $ic_number = $row[1];
 
         // Check for duplicate IC numbers
-        if (in_array($icNumber, $this->encounteredIcNumbers)) {
+        if (in_array($ic_number, $this->encounteredic_numbers)) {
             abort(400, 'Cannot have the same IC Number in the excel.');
         }
 
         // Add the current IC number to the encountered array
-        $this->encounteredIcNumbers[] = $icNumber;
+        $this->encounteredic_numbers[] = $ic_number;
 
         if(students::where('email', $row[3])->exists() )
         {
             abort(422, 'row ' . $this->rowCount . ': Duplicate email found.');
         }
 
-        if(students::where('icNumber', $row[1])->exists() )
+        if(students::where('ic_number', $row[1])->exists() )
         {
             abort(422, 'row ' . $this->rowCount . ': Duplicate Ic Number found.');
         }
@@ -56,9 +56,9 @@ class studentsImport implements ToModel,WithStartRow
         if ((strlen($row[2]) !== 10) && (strlen($row[2]) !== 11)){
             abort(422, 'row ' . $this->rowCount . ': phone number must be 10-11 digit.');
         }
-        // Perform existence check for classroomId
-        if (!ClassRoom::where('classroomId', $row[6])->exists()) {
-            abort(422, 'row ' . $this->rowCount . ': Invalid classroomId.');
+        // Perform existence check for classroom_id
+        if (!classroom::where('classroom_id', $row[6])->exists()) {
+            abort(422, 'row ' . $this->rowCount . ': Invalid classroom_id.');
         }
 
 
@@ -67,12 +67,12 @@ class studentsImport implements ToModel,WithStartRow
         // If all checks pass, create a new students model
         return new students([
             'name' => (string) $row[0],
-            'icNumber' => (string) $row[1],
-            'noTell' => (string) $row[2],
+            'ic_number' => (string) $row[1],
+            'no_tell' => (string) $row[2],
             'email' => (string) $row[3],
             'family_income ' => (float) $row[4],
             'total_family_member' => (int) $row[5],
-            'classroomId' => (string) $row[6],
+            'classroom_id' => (string) $row[6],
         ]);
     }
     public function startRow(): int

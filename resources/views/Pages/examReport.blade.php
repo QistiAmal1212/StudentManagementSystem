@@ -1,13 +1,15 @@
 @extends('layouts.main')
 @section('content')
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="node_modules/sweetalert2/dist/sweetalert2.min.css">
-    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+    <head>
+        <link rel="stylesheet" type="text/css"
+            href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
+        <link rel="stylesheet" href="node_modules/sweetalert2/dist/sweetalert2.min.css">
+        <link rel="stylesheet"
+            href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
 </head>
 
 <body>
@@ -17,11 +19,10 @@
             <div class="col-12">
                 <div class="card" style="padding:10px; background-color:white;">
 
-                    <select id="examSelect" name="examId" class="form-select" aria-label="Default select example">
+                    <select id="examSelect" name="exam_id" class="form-select" aria-label="Default select example">
                         <option value="0">Please choose exam</option>
-                        @foreach($exam as $exam)
-                        <option value="{{ $exam->examId }}">{{ $exam->title }}</option>
-                        @endforeach
+                        @foreach ($exam as $exam)
+                        <option value="{{ $exam->exam_id }}">{{ $exam->title }}</option> @endforeach
 
                     </select>
                 </div>
@@ -29,7 +30,8 @@
         </div>
     </form>
 
-    <div class="row" style="position:relative; top:-35px;">
+    <div class="row"
+            style="position:relative; top:-35px;">
         <div class="col">
             <div class="card">
                 <div class="card-body">
@@ -45,88 +47,88 @@
                 </div>
             </div>
         </div>
-    </div>
+        </div>
 
 
 
-    <div class="row" style="position:relative; top:-40px;">
-        <div class="col-12">
+        <div class="row" style="position:relative; top:-40px;">
+            <div class="col-12">
 
-            <div class="card">
-                <div class="card-header" style="background-color:white;">
-                    <div>
+                <div class="card">
+                    <div class="card-header" style="background-color:white;">
+                        <div>
 
-                        {{-- <a id="routeLink1" href="{{ route('exportExcelClassStructure', ['classId' => ":classId"]) }}">
+                            {{-- <a id="routeLink1" href="{{ route('exportExcelClassStructure', ['classId' => ":classId"]) }}">
                         <x-excelbtn />
                         </a>
                         <a id="routeLink2" href="{{ route('exportPdfClassStructure', ['id' => ":classId"]) }}">
                             <x-pdfbtn />
                         </a> --}}
 
+                        </div>
                     </div>
-                </div>
 
-                <div class="card-body" style="padding-right:15px;padding-left:15px;">
+                    <div class="card-body" style="padding-right:15px;padding-left:15px;">
 
-                    <table id="example" class="table table-striped table-bordered" style="width:100%; font-size:15px !important;">
-                        <thead>
-                            <tr>
-                                <th>Rank</th>
-                                <th>Name</th>
-                                <th>Ic Number</th>
-                                <th>class</th>
-                                <th>average</th>
-                                <th>BM</th>
-                                <th>BI</th>
-                                <th>MATH</th>
-                                <th>SCIENCE</th>
-                                <th>SEJARAH</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @php
-                            $i=1;
-                            @endphp
-                            @foreach ($studentResult as $studentResult)
+                        <table id="example" class="table table-striped table-bordered"
+                            style="width:100%; font-size:15px !important;">
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>Name</th>
+                                    <th>Ic Number</th>
+                                    <th>class</th>
+                                    <th>average</th>
+                                    <th>BM</th>
+                                    <th>BI</th>
+                                    <th>math</th>
+                                    <th>science</th>
+                                    <th>sejarah</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php
+                                    $i = 1;
+                                @endphp
+                                @foreach ($studentResult as $studentResult)
+                                    <tr>
 
-                            <tr>
+                                        <td>{{ $i }}</td>
+                                        <td>{{ $studentResult->name }}</td>
+                                        <td>{{ $studentResult->ic_number }}</td>
+                                        <td>{{ $studentResult->class_name }}</td>
+                                        <td>{{ $studentResult->average }}%</td>
+                                        <td>{{ $studentResult->bahasa_melayu }}%</td>
+                                        <td>{{ $studentResult->english }}%</td>
+                                        <td>{{ $studentResult->math }}%</td>
+                                        <td>{{ $studentResult->science }}%</td>
+                                        <td>{{ $studentResult->sejarah }}%</td>
 
-                                <td>{{ $i }}</td>
-                                <td>{{ $studentResult->name }}</td>
-                                <td>{{ $studentResult->icNumber }}</td>
-                                <td>{{ $studentResult->className }}</td>
-                                <td>{{ $studentResult->average }}%</td>
-                                <td>{{ $studentResult->Bahasa_Melayu }}%</td>
-                                <td>{{ $studentResult->English }}%</td>
-                                <td>{{ $studentResult->Math }}%</td>
-                                <td>{{ $studentResult->Science }}%</td>
-                                <td>{{ $studentResult->Sejarah }}%</td>
+                                    </tr>
+                                    @php
+                                        $i++;
+                                    @endphp
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
 
-                            </tr>
-                            @php
-                            $i++;
-                            @endphp
-                            @endforeach
-                        </tbody>
-                    </table>
                 </div>
 
             </div>
-
         </div>
-    </div>
 
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script>
-        var reportResult1 = @json($reportResult1);
-        var reportResult2 = @json($reportResult2);
-
-    </script>
-    <script src="node_modules/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="node_modules/apexcharts/dist/apexcharts.min.js"></script>
-    <script src="js/examReport.js"></script>
+        <script src="node_modules/jquery/dist/jquery.min.js"></script>
+        <script>
+            var reportResult1 = @json($reportResult1);
+            var reportResult2 = @json($reportResult2);
+        </script>
+        <script src="node_modules/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="node_modules/apexcharts/dist/apexcharts.min.js"></script>
+        <script src="js/examReport.js"></script>
 
 
-</body>
-</html>
+        </body>
+
+    </html>
 @endsection

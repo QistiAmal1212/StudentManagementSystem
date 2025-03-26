@@ -69,12 +69,12 @@ $('.updateBtn').click(function () {
 
 
 
-    var studentId = $(this).data('student-id');
+    var student_id = $(this).data('student-id');
     $.ajax({
         url: '/getStudentDetail'
         , type: 'GET'
         , data: {
-            studentId: studentId
+            student_id: student_id
 
         }
         , success: function (studentDetail) {
@@ -83,15 +83,15 @@ $('.updateBtn').click(function () {
 
 
             $('#updateModal').modal('show');
-            $('#updateId').val(studentDetail.studentId);
+            $('#updateId').val(studentDetail.student_id);
             $('#updateName').val(studentDetail.name);
-            $('#updateIcNumber').val(studentDetail.icNumber);
-            $('#updatePhone').val(studentDetail.noTell);
+            $('#updateic_number').val(studentDetail.ic_number);
+            $('#updatePhone').val(studentDetail.no_tell);
             $('#updateEmail').val(studentDetail.email);
             $('#updatefamily_income ').val(studentDetail.family_income);
             $('#updatetotal_family_member').val(studentDetail.total_family_member);
             var studentClass = $('#updateClass');
-            var existingOption = studentClass.find('option[value="' + studentDetail.classroomId + '"]');
+            var existingOption = studentClass.find('option[value="' + studentDetail.classroom_id + '"]');
             existingOption.prop('selected', true);
 
         }
@@ -128,14 +128,14 @@ function updateNextStep() {
     if (updateCurrentStep < updateTotalSteps) {
         var updateNameTest = $('#updateName').val();
         var updateEmailTest = $('#updateEmail').val();
-        var updateIcNumberTest = $('#updateIcNumber').val();
-        var updateNoTellTest = $('#updatePhone').val();
+        var updateic_numberTest = $('#updateic_number').val();
+        var updateno_tellTest = $('#updatePhone').val();
 
         // Validate input length before moving to the next step
         var updateName = $('#updateName').val();
         var updateEmail = $('#updateEmail').val();
-        var updateIcNumberLength = $('#updateIcNumber').val().length;
-        var updateNoTellLength = $('#updatePhone').val().length;
+        var updateic_numberLength = $('#updateic_number').val().length;
+        var updateno_tellLength = $('#updatePhone').val().length;
 
         var updateTest1 = false;
         var updateTest2 = false;
@@ -146,11 +146,11 @@ function updateNextStep() {
             updateTest1 = true;
         }
 
-        if (updateIcNumberLength !== 12) {
+        if (updateic_numberLength !== 12) {
             updateTest2 = true;
         }
 
-        if (updateNoTellLength < 11 || updateNoTellLength > 12) {
+        if (updateno_tellLength < 11 || updateno_tellLength > 12) {
             updateTest3 = true;
         }
 
@@ -178,7 +178,7 @@ function updateNextStep() {
             }
 
             updateShowToast(updateErrorMessage);
-        } else if (updateNameTest !== "" && updateEmailTest !== "" && updateIcNumberTest !== "" && updateNoTellTest !== "") {
+        } else if (updateNameTest !== "" && updateEmailTest !== "" && updateic_numberTest !== "" && updateno_tellTest !== "") {
             if (updateTest1 === false && updateTest2 === false && updateTest3 === false && updateTest4 === false) {
                 updateCurrentStep++;
                 updateUpdateStepVisibility();
@@ -269,13 +269,13 @@ function nextStep() {
 
         var nameTest = $('#name').val();
         var emailTest = $('#emailStudent').val();
-        var icNumberTest = $('#icNumber').val();
-        var noTellTest = $('#phone').val();
+        var ic_numberTest = $('#ic_number').val();
+        var no_tellTest = $('#phone').val();
         // Validate input length before submitting the form
         var name = $('#name').val();
         var email = $('#emailStudent').val();
-        var icNumberLength = $('#icNumber').val().length;
-        var noTellLength = $('#phone').val().length;
+        var ic_numberLength = $('#ic_number').val().length;
+        var no_tellLength = $('#phone').val().length;
 
         var test1 = false;
         var test2 = false;
@@ -287,11 +287,11 @@ function nextStep() {
             test1 = true;
         }
 
-        if (icNumberLength !== 12) {
+        if (ic_numberLength !== 12) {
             test2 = true;
         }
 
-        if (noTellLength < 11 || noTellLength > 12) {
+        if (no_tellLength < 11 || no_tellLength > 12) {
             test3 = true;
         }
 
@@ -322,7 +322,7 @@ function nextStep() {
             showToast(errorMessage);
             event.preventDefault();
         }
-        if (nameTest != "" && emailTest != "" && icNumberTest != "" && noTellTest != "") {
+        if (nameTest != "" && emailTest != "" && ic_numberTest != "" && no_tellTest != "") {
             if (test1 == false && test2 == false && test3 == false && test4 == false) {
                 currentStep++;
                 updateStepVisibility();

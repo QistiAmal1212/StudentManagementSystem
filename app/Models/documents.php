@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class documents extends Model
 {
     protected $table = 'document';
-    protected $primaryKey = 'documentId';
+    protected $primaryKey = 'document_id';
     protected $fillable = [
-        'documentPath',
+        'document_path',
         'title',
-      
+
     ];
     use HasFactory;
 }

@@ -12,23 +12,23 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('student_result', function (Blueprint $table) {
-            $table->uuid('resultId')->primary();
+            $table->uuid('result_id')->primary();
             $table->string('name');
             $table->string('status');
-            $table->string('icNumber');
-            $table->string('className');
+            $table->string('ic_number');
+            $table->string('class_name');
             $table->float('average', 8, 2)->nullable();
-            $table->string('Bahasa_Melayu')->nullable();
-            $table->string('English')->nullable();
-            $table->string('Math')->nullable();
-            $table->string('Science')->nullable();
-            $table->string('Sejarah')->nullable();
+            $table->string('bahasa_melayu')->nullable();
+            $table->string('english')->nullable();
+            $table->string('math')->nullable();
+            $table->string('science')->nullable();
+            $table->string('sejarah')->nullable();
             $table->timestamps();
 
 
-            $table->uuid('examId'); 
-            $table->foreign('examId')
-                  ->references('examId')
+            $table->uuid('exam_id');
+            $table->foreign('exam_id')
+                  ->references('exam_id')
                   ->on('exam')
                   ->onDelete('cascade');
         });

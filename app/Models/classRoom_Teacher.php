@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
-class classRoom_Teacher extends Model
+class classroom_teacher extends Model
 {
-    protected $table = 'classRoom_Teacher';
-    protected $primaryKey = 'teacherId';
+    protected $table = 'classroom_teacher';
+    protected $primaryKey = 'teacher_id';
     protected $fillable = [
 
         'name',
-        'icNumber',
-        'noTell',
+        'ic_number',
+        'no_tell',
         'email',
     ];
     use HasFactory;

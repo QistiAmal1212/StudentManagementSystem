@@ -9,6 +9,6 @@ class exam extends Model
 {
     use HasFactory;
     protected $table = 'exam';
-    protected $primaryKey = 'examId';
+    protected $primaryKey = 'exam_id';
     use HasUuids;
 }

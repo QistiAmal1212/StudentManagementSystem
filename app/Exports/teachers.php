@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Models\classRoom_Teacher;
+use App\Models\classroom_teacher;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithEvents;
@@ -16,24 +16,24 @@ class teachers implements FromCollection, WithHeadings, WithEvents
     public function collection()
     {
         // Retrieve specific data from the model
-        $teachers = classRoom_Teacher::select(
-            'teacherId',
+        $teachers = classroom_teacher::select(
+            'teacher_id',
             'name',
-            'icNumber',
-            'noTell',
+            'ic_number',
+            'no_tell',
             'email',
-            'isClassTeacher'
+            'is_class_teacher'
         )->get();
 
         // Modify the data to represent 0 as "No" and 1 as "Yes"
         $modifiedData = $teachers->map(function ($teacher) {
             return [
-                'Teacher ID'        => $teacher->teacherId,
+                'Teacher ID'        => $teacher->teacher_id,
                 'Name'              => $teacher->name,
-                'IC Number'         => $teacher->icNumber,
-                'Phone Number'      => $teacher->noTell,
+                'IC Number'         => $teacher->ic_number,
+                'Phone Number'      => $teacher->no_tell,
                 'Email'             => $teacher->email,
-                'Is Class Teacher'  => $teacher->isClassTeacher ? 'Yes' : 'No',
+                'Is Class Teacher'  => $teacher->is_class_teacher ? 'Yes' : 'No',
             ];
         });
 

@@ -8,13 +8,13 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('classRoom_Teacher', function (Blueprint $table) {
-            $table->uuid('teacherId')->primary();
+        Schema::create('classroom_teacher', function (Blueprint $table) {
+            $table->uuid('teacher_id')->primary();
             $table->string('name');
-            $table->string('icNumber');
-            $table->string('noTell');
+            $table->string('ic_number');
+            $table->string('no_tell');
             $table->string('email');
-            $table->boolean('isClassTeacher');
+            $table->boolean('is_class_teacher');
             $table->timestamps();
         });
     }
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('classRoom_Teacher');
+        Schema::dropIfExists('classroom_teacher');
     }
 };

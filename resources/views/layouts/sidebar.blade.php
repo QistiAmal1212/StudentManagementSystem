@@ -3,7 +3,8 @@
          <a class="sidebar-brand" href="{{ route('dashboard') }}">
              <div style="position:relative;top:5px;">
                  <img src="Images/s.png" alt="Student-Management-System" style="width:30px;height:30px;" />
-                 <span class="align-middle" style=" font-size:15px !important; ">Student Management</span></div>
+                 <span class="align-middle" style=" font-size:15px !important; ">Student Management</span>
+             </div>
          </a>
          {{-- <hr style="position:relative;top:-50px; color:white;" /> --}}
 
@@ -19,12 +20,13 @@
              </li>
              <li id="classStructure" class="sidebar-item">
                  <a class="sidebar-link" href="{{ route('classStructure') }}">
-                     <i class="align-middle" data-feather="align-justify"></i> <span class="align-middle">Class Structure</span>
+                     <i class="align-middle" data-feather="align-justify"></i> <span class="align-middle">Class
+                         Structure</span>
                  </a>
              </li>
-             <li id="classRoom" class="sidebar-item">
-                 <a class="sidebar-link" href="{{ route('classRoom') }}">
-                     <i class="align-middle" data-feather="home"></i> <span class="align-middle">ClassRoom</span>
+             <li id="classroom" class="sidebar-item">
+                 <a class="sidebar-link" href="{{ route('classroom') }}">
+                     <i class="align-middle" data-feather="home"></i> <span class="align-middle">classroom</span>
                  </a>
              </li>
              <li id="teachers" class="sidebar-item">
@@ -40,7 +42,8 @@
 
              <li id="exam" class="sidebar-item">
                  <a class="sidebar-link" href="{{ route('exam') }}">
-                     <i class="align-middle" data-feather="arrow-down-circle"></i> <span class="align-middle">Register Exam</span>
+                     <i class="align-middle" data-feather="arrow-down-circle"></i> <span class="align-middle">Register
+                         Exam</span>
                  </a>
              </li>
 

@@ -2,8 +2,8 @@ $(document).ready(function () {
     $('#examSelect').on('change', function () {
         var Value = $('#examSelect').val();
         if (Value != "0") {
-            $('#classRoomSelect').fadeIn();
-            var selectInput = $('#classRoomSelect');
+            $('#classroomSelect').fadeIn();
+            var selectInput = $('#classroomSelect');
 
 
 
@@ -11,14 +11,14 @@ $(document).ready(function () {
                 url: '/getClassData'
                 , type: 'GET'
                 , data: {
-                    examId: selectedValue,
+                    exam_id: selectedValue,
                 }
                 , success: function (data) {
 
-                    $("#classRoomSelect").empty();
+                    $("#classroomSelect").empty();
 
-                    data.forEach(function (classRoom) {
-                        newelement += '<option value="' + classRoom.classroomId + '">' + classRoom.className + '</option>';
+                    data.forEach(function (classroom) {
+                        newelement += '<option value="' + classroom.classroom_id + '">' + classroom.class_name + '</option>';
                     });
 
                     selectInput.append(newelement);
@@ -32,14 +32,14 @@ $(document).ready(function () {
             });
         }
         else {
-            $('#classRoomSelect').fadeOut();
+            $('#classroomSelect').fadeOut();
         }
     });
 
     $('#searchButton').on('click', function () {
 
         var selectedValue1 = $('#examSelect').val();
-        var selectedValue2 = $('#classRoomSelect').val();
+        var selectedValue2 = $('#classroomSelect').val();
         var table = $('#cardT');
 
 
@@ -56,8 +56,8 @@ $(document).ready(function () {
                 url: '/getStudentResult'
                 , type: 'GET'
                 , data: {
-                    classroomId: selectedValue2,
-                    examId: selectedValue1
+                    classroom_id: selectedValue2,
+                    exam_id: selectedValue1
                 }
                 , success: function (data) {
                     var resultTable = $('#cardtable');
@@ -75,10 +75,10 @@ $(document).ready(function () {
                         '<th>Ic Number</th>' +
                         '<th>average</th>' +
                         '<th>Malay</th>' +
-                        '<th>English</th>' +
-                        '<th>Math</th>' +
-                        '<th>Science</th>' +
-                        '<th>Sejarah</th>' +
+                        '<th>english</th>' +
+                        '<th>math</th>' +
+                        '<th>science</th>' +
+                        '<th>sejarah</th>' +
                         '<th>edit</th>' +
 
                         '</tr>' +
@@ -88,17 +88,17 @@ $(document).ready(function () {
                     data[1].forEach(function (studentResultPending) {
                         newelement +=
                             '<tr>' +
-                            '<td>' + (studentResultPending.resultId) + '</td>' +
+                            '<td>' + (studentResultPending.result_id) + '</td>' +
                             '<td>' + (studentResultPending.name) + '</td>' +
                             '<td>' + (studentResultPending.status) + '</td>' +
-                            '<td>' + (studentResultPending.icNumber) + '</td>' +
+                            '<td>' + (studentResultPending.ic_number) + '</td>' +
                             '<td>' + (studentResultPending.average !== null ? studentResultPending.average : '-') + '</td>' +
-                            '<td>' + (studentResultPending.Bahasa_Melayu !== null ? studentResultPending.Bahasa_Melayu : '-') + '</td>' +
-                            '<td>' + (studentResultPending.English !== null ? studentResultPending.English : '-') + '</td>' +
-                            '<td>' + (studentResultPending.Math !== null ? studentResultPending.Math : '-') + '</td>' +
-                            '<td>' + (studentResultPending.Science !== null ? studentResultPending.Science : '-') + '</td>' +
-                            '<td>' + (studentResultPending.Sejarah !== null ? studentResultPending.Sejarah : '-') + '</td>' +
-                            '<td>  <center><i class="fas fa-edit updateBtn" data-student-id="' + studentResultPending.icNumber +
+                            '<td>' + (studentResultPending.bahasa_melayu !== null ? studentResultPending.bahasa_melayu : '-') + '</td>' +
+                            '<td>' + (studentResultPending.english !== null ? studentResultPending.english : '-') + '</td>' +
+                            '<td>' + (studentResultPending.math !== null ? studentResultPending.math : '-') + '</td>' +
+                            '<td>' + (studentResultPending.science !== null ? studentResultPending.science : '-') + '</td>' +
+                            '<td>' + (studentResultPending.sejarah !== null ? studentResultPending.sejarah : '-') + '</td>' +
+                            '<td>  <center><i class="fas fa-edit updateBtn" data-student-id="' + studentResultPending.ic_number +
                             '"></i></center></td>' +
                             '</tr>';
                     });
@@ -112,10 +112,10 @@ $(document).ready(function () {
                         '<th>Ic Number</th>' +
                         '<th>average</th>' +
                         '<th>Malay</th>' +
-                        '<th>English</th>' +
-                        '<th>Math</th>' +
-                        '<th>Science</th>' +
-                        '<th>Sejarah</th>' +
+                        '<th>english</th>' +
+                        '<th>math</th>' +
+                        '<th>science</th>' +
+                        '<th>sejarah</th>' +
                         '<th>Edit</th>' +
                         '</tr>' +
                         '</thead>' +
@@ -124,17 +124,17 @@ $(document).ready(function () {
                     data[0].forEach(function (studentResult) {
                         newelement +=
                             '<tr>' +
-                            '<td>' + studentResult.resultId + '</td>' +
+                            '<td>' + studentResult.result_id + '</td>' +
                             '<td>' + studentResult.name + '</td>' +
                             '<td>' + studentResult.status + '</td>' +
-                            '<td>' + studentResult.icNumber + '</td>' +
+                            '<td>' + studentResult.ic_number + '</td>' +
                             '<td>' + (studentResult.average !== null ? studentResult.average : '-') + '</td>' +
-                            '<td>' + (studentResult.Bahasa_Melayu !== null ? studentResult.Bahasa_Melayu : '-') + '</td>' +
-                            '<td>' + (studentResult.English !== null ? studentResult.English : '-') + '</td>' +
-                            '<td>' + (studentResult.Math !== null ? studentResult.Math : '-') + '</td>' +
-                            '<td>' + (studentResult.Science !== null ? studentResult.Science : '-') + '</td>' +
-                            '<td>' + (studentResult.Sejarah !== null ? studentResult.Sejarah : '-') + '</td>' +
-                            '<td>  <center><i class="fas fa-edit updateBtn" data-student-id="' + studentResult.icNumber +
+                            '<td>' + (studentResult.bahasa_melayu !== null ? studentResult.bahasa_melayu : '-') + '</td>' +
+                            '<td>' + (studentResult.english !== null ? studentResult.english : '-') + '</td>' +
+                            '<td>' + (studentResult.math !== null ? studentResult.math : '-') + '</td>' +
+                            '<td>' + (studentResult.science !== null ? studentResult.science : '-') + '</td>' +
+                            '<td>' + (studentResult.sejarah !== null ? studentResult.sejarah : '-') + '</td>' +
+                            '<td>  <center><i class="fas fa-edit updateBtn" data-student-id="' + studentResult.ic_number +
                             '"></i></center></td>' +
                             '</tr>';
                     });
@@ -211,12 +211,12 @@ $(document).ready(function () {
 
                 $('#updateModal').modal('show');
                 $('#name').val(studentResult.name);
-                $('#Bahasa_Melayu').val(studentResult.Bahasa_Melayu);
-                $('#English').val(studentResult.English);
-                $('#Math').val(studentResult.Math);
-                $('#Science').val(studentResult.Science);
-                $('#Sejarah').val(studentResult.Sejarah);
-                $('#updateId').val(studentResult.icNumber);
+                $('#bahasa_melayu').val(studentResult.bahasa_melayu);
+                $('#english').val(studentResult.english);
+                $('#math').val(studentResult.math);
+                $('#science').val(studentResult.science);
+                $('#sejarah').val(studentResult.sejarah);
+                $('#updateId').val(studentResult.ic_number);
                 calculateAverage();
             }
             , error: function (error) {

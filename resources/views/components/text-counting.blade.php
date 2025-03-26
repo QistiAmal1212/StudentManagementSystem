@@ -15,7 +15,8 @@
                     if (startValue > endValue) {
                         startValue = endValue;
                     }
-                    $(element).text(Math.round(startValue)); // Update the displayed value for this element
+                    $(element).text(math.round(
+                    startValue)); // Update the displayed value for this element
                     lastTimestamp = timestamp;
                     requestAnimationFrame(updateCount);
                 }
@@ -25,5 +26,4 @@
             requestAnimationFrame(updateCount);
         });
     });
-
 </script>

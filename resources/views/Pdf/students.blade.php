@@ -29,14 +29,14 @@
         <tbody>
             @foreach ($students as $student)
                 <tr>
-                    <td>{{ $student->studentId }}</td>
+                    <td>{{ $student->student_id }}</td>
                     <td>{{ $student->name }}</td>
-                    <td>{{ $student->icNumber }}</td>
-                    <td>{{ $student->noTell }}</td>
+                    <td>{{ $student->ic_number }}</td>
+                    <td>{{ $student->no_tell }}</td>
                     <td>{{ $student->email }}</td>
                     <td>{{ $student->family_income }}</td>
                     <td>{{ $student->total_family_member }}</td>
-                    <td>{{ $student->classroomId }}</td>
+                    <td>{{ $student->classroom_id }}</td>
 
                 </tr>
             @endforeach

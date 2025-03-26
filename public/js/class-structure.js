@@ -38,7 +38,7 @@ $(document).ready(function () {
                         '<table id="example" class="table table-striped table-bordered" style="width:100%; font-size:15px !important;">' +
                         ' <thead>' +
                         '<tr>' +
-                        ' <th colspan="2" style="font-weight:normal !important;"> Class Name : ' + data[0].className + '</th>' +
+                        ' <th colspan="2" style="font-weight:normal !important;"> Class Name : ' + data[0].class_name + '</th>' +
                         '  <th colspan="3" style="font-weight:normal !important;">Class Teacher : ' + data[0].teacher_name + '</th>' +
                         '</tr>' +
                         '<tr>' +
@@ -55,8 +55,8 @@ $(document).ready(function () {
                         newelement +=
                             '<tr>' +
                             '<td>' + classStructure.name + '</td>' +
-                            '<td>' + classStructure.icNumber + '</td>' +
-                            '<td>' + classStructure.noTell + '</td>' +
+                            '<td>' + classStructure.ic_number + '</td>' +
+                            '<td>' + classStructure.no_tell + '</td>' +
                             '<td>' + classStructure.email + '</td>' +
                             '<td>' + classStructure.family_income + '</td>' +
                             '</tr>';

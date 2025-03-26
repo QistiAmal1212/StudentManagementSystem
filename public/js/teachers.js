@@ -19,8 +19,8 @@ $(document).ready(function () {
         // Validate input length before submitting the form
         var name = $('#name').val();
         var email = $('#emailTeacher').val();
-        var icNumberLength = $('#icNumber').val().length;
-        var noTellLength = $('#noTell').val().length;
+        var ic_numberLength = $('#ic_number').val().length;
+        var no_tellLength = $('#no_tell').val().length;
 
         var test1 = false;
         var test2 = false;
@@ -32,11 +32,11 @@ $(document).ready(function () {
             test1 = true;
         }
 
-        if (icNumberLength !== 12) {
+        if (ic_numberLength !== 12) {
             test2 = true;
         }
 
-        if (noTellLength < 11 || noTellLength > 12) {
+        if (no_tellLength < 11 || no_tellLength > 12) {
             test3 = true;
         }
 
@@ -78,8 +78,8 @@ $(document).ready(function () {
         // Validate input length before submitting the form
         var name = $('#updateName').val();
         var email = $('#updateEmail').val();
-        var icNumberLength = $('#updateIcNumber').val().length;
-        var noTellLength = $('#updateNoTell').val().length;
+        var ic_numberLength = $('#updateic_number').val().length;
+        var no_tellLength = $('#updateno_tell').val().length;
 
         var test1 = false;
         var test2 = false;
@@ -91,11 +91,11 @@ $(document).ready(function () {
             test1 = true;
         }
 
-        if (icNumberLength !== 12) {
+        if (ic_numberLength !== 12) {
             test2 = true;
         }
 
-        if (noTellLength < 11 || noTellLength > 12) {
+        if (no_tellLength < 11 || no_tellLength > 12) {
             test3 = true;
         }
 
@@ -131,7 +131,7 @@ $(document).ready(function () {
     });
 
     function showToast(errorMessage) {
-        var toastContainer = document.getElementsByClassName('toastContainer')[0];
+        var toastContainer = document.getElementsByclass_name('toastContainer')[0];
 
 
         // Create a new Toast element
@@ -162,7 +162,7 @@ $(document).ready(function () {
     }
 
     function showToast2(errorMessage) {
-        var toastContainer = document.getElementsByClassName('toastContainer2')[0];
+        var toastContainer = document.getElementsByclass_name('toastContainer2')[0];
 
 
         // Create a new Toast element
@@ -228,12 +228,12 @@ $(document).ready(function () {
 
 
     $('.editBtn').click(function () {
-        var teacherId = $(this).data('teacher-id');
+        var teacher_id = $(this).data('teacher-id');
         $.ajax({
             url: '/getTeacherDetail'
             , type: 'GET'
             , data: {
-                teacherId: teacherId
+                teacher_id: teacher_id
 
             }
             , success: function (teacherDetail) {
@@ -242,10 +242,10 @@ $(document).ready(function () {
 
 
                 $('#updateModal').modal('show');
-                $('#updateId').val(teacherDetail.teacherId);
+                $('#updateId').val(teacherDetail.teacher_id);
                 $('#updateName').val(teacherDetail.name);
-                $('#updateIcNumber').val(teacherDetail.icNumber);
-                $('#updateNoTell').val(teacherDetail.noTell);
+                $('#updateic_number').val(teacherDetail.ic_number);
+                $('#updateno_tell').val(teacherDetail.no_tell);
                 $('#updateEmail').val(teacherDetail.email);
 
 
