@@ -42,7 +42,7 @@ class SystemController extends Controller
 
         for ($i = 1; $i <= 6; $i++) {
             ${"totalStudentsForm" . $i} = DB::table('students')
-                ->join('classroom', 'Student.classroom_id', '=', 'classroom.classroom_id')
+                ->join('classroom', 'students.classroom_id', '=', 'classroom.classroom_id')
                 ->where('classroom.form', $i)
                 ->count();
 
@@ -53,7 +53,7 @@ class SystemController extends Controller
 
         for ($i = 1; $i <= 6; $i++) {
             ${"totalPoorStudentForEachForm" . $i} = DB::table('students')
-                ->join('classroom', 'Student.classroom_id', '=', 'classroom.classroom_id')
+                ->join('classroom', 'students.classroom_id', '=', 'classroom.classroom_id')
                 ->where('classroom.form', $i)
                 ->whereRaw('(family_income  / total_family_member) < 1250')
                 ->count();
@@ -106,9 +106,9 @@ class SystemController extends Controller
     public function students()
     {
         $students = DB::table('students')
-        ->join('classroom', 'Student.classroom_id', '=', 'classroom.classroom_id')
+        ->join('classroom', 'students.classroom_id', '=', 'classroom.classroom_id')
         ->join('classroom_teacher', 'classroom.teacher_id', '=', 'classroom_teacher.teacher_id')
-        ->select('Student.*', 'classroom.class_name', 'classroom_teacher.name AS teacher_name')
+        ->select('students.*', 'classroom.class_name', 'classroom_teacher.name AS teacher_name')
         ->get();
         $class = Classroom::all();
         $class2 = Classroom::all();

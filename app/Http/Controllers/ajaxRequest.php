@@ -17,9 +17,9 @@ class AjaxRequest extends Controller
         $selectedValue = $request->input('classId');
 
         $classStructure = DB::table('students')
-            ->rightJoin('classroom', 'Student.classroom_id', '=', 'classroom.classroom_id')
+            ->rightJoin('classroom', 'students.classroom_id', '=', 'classroom.classroom_id')
             ->rightJoin('classroom_teacher', 'classroom.teacher_id', '=', 'classroom_teacher.teacher_id')
-            ->select('Student.*', 'classroom.class_name', 'classroom.classroom_id', 'classroom_teacher.name AS teacher_name')
+            ->select('students.*', 'classroom.class_name', 'classroom.classroom_id', 'classroom_teacher.name AS teacher_name')
             ->where('classroom.classroom_id', '=', $selectedValue)
             ->get();
 
@@ -41,9 +41,9 @@ public function getStudentDetail(Request $request)
 {
     $SelectedId = $request->input('student_id');
     $studentDetail =  DB::table('students')
-    ->join('classroom', 'Student.classroom_id', '=', 'classroom.classroom_id')
-    ->select('Student.*', 'classroom.class_name','classroom.classroom_id',)
-    ->where('Student.student_id','=',$SelectedId)
+    ->join('classroom', 'students.classroom_id', '=', 'classroom.classroom_id')
+    ->select('students.*', 'classroom.class_name','classroom.classroom_id',)
+    ->where('students.student_id','=',$SelectedId)
     ->first();
     return response()->json($studentDetail);
 
@@ -71,9 +71,9 @@ public function getstudent_result(Request $request)
     $SelectedClass = $request->input('classroom_id');
 
     $students = DB::table('students')
-        ->rightJoin('classroom', 'Student.classroom_id', '=', 'classroom.classroom_id')
-        ->select('Student.*', 'classroom.class_name')
-        ->where('Student.classroom_id', '=', $SelectedClass)
+        ->rightJoin('classroom', 'students.classroom_id', '=', 'classroom.classroom_id')
+        ->select('students.*', 'classroom.class_name')
+        ->where('students.classroom_id', '=', $SelectedClass)
         ->get();
 
     $ic_numbers = $students->pluck('ic_number');

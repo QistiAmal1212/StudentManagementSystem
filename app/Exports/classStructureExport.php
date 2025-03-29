@@ -30,17 +30,17 @@ class ClassStructureExport implements FromCollection, WithHeadings, ShouldAutoSi
     public function collection()
     {
         // Your existing query logic
-        return Student::RightJoin('classroom', 'Student.classroom_id', '=', 'classroom.classroom_id')
+        return Student::RightJoin('classroom', 'students.classroom_id', '=', 'classroom.classroom_id')
             ->RightJoin('classroom_teacher', 'classroom.teacher_id', '=', 'classroom_teacher.teacher_id')
             ->select(
-                'Student.student_id',
-                'Student.name',
-                'Student.ic_number',
-                'Student.no_tell',
-                'Student.email',
-                'Student.family_income ',
-                'Student.total_family_member',
-                'Student.classroom_id',
+                'students.student_id',
+                'students.name',
+                'students.ic_number',
+                'students.no_tell',
+                'students.email',
+                'students.family_income ',
+                'students.total_family_member',
+                'students.classroom_id',
                 'classroom.class_name' // Add class_name to the select statement
             )
             ->where('classroom.classroom_id', '=', $this->classId)
