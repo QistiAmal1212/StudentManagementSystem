@@ -80,12 +80,15 @@ class SystemController extends Controller
 
     public function classroom()
     {
-        $classRooms = Classroom::with('teacher:id,name')->select('id', 'teacher_id')->get();
+        $classroom = DB::table('classroom')
+        ->join('classroom_teacher', 'classroom.teacher_id', '=', 'classroom_teacher.teacher_id')
+        ->select('classroom.teacher_id', 'classroom.teacher_id', 'classroom_teacher.name as teacher_name')
+        ->get();
 
 
 
         $totalstudent=[];
-        $classroomTest = $classRooms;
+        $classroomTest = $classroom;
         $j=1;
         foreach($classroomTest as  $classroomTest){
 
