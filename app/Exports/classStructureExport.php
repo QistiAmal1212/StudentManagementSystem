@@ -2,16 +2,16 @@
 
 namespace App\Exports;
 
-use App\Models\class_room_teacher;
-use App\Models\students;
-use App\Models\class_room;
+use App\Models\ClassroomTeacher;
+use App\Models\Students;
+use App\Models\Classroom;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Events\AfterSheet;
 
-class classStructureExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEvents
+class ClassStructureExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEvents
 {
     protected $classId;
     protected $class_name;
@@ -21,8 +21,8 @@ class classStructureExport implements FromCollection, WithHeadings, ShouldAutoSi
     {
         $this->classId = $classId;
         // Fetch class information based on classId
-        $class_name = class_room::find($classId);
-        $classTeacher = class_room_teacher::find($class_name->teacher_id);
+        $class_name = Classroom::find($classId);
+        $classTeacher = ClassroomTeacher::find($class_name->teacher_id);
         $this->class_name = $class_name ? $class_name->class_name : '';
         $this->teacherName = $classTeacher ? $classTeacher->name : '';
     }
@@ -30,8 +30,8 @@ class classStructureExport implements FromCollection, WithHeadings, ShouldAutoSi
     public function collection()
     {
         // Your existing query logic
-        return students::RightJoin('class_room', 'students.class_room_id', '=', 'class_room.class_room_id')
-            ->RightJoin('class_room_teacher', 'class_room.teacher_id', '=', 'class_room_teacher.teacher_id')
+        return Students::RightJoin('classroom', 'students.classroom_id', '=', 'classroom.classroom_id')
+            ->RightJoin('classroom_teacher', 'classroom.teacher_id', '=', 'classroom_teacher.teacher_id')
             ->select(
                 'students.student_id',
                 'students.name',
@@ -40,10 +40,10 @@ class classStructureExport implements FromCollection, WithHeadings, ShouldAutoSi
                 'students.email',
                 'students.family_income ',
                 'students.total_family_member',
-                'students.class_room_id',
-                'class_room.class_name' // Add class_name to the select statement
+                'students.classroom_id',
+                'classroom.class_name' // Add class_name to the select statement
             )
-            ->where('class_room.class_room_id', '=', $this->classId)
+            ->where('classroom.classroom_id', '=', $this->classId)
             ->get();
     }
 
@@ -60,7 +60,7 @@ class classStructureExport implements FromCollection, WithHeadings, ShouldAutoSi
                 'email',
                 'family_income ',
                 'total_family_member',
-                'class_room_id',
+                'classroom_id',
                 'class_name',
             ],
         ];

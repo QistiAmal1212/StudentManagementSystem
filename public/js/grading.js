@@ -2,8 +2,8 @@ $(document).ready(function () {
     $('#examSelect').on('change', function () {
         var Value = $('#examSelect').val();
         if (Value != "0") {
-            $('#class_roomSelect').fadeIn();
-            var selectInput = $('#class_roomSelect');
+            $('#classroomSelect').fadeIn();
+            var selectInput = $('#classroomSelect');
 
 
 
@@ -15,10 +15,10 @@ $(document).ready(function () {
                 }
                 , success: function (data) {
 
-                    $("#class_roomSelect").empty();
+                    $("#classroomSelect").empty();
 
-                    data.forEach(function (class_room) {
-                        newelement += '<option value="' + class_room.class_room_id + '">' + class_room.class_name + '</option>';
+                    data.forEach(function (classroom) {
+                        newelement += '<option value="' + classroom.classroom_id + '">' + classroom.class_name + '</option>';
                     });
 
                     selectInput.append(newelement);
@@ -32,14 +32,14 @@ $(document).ready(function () {
             });
         }
         else {
-            $('#class_roomSelect').fadeOut();
+            $('#classroomSelect').fadeOut();
         }
     });
 
     $('#searchButton').on('click', function () {
 
         var selectedValue1 = $('#examSelect').val();
-        var selectedValue2 = $('#class_roomSelect').val();
+        var selectedValue2 = $('#classroomSelect').val();
         var table = $('#cardT');
 
 
@@ -53,10 +53,10 @@ $(document).ready(function () {
 
 
             $.ajax({
-                url: '/getStudentResult'
+                url: '/getstudent_result'
                 , type: 'GET'
                 , data: {
-                    class_room_id: selectedValue2,
+                    classroom_id: selectedValue2,
                     exam_id: selectedValue1
                 }
                 , success: function (data) {
@@ -85,20 +85,20 @@ $(document).ready(function () {
                         '</thead>' +
                         '<tbody>';
 
-                    data[1].forEach(function (studentResultPending) {
+                    data[1].forEach(function (student_resultPending) {
                         newelement +=
                             '<tr>' +
-                            '<td>' + (studentResultPending.result_id) + '</td>' +
-                            '<td>' + (studentResultPending.name) + '</td>' +
-                            '<td>' + (studentResultPending.status) + '</td>' +
-                            '<td>' + (studentResultPending.ic_number) + '</td>' +
-                            '<td>' + (studentResultPending.average !== null ? studentResultPending.average : '-') + '</td>' +
-                            '<td>' + (studentResultPending.bahasa_melayu !== null ? studentResultPending.bahasa_melayu : '-') + '</td>' +
-                            '<td>' + (studentResultPending.english !== null ? studentResultPending.english : '-') + '</td>' +
-                            '<td>' + (studentResultPending.math !== null ? studentResultPending.math : '-') + '</td>' +
-                            '<td>' + (studentResultPending.science !== null ? studentResultPending.science : '-') + '</td>' +
-                            '<td>' + (studentResultPending.sejarah !== null ? studentResultPending.sejarah : '-') + '</td>' +
-                            '<td>  <center><i class="fas fa-edit updateBtn" data-student-id="' + studentResultPending.ic_number +
+                            '<td>' + (student_resultPending.result_id) + '</td>' +
+                            '<td>' + (student_resultPending.name) + '</td>' +
+                            '<td>' + (student_resultPending.status) + '</td>' +
+                            '<td>' + (student_resultPending.ic_number) + '</td>' +
+                            '<td>' + (student_resultPending.average !== null ? student_resultPending.average : '-') + '</td>' +
+                            '<td>' + (student_resultPending.bahasa_melayu !== null ? student_resultPending.bahasa_melayu : '-') + '</td>' +
+                            '<td>' + (student_resultPending.english !== null ? student_resultPending.english : '-') + '</td>' +
+                            '<td>' + (student_resultPending.math !== null ? student_resultPending.math : '-') + '</td>' +
+                            '<td>' + (student_resultPending.science !== null ? student_resultPending.science : '-') + '</td>' +
+                            '<td>' + (student_resultPending.sejarah !== null ? student_resultPending.sejarah : '-') + '</td>' +
+                            '<td>  <center><i class="fas fa-edit updateBtn" data-student-id="' + student_resultPending.ic_number +
                             '"></i></center></td>' +
                             '</tr>';
                     });
@@ -121,20 +121,20 @@ $(document).ready(function () {
                         '</thead>' +
                         '<tbody>';
 
-                    data[0].forEach(function (studentResult) {
+                    data[0].forEach(function (student_result) {
                         newelement +=
                             '<tr>' +
-                            '<td>' + studentResult.result_id + '</td>' +
-                            '<td>' + studentResult.name + '</td>' +
-                            '<td>' + studentResult.status + '</td>' +
-                            '<td>' + studentResult.ic_number + '</td>' +
-                            '<td>' + (studentResult.average !== null ? studentResult.average : '-') + '</td>' +
-                            '<td>' + (studentResult.bahasa_melayu !== null ? studentResult.bahasa_melayu : '-') + '</td>' +
-                            '<td>' + (studentResult.english !== null ? studentResult.english : '-') + '</td>' +
-                            '<td>' + (studentResult.math !== null ? studentResult.math : '-') + '</td>' +
-                            '<td>' + (studentResult.science !== null ? studentResult.science : '-') + '</td>' +
-                            '<td>' + (studentResult.sejarah !== null ? studentResult.sejarah : '-') + '</td>' +
-                            '<td>  <center><i class="fas fa-edit updateBtn" data-student-id="' + studentResult.ic_number +
+                            '<td>' + student_result.result_id + '</td>' +
+                            '<td>' + student_result.name + '</td>' +
+                            '<td>' + student_result.status + '</td>' +
+                            '<td>' + student_result.ic_number + '</td>' +
+                            '<td>' + (student_result.average !== null ? student_result.average : '-') + '</td>' +
+                            '<td>' + (student_result.bahasa_melayu !== null ? student_result.bahasa_melayu : '-') + '</td>' +
+                            '<td>' + (student_result.english !== null ? student_result.english : '-') + '</td>' +
+                            '<td>' + (student_result.math !== null ? student_result.math : '-') + '</td>' +
+                            '<td>' + (student_result.science !== null ? student_result.science : '-') + '</td>' +
+                            '<td>' + (student_result.sejarah !== null ? student_result.sejarah : '-') + '</td>' +
+                            '<td>  <center><i class="fas fa-edit updateBtn" data-student-id="' + student_result.ic_number +
                             '"></i></center></td>' +
                             '</tr>';
                     });
@@ -198,25 +198,25 @@ $(document).ready(function () {
         var studentIc = $(this).data();
         console.log(studentIc);
         $.ajax({
-            url: '/getStudentResult2'
+            url: '/getstudent_result2'
             , type: 'GET'
             , data: {
                 studentIc: studentIc
 
             }
-            , success: function (studentResult) {
+            , success: function (student_result) {
 
-                console.log(studentResult);
+                console.log(student_result);
 
 
                 $('#updateModal').modal('show');
-                $('#name').val(studentResult.name);
-                $('#bahasa_melayu').val(studentResult.bahasa_melayu);
-                $('#english').val(studentResult.english);
-                $('#math').val(studentResult.math);
-                $('#science').val(studentResult.science);
-                $('#sejarah').val(studentResult.sejarah);
-                $('#updateId').val(studentResult.ic_number);
+                $('#name').val(student_result.name);
+                $('#bahasa_melayu').val(student_result.bahasa_melayu);
+                $('#english').val(student_result.english);
+                $('#math').val(student_result.math);
+                $('#science').val(student_result.science);
+                $('#sejarah').val(student_result.sejarah);
+                $('#updateId').val(student_result.ic_number);
                 calculateAverage();
             }
             , error: function (error) {

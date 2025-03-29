@@ -90,19 +90,19 @@
                                 @php
                                     $i = 1;
                                 @endphp
-                                @foreach ($studentResult as $studentResult)
+                                @foreach ($student_result as $student_result)
                                     <tr>
 
                                         <td>{{ $i }}</td>
-                                        <td>{{ $studentResult->name }}</td>
-                                        <td>{{ $studentResult->ic_number }}</td>
-                                        <td>{{ $studentResult->class_name }}</td>
-                                        <td>{{ $studentResult->average }}%</td>
-                                        <td>{{ $studentResult->bahasa_melayu }}%</td>
-                                        <td>{{ $studentResult->english }}%</td>
-                                        <td>{{ $studentResult->math }}%</td>
-                                        <td>{{ $studentResult->science }}%</td>
-                                        <td>{{ $studentResult->sejarah }}%</td>
+                                        <td>{{ $student_result->name }}</td>
+                                        <td>{{ $student_result->ic_number }}</td>
+                                        <td>{{ $student_result->class_name }}</td>
+                                        <td>{{ $student_result->average }}%</td>
+                                        <td>{{ $student_result->bahasa_melayu }}%</td>
+                                        <td>{{ $student_result->english }}%</td>
+                                        <td>{{ $student_result->math }}%</td>
+                                        <td>{{ $student_result->science }}%</td>
+                                        <td>{{ $student_result->sejarah }}%</td>
 
                                     </tr>
                                     @php

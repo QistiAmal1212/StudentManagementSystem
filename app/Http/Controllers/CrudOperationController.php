@@ -3,17 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Exports\UsersExport;
-use App\Models\class_room_teacher;
-use App\Models\class_room;
-use App\Models\students;
-use App\Models\documents;
-use Illuminate\Support\Facades\DB;
+use App\Models\ClassroomTeacher;
+use App\Models\Classroom;
+use App\Models\Students;
+use App\Models\Documents;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
-use App\Imports\studentsImport;
-use App\Models\exam;
-use App\Models\studentResult;
+use App\Imports\StudentsImport;
+use App\Models\Exam;
+use App\Models\StudentResult;
 
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -33,11 +31,11 @@ public function addTeacher(Request $request)
             $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'no_tell' => ['required', 'string', 'max:12', 'min:11'],
-            'ic_number' => ['required', 'string', 'max:12', 'min:12','unique:' . class_room_teacher::class],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . class_room_teacher::class],
+            'ic_number' => ['required', 'string', 'max:12', 'min:12','unique:' . ClassroomTeacher::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . ClassroomTeacher::class],
             ]);
 
-            $teacher = new class_room_teacher();
+            $teacher = new ClassroomTeacher();
             $teacher->name = $request->input('name');
             $teacher->ic_number = $request->input('ic_number');
             $teacher->no_tell = $request->input('no_tell');
@@ -61,28 +59,28 @@ public function addTeacher(Request $request)
 
 
 
-public function addclass_room(Request $request)
+public function addclassroom(Request $request)
 {
 
     try
     {
         $request->validate([
-        'class_name' => ['required', 'string', 'max:255', 'unique:' . class_room::class],
+        'class_name' => ['required', 'string', 'max:255', 'unique:' . Classroom::class],
         ]);
 
 
         $tId=$request->input('teacher_id');
 
-        $class_room = new class_room();
-        $class_room->class_name = $request->input('class_name');
-        $class_room->form = $request->input('form');
-        $class_room->teacher_id = $request->input('teacher_id');
-        $class_room->save();
+        $classroom = new Classroom();
+        $classroom->class_name = $request->input('class_name');
+        $classroom->form = $request->input('form');
+        $classroom->teacher_id = $request->input('teacher_id');
+        $classroom->save();
 
-        $teacherChange =  class_room_teacher::WHERE('teacher_id',$tId)->first();
+        $teacherChange =  ClassroomTeacher::WHERE('teacher_id',$tId)->first();
         $teacherChange->is_class_teacher=1;
         $teacherChange->save();
-        return redirect('class_room')->with('success', 'class_room added successfully');
+        return redirect('classroom')->with('success', 'classroom added successfully');
 
     }
     catch (\Exception $e)
@@ -110,16 +108,16 @@ public function addStudent(Request $request)
         'family_income ' => ['required'],
         'total_family_member' => ['required'],
         'phone' => ['required', 'string', 'max:12', 'min:11'],
-        'ic_number' => ['required', 'string', 'max:12', 'min:12', 'unique:' . students::class],
-        'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . students::class],
+        'ic_number' => ['required', 'string', 'max:12', 'min:12', 'unique:' . Students::class],
+        'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . Students::class],
         ]);
 
-        $student = new students();
+        $student = new Students();
         $student->name = $request->input('name');
         $student->ic_number = $request->input('ic_number');
         $student->no_tell = $request->input('phone');
         $student->email = $request->input('email');
-        $student->class_room_id = $request->input('class');
+        $student->classroom_id = $request->input('class');
         $student->family_income  = $request->input('family_income ');
         $student->total_family_member = $request->input('total_family_member');
         $student->save();
@@ -162,7 +160,7 @@ public function addDocument(Request $request)
       $fullUrl = asset('storage/' . $filePath);
 
 
-      $document = new documents();
+      $document = new Documents();
       $document->title = $request->input('title');
       $document->document_path = $fullUrl;
       $document->save();
@@ -196,7 +194,7 @@ public function addExam(Request $request)
 
 
 
-      $exam = new exam();
+      $exam = new Exam();
       $exam->title = $request->input('title');
       $exam->form = $request->input('form');
 
@@ -204,20 +202,20 @@ public function addExam(Request $request)
       $checkForm =$exam->form;
       $exam_id =$exam->exam_id;
 
-      $class_rooms = class_room::where('form', $checkForm)->get();
-      $class_room_ids = $class_rooms->pluck('class_room_id');
-      $students = Students::whereIn('class_room_id', $class_room_ids)->get();
+      $classrooms = Classroom::where('form', $checkForm)->get();
+      $classroom_ids = $classrooms->pluck('classroom_id');
+      $students = Students::whereIn('classroom_id', $classroom_ids)->get();
 
       foreach($students as $student)
       {
-          $studentResult = new studentResult();
-          $studentResult->exam_id=$exam_id;
-          $studentResult->name=$student->name;
-          $studentResult->status="pending";
-          $studentResult->ic_number=$student->ic_number;
-          $findclass_name= class_room::Where('class_room_id',$student->class_room_id)->first();
-          $studentResult->class_name=$findclass_name->class_name;
-          $studentResult->save();
+          $student_result = new StudentResult();
+          $student_result->exam_id=$exam_id;
+          $student_result->name=$student->name;
+          $student_result->status="pending";
+          $student_result->ic_number=$student->ic_number;
+          $findclass_name= Classroom::Where('classroom_id',$student->classroom_id)->first();
+          $student_result->class_name=$findclass_name->class_name;
+          $student_result->save();
       }
 
 
@@ -247,7 +245,7 @@ public function updateTeacher(Request $request)
 {
     try {
         $teacher_id = $request->input('updateId');
-        $teacher = class_room_teacher::WHERE('teacher_id', $teacher_id)->first();
+        $teacher = ClassroomTeacher::WHERE('teacher_id', $teacher_id)->first();
         $teacher->name = $request->input('updateName');
         $teacher->ic_number = $request->input('updateic_number');
         $teacher->no_tell = $request->input('updateno_tell');
@@ -263,27 +261,27 @@ public function updateTeacher(Request $request)
 
 
 
-public function updateclass_room(Request $request)
+public function updateclassroom(Request $request)
 {
     try {
-        $class_room_id = $request->input('updateClassId');
-        $class_room = class_room::WHERE('class_room_id', $class_room_id)->first();
-        $teacherbefore=$class_room->teacher_id;
+        $classroom_id = $request->input('updateClassId');
+        $classroom = Classroom::WHERE('classroom_id', $classroom_id)->first();
+        $teacherbefore=$classroom->teacher_id;
         $teacherAfter= $request->input('updateteacher_id');
-        $class_room->class_name = $request->input('updateclass_name');
-        $class_room->form = $request->input('updateForm');
-        $class_room->teacher_id = $request->input('updateteacher_id');
-        $class_room->save();
+        $classroom->class_name = $request->input('updateclass_name');
+        $classroom->form = $request->input('updateForm');
+        $classroom->teacher_id = $request->input('updateteacher_id');
+        $classroom->save();
 
-        $teacher=class_room_teacher::WHERE('teacher_id',$teacherbefore)->first();
+        $teacher=ClassroomTeacher::WHERE('teacher_id',$teacherbefore)->first();
         $teacher->is_class_teacher=0;
         $teacher->save();
 
-        $newTeacher=class_room_teacher::WHERE('teacher_id',$teacherAfter)->first();
+        $newTeacher=ClassroomTeacher::WHERE('teacher_id',$teacherAfter)->first();
         $newTeacher->is_class_teacher=1;
         $newTeacher->save();
 
-        return redirect('class_room')->with('success', 'update successfully');
+        return redirect('classroom')->with('success', 'update successfully');
     } catch (\Exception $e) {
         $errorMessage = $e->getMessage();
         Session::flash('error', $errorMessage);
@@ -298,14 +296,14 @@ public function updateStudent(Request $request)
 {
     try {
         $student_id = $request->input('updateId');
-        $student = students::WHERE('student_id', $student_id)->first();
+        $student = Students::WHERE('student_id', $student_id)->first();
         $student->name = $request->input('updateName');
         $student->ic_number = $request->input('updateic_number');
         $student->no_tell = $request->input('updatePhone');
         $student->email = $request->input('updateEmail');
         $student->family_income  = $request->input('updatefamily_income ');
         $student->total_family_member = $request->input('updatetotal_family_member');
-        $student->class_room_id = $request->input('updateClass');
+        $student->classroom_id = $request->input('updateClass');
         $student->save();
 
 
@@ -335,8 +333,8 @@ public function deleteTeacher(Request $request)
    {
 
     $selectedTeacher = $request->input('selectedTeacher');
-    $teachers = class_room_teacher::WHEREIN('teacher_id',$selectedTeacher)->get();
-    $checkTeacher = class_room_teacher::WHEREIN('teacher_id',$selectedTeacher)->WHERE('is_class_teacher',1)->get();
+    $teachers = ClassroomTeacher::WHEREIN('teacher_id',$selectedTeacher)->get();
+    $checkTeacher = ClassroomTeacher::WHEREIN('teacher_id',$selectedTeacher)->WHERE('is_class_teacher',1)->get();
    if($checkTeacher->count() == 0)
 
    {
@@ -375,15 +373,15 @@ public function deleteTeacher(Request $request)
 
 
 
-public function deleteclass_room(Request $request)
+public function deleteclassroom(Request $request)
 {
     try
     {
 
      $selectedClass = $request->input('selectedClass');
-     $class_room = class_room::WHEREIN('class_room_id',$selectedClass)->get();
+     $classroom = Classroom::WHEREIN('classroom_id',$selectedClass)->get();
 
-     $checkId = students::WHEREIN('class_room_id',$selectedClass)->get();
+     $checkId = Students::WHEREIN('classroom_id',$selectedClass)->get();
 
 
 
@@ -392,23 +390,23 @@ public function deleteclass_room(Request $request)
 
     {
 
-       foreach ($class_room as $class_room)
+       foreach ($classroom as $classroom)
        {
-        $checkId2 = class_room_teacher::WHERE('teacher_id',$class_room->teacher_id)->first();
+        $checkId2 = ClassroomTeacher::WHERE('teacher_id',$classroom->teacher_id)->first();
      $checkId2->is_class_teacher=0;
 
-       $class_room->delete();
+       $classroom->delete();
        $checkId2->save();
        }
 
-        return redirect('class_room')->with('success', 'delete successfully');
+        return redirect('classroom')->with('success', 'delete successfully');
 
     }
 
     else
     {
 
-        return redirect('class_room')->with('error', 'class you want delete still got student');
+        return redirect('classroom')->with('error', 'class you want delete still got student');
 
     }
 
@@ -436,7 +434,7 @@ public function deleteStudent(Request $request)
     {
 
      $selectedStudent = $request->input('selectedStudent');
-     $students = students::WHEREIN('student_id',$selectedStudent)->get();
+     $students = Students::WHEREIN('student_id',$selectedStudent)->get();
 
        foreach ($students as $student)
        {
@@ -468,7 +466,7 @@ public function deleteDocument(Request $request)
     {
 
      $selectedDocument = $request->input('selectedDocument');
-     $documents = documents::WHEREIN('document_id',$selectedDocument)->get();
+     $documents = Documents::WHEREIN('document_id',$selectedDocument)->get();
 
        foreach ($documents as $document)
        {
@@ -510,7 +508,7 @@ public function importStudents()
    try
    {
 
-    Excel::import(new studentsImport, request()->file('file'));
+    Excel::import(new StudentsImport, request()->file('file'));
 
     return redirect()->route('students')->with('success', 'Data imported successfully!');
 
@@ -532,7 +530,7 @@ public function updateResult(Request $request)
     try
     {
      $ic_number=$request->input('updateId');
-     $result=studentResult::Where('ic_number',$ic_number)->first();
+     $result=StudentResult::Where('ic_number',$ic_number)->first();
      $result->name= $request->input('name');
      $result->bahasa_melayu= $request->input('bahasa_melayu');
      $result->english= $request->input('english');

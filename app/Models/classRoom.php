@@ -5,10 +5,10 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class class_room extends Model
+class Classroom extends Model
 {
-    protected $table = 'class_room';
-    protected $primaryKey = 'class_room_id';
+    protected $table = 'classroom';
+    protected $primaryKey = 'classroom_id';
     protected $fillable = [
         'class_name',
         'form',

@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
-class class_room_teacher extends Model
+class ClassroomTeacher extends Model
 {
-    protected $table = 'class_room_teacher';
+    protected $table = 'classroom_teacher';
     protected $primaryKey = 'teacher_id';
     protected $fillable = [
 

@@ -1,13 +1,11 @@
 <?php
 namespace App\Imports;
 
-use App\Models\students;
-use App\Models\class_room;
-use Illuminate\Validation\Rule;
+use App\Models\Students;
+use App\Models\Classroom;
 use Maatwebsite\Excel\Concerns\ToModel;
-use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Concerns\WithStartRow;
-class studentsImport implements ToModel,WithStartRow
+class StudentsImport implements ToModel,WithStartRow
 {
     private $rowCount = 0;
     private $encounteredic_numbers = [];
@@ -39,12 +37,12 @@ class studentsImport implements ToModel,WithStartRow
         // Add the current IC number to the encountered array
         $this->encounteredic_numbers[] = $ic_number;
 
-        if(students::where('email', $row[3])->exists() )
+        if(Students::where('email', $row[3])->exists() )
         {
             abort(422, 'row ' . $this->rowCount . ': Duplicate email found.');
         }
 
-        if(students::where('ic_number', $row[1])->exists() )
+        if(Students::where('ic_number', $row[1])->exists() )
         {
             abort(422, 'row ' . $this->rowCount . ': Duplicate Ic Number found.');
         }
@@ -56,23 +54,23 @@ class studentsImport implements ToModel,WithStartRow
         if ((strlen($row[2]) !== 10) && (strlen($row[2]) !== 11)){
             abort(422, 'row ' . $this->rowCount . ': phone number must be 10-11 digit.');
         }
-        // Perform existence check for class_room_id
-        if (!class_room::where('class_room_id', $row[6])->exists()) {
-            abort(422, 'row ' . $this->rowCount . ': Invalid class_room_id.');
+        // Perform existence check for classroom_id
+        if (!Classroom::where('classroom_id', $row[6])->exists()) {
+            abort(422, 'row ' . $this->rowCount . ': Invalid classroom_id.');
         }
 
 
         // amal said : please add validation for letter and number too
 
         // If all checks pass, create a new students model
-        return new students([
+        return new Students([
             'name' => (string) $row[0],
             'ic_number' => (string) $row[1],
             'no_tell' => (string) $row[2],
             'email' => (string) $row[3],
             'family_income ' => (float) $row[4],
             'total_family_member' => (int) $row[5],
-            'class_room_id' => (string) $row[6],
+            'classroom_id' => (string) $row[6],
         ]);
     }
     public function startRow(): int

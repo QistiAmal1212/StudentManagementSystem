@@ -12,7 +12,7 @@ $(document).ready(function () {
                 , text: 'Please select at least one Class to delete.'
             });
         } else {
-            $('#deleteclass_room').submit();
+            $('#deleteclassroom').submit();
         }
     });
     $(".sidebar-item.active").removeClass("active");
@@ -23,14 +23,14 @@ $(document).ready(function () {
         $('input[name="selectedClass[]"]').prop('checked', this.checked);
     });
     $(".sidebar-item.active").removeClass("active");
-    $("#class_room").addClass("active");
+    $("#classroom").addClass("active");
 
 
     $('#selectAllCheckbox').click(function () {
         $('input[name="selectedClass[]"]').prop('checked', this.checked);
     });
 
-    $('#deleteclass_room').submit(function (event) {
+    $('#deleteclassroom').submit(function (event) {
         // Check if any checkboxes are selected
         if ($('input[name="selectedClass[]"]:checked').length === 0) {
             Swal.fire({
@@ -66,26 +66,26 @@ $(document).ready(function () {
         console.log("update button clicked.");
         $('#updateModal').modal('show');
 
-        var class_room_id = $(this).data('class-id');
+        var classroom_id = $(this).data('class-id');
         $.ajax({
-            url: '/getclass_roomDetail'
+            url: '/getclassroomDetail'
             , type: 'GET'
             , data: {
-                class_room_id: class_room_id
+                classroom_id: classroom_id
 
             }
-            , success: function (class_room) {
+            , success: function (classroom) {
 
-                console.log(class_room);
+                console.log(classroom);
 
 
                 $('#updateModal').modal('show');
-                $('#updateclass_name').val(class_room.class_name);
-                $('#updateClassId').val(class_room.class_room_id);
-                $('#updateForm').val(class_room.form);
-                $('#updateteacher_id').val(class_room.teacher_id);
+                $('#updateclass_name').val(classroom.class_name);
+                $('#updateClassId').val(classroom.classroom_id);
+                $('#updateForm').val(classroom.form);
+                $('#updateteacher_id').val(classroom.teacher_id);
                 var teacherSelect = $('#updateteacher_id');
-                teacherSelect.append('<option value="' + class_room.teacher_id + '" selected>' + class_room.name + '</option>');
+                teacherSelect.append('<option value="' + classroom.teacher_id + '" selected>' + classroom.name + '</option>');
 
 
 

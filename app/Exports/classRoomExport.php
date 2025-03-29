@@ -2,32 +2,32 @@
 
 namespace App\Exports;
 
-use App\Models\class_room;
+use App\Models\Classroom;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
 
 
-class class_roomExport implements FromCollection, WithHeadings, WithEvents
+class ClassroomExport implements FromCollection, WithHeadings, WithEvents
 {
     /**
     * @return \Illuminate\Support\Collection
     */
    public function collection()
     {
-        // Use the query builder to join with class_room_teacher and get the teacher name
-        $class_rooms = class_room::select(
-            'class_room.class_room_id',
-            'class_room.class_name',
-            'class_room.form',
-            'class_room.teacher_id',
-            'class_room_teacher.name' // Add the teacherName field
+        // Use the query builder to join with classroom_teacher and get the teacher name
+        $classrooms = Classroom::select(
+            'classroom.classroom_id',
+            'classroom.class_name',
+            'classroom.form',
+            'classroom.teacher_id',
+            'classroom_teacher.name' // Add the teacherName field
         )
-            ->leftJoin('class_room_teacher', 'class_room.teacher_id', '=', 'class_room_teacher.teacher_id')
+            ->leftJoin('classroom_teacher', 'classroom.teacher_id', '=', 'classroom_teacher.teacher_id')
             ->get();
 
-        return $class_rooms;
+        return $classrooms;
     }
 
        /**
@@ -36,7 +36,7 @@ class class_roomExport implements FromCollection, WithHeadings, WithEvents
     public function headings(): array
     {
         return [
-            'class_room_id',
+            'classroom_id',
             'class_name',
             'form',
             'teacher_id',
