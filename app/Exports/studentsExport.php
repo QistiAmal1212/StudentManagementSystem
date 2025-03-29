@@ -2,7 +2,7 @@
 
 namespace app\Exports;
 
-use app\Models\Students;
+use app\Models\Student;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithEvents;

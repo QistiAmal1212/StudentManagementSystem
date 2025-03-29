@@ -5,11 +5,11 @@ namespace app\Http\Controllers;
 use Illuminate\Http\Request;
 use app\Models\ClassroomTeacher;
 use app\Models\Classroom;
-use app\Models\Students;
+use app\Models\Student;
 use app\Models\Documents;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
-use app\Imports\StudentsImport;
+use app\Imports\StudentImport;
 use app\Models\Exam;
 use app\Models\StudentResult;
 

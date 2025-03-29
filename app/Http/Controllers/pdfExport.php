@@ -5,7 +5,7 @@ namespace app\Http\Controllers;
 
 use Barryvdh\DomPDF\Facade\Pdf;
 use app\Models\ClassroomTeacher;
-use app\Models\Students;
+use app\Models\Student;
 use Illuminate\Support\Facades\DB;
 class PdfExport extends Controller
 {

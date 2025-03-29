@@ -7,7 +7,7 @@ use app\Models\Classroom;
 use app\Models\Documents;
 use app\Models\Exam;
 use app\Models\StudentResult;
-use app\Models\Students;
+use app\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 

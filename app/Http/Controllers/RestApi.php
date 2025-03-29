@@ -5,7 +5,7 @@ namespace app\Http\Controllers;
 
 use app\Models\Classroom;
 use app\Models\ClassroomTeacher;
-use app\Models\Students;
+use app\Models\Student;
 use Illuminate\Http\Request;
 
 class RestApi extends Controller

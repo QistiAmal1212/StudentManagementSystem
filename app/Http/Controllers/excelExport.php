@@ -4,7 +4,7 @@ namespace app\Http\Controllers;
 
 use app\Exports\ClassroomExport;
 use app\Exports\ClassStructureExport;
-use app\Exports\StudentsExport;
+use app\Exports\StudentExport;
 use Illuminate\Http\Request;
 use app\exports\Teachers;
 

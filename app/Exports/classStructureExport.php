@@ -3,7 +3,7 @@
 namespace app\Exports;
 
 use app\Models\ClassroomTeacher;
-use app\Models\Students;
+use app\Models\Student;
 use app\Models\Classroom;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\FromCollection;

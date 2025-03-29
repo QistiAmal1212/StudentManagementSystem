@@ -1,7 +1,7 @@
 <?php
 namespace app\Imports;
 
-use app\Models\Students;
+use app\Models\Student;
 use app\Models\Classroom;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithStartRow;
