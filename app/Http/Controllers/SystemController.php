@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace app\Http\Controllers;
 
-use App\Models\ClassroomTeacher;
-use App\Models\Classroom;
-use App\Models\Documents;
-use App\Models\Exam;
-use App\Models\StudentResult;
-use App\Models\Students;
+use app\Models\ClassroomTeacher;
+use app\Models\Classroom;
+use app\Models\Documents;
+use app\Models\Exam;
+use app\Models\StudentResult;
+use app\Models\Students;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 

@@ -1,14 +1,14 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use app\Http\Controllers\ProfileController;
 
-use App\Http\Controllers\EmailController;
-use App\Http\Controllers\SystemController;
-use App\Http\Controllers\AjaxRequest;
-use App\Http\Controllers\CrudOperationController;
-use App\Http\Controllers\ExcelExport;
-use App\Http\Controllers\pdfExport;
-use App\Http\Controllers\RestApi;
+use app\Http\Controllers\EmailController;
+use app\Http\Controllers\SystemController;
+use app\Http\Controllers\AjaxRequest;
+use app\Http\Controllers\CrudOperationController;
+use app\Http\Controllers\ExcelExport;
+use app\Http\Controllers\pdfExport;
+use app\Http\Controllers\RestApi;
 use Illuminate\Support\Facades\Route;
 
 

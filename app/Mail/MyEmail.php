@@ -1,7 +1,7 @@
 <?php
 // app/Mail/MyEmail.php
 
-namespace App\Mail;
+namespace app\Mail;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
@@ -12,19 +12,19 @@ class MyEmail extends Mailable
     use Queueable, SerializesModels;
 
     public $details;
-    
+
 
     /**
      * Create a new message instance.
      *
-     * 
+     *
      * @param  array    The form data to be included in the email
      * @return void
      */
     public function __construct($details)
     {
         $this->details = $details;
-       
+
     }
 
     /**

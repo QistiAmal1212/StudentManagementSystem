@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace app\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\ClassroomTeacher;
-use App\Models\Classroom;
-use App\Models\Students;
-use App\Models\Documents;
+use app\Models\ClassroomTeacher;
+use app\Models\Classroom;
+use app\Models\Students;
+use app\Models\Documents;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
-use App\Imports\StudentsImport;
-use App\Models\Exam;
-use App\Models\StudentResult;
+use app\Imports\StudentsImport;
+use app\Models\Exam;
+use app\Models\StudentResult;
 
 use Maatwebsite\Excel\Facades\Excel;
 

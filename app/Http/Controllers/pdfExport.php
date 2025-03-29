@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace app\Http\Controllers;
 
 
 use Barryvdh\DomPDF\Facade\Pdf;
-use App\Models\ClassroomTeacher;
-use App\Models\Students;
+use app\Models\ClassroomTeacher;
+use app\Models\Students;
 use Illuminate\Support\Facades\DB;
 class PdfExport extends Controller
 {

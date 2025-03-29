@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Exports;
+namespace app\Exports;
 
-use App\Models\ClassroomTeacher;
+use app\Models\ClassroomTeacher;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithEvents;

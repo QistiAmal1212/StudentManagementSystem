@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace app\Http\Controllers;
 
-use App\Exports\ClassroomExport;
-use App\Exports\ClassStructureExport;
-use App\Exports\StudentsExport;
+use app\Exports\ClassroomExport;
+use app\Exports\ClassStructureExport;
+use app\Exports\StudentsExport;
 use Illuminate\Http\Request;
-use App\exports\Teachers;
+use app\exports\Teachers;
 
 
 class ExcelExport extends Controller

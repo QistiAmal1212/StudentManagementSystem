@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Exports;
+namespace app\Exports;
 
-use App\Models\User;
+use app\Models\User;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
 class UsersExport implements FromCollection

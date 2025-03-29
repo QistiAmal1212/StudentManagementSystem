@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace app\Http\Controllers;
 
-use App\Models\Classroom;
-use App\Models\ClassroomTeacher;
-use App\Models\Exam;
-use App\Models\StudentResult;
+use app\Models\Classroom;
+use app\Models\ClassroomTeacher;
+use app\Models\Exam;
+use app\Models\StudentResult;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Exports;
+namespace app\Exports;
 
-use App\Models\ClassroomTeacher;
-use App\Models\Students;
-use App\Models\Classroom;
+use app\Models\ClassroomTeacher;
+use app\Models\Students;
+use app\Models\Classroom;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;

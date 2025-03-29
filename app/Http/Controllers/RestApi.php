@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace app\Http\Controllers;
 
 
-use App\Models\Classroom;
-use App\Models\ClassroomTeacher;
-use App\Models\Students;
+use app\Models\Classroom;
+use app\Models\ClassroomTeacher;
+use app\Models\Students;
 use Illuminate\Http\Request;
 
 class RestApi extends Controller
