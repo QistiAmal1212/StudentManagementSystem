@@ -5,7 +5,7 @@ namespace app\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
-class Students extends Model
+class Student extends Model
 {
     use HasFactory;
     protected $table = 'students';
