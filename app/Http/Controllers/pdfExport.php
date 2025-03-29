@@ -22,9 +22,9 @@ class PdfExport extends Controller
     public function exportPdfStudent()
     {
 
-        $students = Students::all();
+        $students = Student::all();
         $pdf = Pdf::loadView('Pdf.students',compact('students'));
-        return $pdf->download('students.pdf');
+        return $pdf->download('Student.pdf');
 
     }
 
@@ -44,9 +44,9 @@ class PdfExport extends Controller
     public function exportPdfClassStructure($id)
     {
         $classroomDetail = DB::table('students')
-        ->rightJoin('classroom', 'students.classroom_id', '=', 'classroom.classroom_id')
+        ->rightJoin('classroom', 'Student.classroom_id', '=', 'classroom.classroom_id')
         ->rightJoin('classroom_teacher', 'classroom.teacher_id', '=', 'classroom_teacher.teacher_id')
-        ->select('students.*', 'classroom.class_name','classroom.classroom_id', 'classroom_teacher.name AS teacher_name')
+        ->select('Student.*', 'classroom.class_name','classroom.classroom_id', 'classroom_teacher.name AS teacher_name')
         ->where('classroom.classroom_id','=',$id)
         ->get();
         $pdf = Pdf::loadView('Pdf.classroomStructure',compact('classroomDetail','id'));

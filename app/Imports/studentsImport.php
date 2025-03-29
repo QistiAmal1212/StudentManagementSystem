@@ -20,7 +20,7 @@ class StudentsImport implements ToModel,WithStartRow
     {
         $this->rowCount++;
 
-        // if (students::where('name', $row[0])->exists()) {
+        // if (Student::where('name', $row[0])->exists()) {
         //     abort(422, 'row ' . $this->rowCount . ': Duplicate data found.');
 
         // }
@@ -37,12 +37,12 @@ class StudentsImport implements ToModel,WithStartRow
         // Add the current IC number to the encountered array
         $this->encounteredic_numbers[] = $ic_number;
 
-        if(Students::where('email', $row[3])->exists() )
+        if(Student::where('email', $row[3])->exists() )
         {
             abort(422, 'row ' . $this->rowCount . ': Duplicate email found.');
         }
 
-        if(Students::where('ic_number', $row[1])->exists() )
+        if(Student::where('ic_number', $row[1])->exists() )
         {
             abort(422, 'row ' . $this->rowCount . ': Duplicate Ic Number found.');
         }

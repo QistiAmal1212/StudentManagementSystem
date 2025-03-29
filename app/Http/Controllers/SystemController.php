@@ -25,24 +25,24 @@ class SystemController extends Controller
 
         foreach($classroomTest as  $classroomTest){
 
-        $totalstudent[$j] = Students::where('classroom_id',$classroomTest->classroom_id)->count();
+        $totalstudent[$j] = Student::where('classroom_id',$classroomTest->classroom_id)->count();
          $j++;
         }
 
         $totalclassroom = Classroom::count();
         $totalTeachers = ClassroomTeacher::count();
-        $totalStudents = Students::count();
-        $totalPoorStudents = Students::whereNull('family_income')->count();
+        $totalStudents = Student::count();
+        $totalPoorStudents = Student::whereNull('family_income')->count();
         $latestDate1 = Classroom::latest('updated_at')->first();
         $latestDate2 = ClassroomTeacher::latest('updated_at')->first();
-        $latestDate3 = Students::latest('updated_at')->first();
-        $latestDate4 = Students::whereRaw('(family_income  / total_family_member) < 1250')->latest('updated_at')->first();
+        $latestDate3 = Student::latest('updated_at')->first();
+        $latestDate4 = Student::whereRaw('(family_income  / total_family_member) < 1250')->latest('updated_at')->first();
 
         $totalStudentForEachForm = [];
 
         for ($i = 1; $i <= 6; $i++) {
             ${"totalStudentsForm" . $i} = DB::table('students')
-                ->join('classroom', 'students.classroom_id', '=', 'classroom.classroom_id')
+                ->join('classroom', 'Student.classroom_id', '=', 'classroom.classroom_id')
                 ->where('classroom.form', $i)
                 ->count();
 
@@ -53,7 +53,7 @@ class SystemController extends Controller
 
         for ($i = 1; $i <= 6; $i++) {
             ${"totalPoorStudentForEachForm" . $i} = DB::table('students')
-                ->join('classroom', 'students.classroom_id', '=', 'classroom.classroom_id')
+                ->join('classroom', 'Student.classroom_id', '=', 'classroom.classroom_id')
                 ->where('classroom.form', $i)
                 ->whereRaw('(family_income  / total_family_member) < 1250')
                 ->count();
@@ -92,7 +92,7 @@ class SystemController extends Controller
         $j=1;
         foreach($classroomTest as  $classroomTest){
 
-        $totalstudent[$j] = Students::where('classroom_id',$classroomTest->classroom_id)->count();
+        $totalstudent[$j] = Student::where('classroom_id',$classroomTest->classroom_id)->count();
          $j++;
         }
 
@@ -106,9 +106,9 @@ class SystemController extends Controller
     public function students()
     {
         $students = DB::table('students')
-        ->join('classroom', 'students.classroom_id', '=', 'classroom.classroom_id')
+        ->join('classroom', 'Student.classroom_id', '=', 'classroom.classroom_id')
         ->join('classroom_teacher', 'classroom.teacher_id', '=', 'classroom_teacher.teacher_id')
-        ->select('students.*', 'classroom.class_name', 'classroom_teacher.name AS teacher_name')
+        ->select('Student.*', 'classroom.class_name', 'classroom_teacher.name AS teacher_name')
         ->get();
         $class = Classroom::all();
         $class2 = Classroom::all();
@@ -211,7 +211,7 @@ class SystemController extends Controller
     {
         $documents = Documents::all();
         $emails = ClassroomTeacher::select('email')
-    ->union(Students::select('email'))
+    ->union(Student::select('email'))
     ->get();
         return view("Pages.email",compact('documents','emails'));
 

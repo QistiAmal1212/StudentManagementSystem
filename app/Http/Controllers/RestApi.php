@@ -12,7 +12,7 @@ class RestApi extends Controller
 {
     public function StudentData()
     {
-        $students=Students::all();
+        $students=Student::all();
         return response()->json($students);
     }
 

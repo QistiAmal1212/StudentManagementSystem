@@ -16,18 +16,18 @@ class StudentsExport implements FromCollection, WithHeadings, WithEvents
     public function collection()
     {
         // Retrieve students with class_name
-        $students = Students::select(
-            'students.student_id',
-            'students.name',
-            'students.ic_number',
-            'students.no_tell',
-            'students.email',
-            'students.family_income ',
-            'students.total_family_member',
-            'students.classroom_id',
+        $students = Student::select(
+            'Student.student_id',
+            'Student.name',
+            'Student.ic_number',
+            'Student.no_tell',
+            'Student.email',
+            'Student.family_income ',
+            'Student.total_family_member',
+            'Student.classroom_id',
             'classroom.class_name' // Add class_name to the select statement
         )
-            ->join('classroom', 'students.classroom_id', '=', 'classroom.classroom_id')
+            ->join('classroom', 'Student.classroom_id', '=', 'classroom.classroom_id')
             ->get();
 
         return $students;

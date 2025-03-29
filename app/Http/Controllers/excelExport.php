@@ -19,7 +19,7 @@ class ExcelExport extends Controller
 
     public function exportExcelStudents()
     {
-        return \Maatwebsite\Excel\Facades\Excel::download(new StudentsExport, 'Students.xlsx');
+        return \Maatwebsite\Excel\Facades\Excel::download(new StudentsExport, 'Student.xlsx');
 
     }
 

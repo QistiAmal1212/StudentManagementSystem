@@ -108,8 +108,8 @@ public function addStudent(Request $request)
         'family_income ' => ['required'],
         'total_family_member' => ['required'],
         'phone' => ['required', 'string', 'max:12', 'min:11'],
-        'ic_number' => ['required', 'string', 'max:12', 'min:12', 'unique:' . Students::class],
-        'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . Students::class],
+        'ic_number' => ['required', 'string', 'max:12', 'min:12', 'unique:' . Student::class],
+        'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . Student::class],
         ]);
 
         $student = new Students();
@@ -204,7 +204,7 @@ public function addExam(Request $request)
 
       $classrooms = Classroom::where('form', $checkForm)->get();
       $classroom_ids = $classrooms->pluck('classroom_id');
-      $students = Students::whereIn('classroom_id', $classroom_ids)->get();
+      $students = Student::whereIn('classroom_id', $classroom_ids)->get();
 
       foreach($students as $student)
       {
@@ -296,7 +296,7 @@ public function updateStudent(Request $request)
 {
     try {
         $student_id = $request->input('updateId');
-        $student = Students::WHERE('student_id', $student_id)->first();
+        $student = Student::WHERE('student_id', $student_id)->first();
         $student->name = $request->input('updateName');
         $student->ic_number = $request->input('updateic_number');
         $student->no_tell = $request->input('updatePhone');
@@ -381,7 +381,7 @@ public function deleteclassroom(Request $request)
      $selectedClass = $request->input('selectedClass');
      $classroom = Classroom::WHEREIN('classroom_id',$selectedClass)->get();
 
-     $checkId = Students::WHEREIN('classroom_id',$selectedClass)->get();
+     $checkId = Student::WHEREIN('classroom_id',$selectedClass)->get();
 
 
 
@@ -434,7 +434,7 @@ public function deleteStudent(Request $request)
     {
 
      $selectedStudent = $request->input('selectedStudent');
-     $students = Students::WHEREIN('student_id',$selectedStudent)->get();
+     $students = Student::WHEREIN('student_id',$selectedStudent)->get();
 
        foreach ($students as $student)
        {
